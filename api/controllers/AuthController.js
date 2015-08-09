@@ -1,4 +1,4 @@
-/**
+  /**
  * Authentication Controller
  *
  * This is merely meant as an example of how your Authentication controller
@@ -45,6 +45,10 @@ var AuthController = {
       , slug: key
       };
     });
+
+    if (req.session.authenticated) {
+      return res.redirect('/');
+    }
 
     // Render the `auth/login.ext` view
     res.view({
