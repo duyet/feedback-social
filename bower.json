@@ -1,0 +1,23 @@
+{
+  "name": "feedback-social",
+  "version": "0.0.0",
+  "homepage": "https://github.com/duyetdev/feedback-social",
+  "authors": [
+    "duyetdev <me@duyetdev.com>"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
