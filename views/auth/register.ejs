@@ -1,12 +1,42 @@
-<% if (errors) {%>
-  <% errors.forEach(function (error) { %>
-    <%= __(error) %>
-  <% }) %>
-<% } %>
+<script type="text/javascript">
+setTimeout(function sunrise () {
+    document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
+}, 0);
+</script>
 
-<form role="form" action="/auth/local/register" method="post">
-  <input type="text" name="username" placeholder="Username">
-  <input type="text" name="email" placeholder="Email">
-  <input type="password" name="password" placeholder="Password">
-  <button type="submit">Sign up</button>
-</form>
+<div class="default-page">
+    <div class="header">
+        <h1 id="main-title" class="container"><%= __('Login') %></h1>
+        <h3 class="container"></h3>
+    </div>
+
+    <div class="main container clearfix">
+        
+          <% if (errors) {%>
+              <% errors.forEach(function (error) { %>
+                <div class="alert alert-warning"><%= __(error) %></div>
+              <% }) %>
+          <% } %>
+
+          <form role="form" action="/auth/local/register" method="post">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control" id="username">
+              </div>
+
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" class="form-control" id="email">
+              </div>
+
+              <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" name="password" class="form-control" id="pwd">
+              </div>
+
+              <button type="submit" class="btn btn-default">Sign up</button>
+              or <a href="/login">Login</a>
+          </form>
+
+    </div>
+</div>
