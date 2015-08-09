@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="feedbackPlatform">
   <head>
-    <title>New Sails App</title>
+    <title><%= __('Feedback Platform') %></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -87,8 +87,13 @@
 
     -->
 
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/mainController.js"></script>
+    <script src="/js/controller/event.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
