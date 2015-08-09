@@ -56,8 +56,8 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  someMongodbServer: {
-    adapter: 'sails-mongo',
+  mongodbServer: {
+    adapter: 'feedback-flatform-dev',
     host: 'localhost',
     port: 27017,
     // user: 'username',
