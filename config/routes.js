@@ -33,7 +33,10 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'homepage/v1',
+    locals: {
+      layout: 'layout_v1'
+    }
   },
 
   '/event': {
