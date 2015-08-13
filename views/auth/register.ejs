@@ -10,7 +10,7 @@ setTimeout(function sunrise () {
         <h3 class="container"></h3>
     </div>
 
-    <div class="main container clearfix">
+    <div class="main container auth-form clearfix">
         
           <% if (errors) {%>
               <% errors.forEach(function (error) { %>
@@ -19,6 +19,8 @@ setTimeout(function sunrise () {
           <% } %>
 
           <form role="form" action="/auth/local/register" method="post">
+              <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+
               <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" name="username" class="form-control" id="username">

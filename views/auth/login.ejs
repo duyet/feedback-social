@@ -1,53 +1,75 @@
-<script type="text/javascript">
-setTimeout(function sunrise () {
-    document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
-}, 0);
-</script>
-
-<div class="default-page">
-    <div class="header">
-        <h1 id="main-title" class="container"><%= __('Login') %></h1>
-        <h3 class="container"></h3>
-    </div>
-
-    <div class="main container clearfix">
-        
-          <% if (errors) {%>
-              <% errors.forEach(function (error) { %>
-                <div class="alert alert-warning"><%= __(error) %></div>
-              <% }) %>
-          <% } %>
-
-          <form role="form" action="/auth/local" method="post">
-              <div class="form-group">
-                  <label for="email">Username or Email</label>
-                  <input type="text" name="identifier" class="form-control" id="email">
+<main>
+  <section id="login-form">
+      <div class="container inner">
+          <div class="row">
+              <div class="col-md-8 col-sm-9 center-block text-center animated">
+                  <header>
+                      <h1 id="main-title" class="container"><%= __('Login') %></h1>
+                      <p>Do you want to know more? We’d love to hear from you!</p>
+                  </header>
               </div>
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="row">
+                      <div class="col-sm-6 outer-top-md inner-right-sm">
+                          <h2><%= __('Login') %></h2>
+                          <form role="form" action="/auth/local" class="forms" method="post">
+                              <div class="row">
+                                <% if (errors) {%>
+                                    <% errors.forEach(function (error) { %>
+                                      <div class="alert alert-danger"><%= __(error) %></div>
+                                    <% }) %>
+                                <% } %>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-8 animated">
+                                      <input type="text" name="email" class="form-control" placeholder="Email">
+                                  </div>
+                                  <!-- /.col -->
+                              </div>
+                              <!-- /.row -->
+                              <div class="row">
+                                  <div class="col-sm-8 animated">
+                                      <input type="password" name="password" class="form-control" placeholder="Password">
+                                  </div>
+                                  <!-- /.col -->
+                              </div>
+                              <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                              <button type="submit" class="btn btn-default btn-submit">Submit</button>
+                          </form>
+                          <div id="response"></div>
+                      </div>
+                      <!-- ./col -->
+                      <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
+                          <h2><%= __('Register') %></h2> <%= __('Do not have account?') %> <a href="/register" class="btn"><%= __('Register') %></a>
 
-              <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" name="password" class="form-control" id="pwd">
+
+ 
+                          <!-- /.contacts -->
+                          <div class="social-network">
+                              <h3>Social</h3>
+                              <ul class="social">
+                                  <li><a href="#"><i class="icon-s-facebook"></i></a></li>
+                                  <li><a href="#"><i class="icon-s-gplus"></i></a></li>
+                                  <li><a href="#"><i class="icon-s-twitter"></i></a></li>
+                              </ul>
+                              <!-- /.social -->
+                          </div>
+                          <!-- /.social-network -->
+
+                          <p><%= __('Back to homepage') %></p>
+                      </div>
+                      <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
               </div>
-
-              <button type="submit" class="btn btn-default">Submit</button>
-              or <a href="/register">Register</a>
-          </form>
-
-          <% if (Object.keys(providers).length) {%>
-            <h4>You can also use one of these...</h4>
-
-            <% Object.keys(providers).forEach(function (key) { %>
-              <a href="/auth/<%= providers[key].slug %>" role="button"><%= providers[key].name %></a>
-            <% }) %>
-          <% } %>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container -->
+  </section>
+</main>

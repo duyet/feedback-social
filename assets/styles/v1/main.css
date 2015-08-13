@@ -48,7 +48,7 @@ iframe {
 }
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    background-color: #283645;
+    /*background-color: #283645;*/
     color: #73879C;
     font-size: 18px;
 	line-height: 150%;
@@ -60,7 +60,7 @@ body {
 	height: auto !important;
 }
 .csstransitions main [class*="col-"] {
-	opacity: 0;
+	/*opacity: 0;*/
 }
 .navbar,
 main {
@@ -100,7 +100,7 @@ h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
 	letter-spacing: 0.025em;
-    color: #506A85;
+    color: #384D62; /*#506A85;*/
     margin-top: 0;
 	/*word-wrap: break-word;*/
 }
