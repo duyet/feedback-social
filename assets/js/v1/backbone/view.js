@@ -7,28 +7,39 @@
  */
 
 // ==================================================
+// Root view layout
+// ==================================================
+RootView = Marionette.LayoutView.extend({
+	el: "#main-view",
+});
+
+// ==================================================
 // Home view
 // ==================================================
-HomeView = Backbone.View.extend({
-	template: _.template(JST['assets/templates/home.html']()),
+HomeView = Marionette.ItemView.extend({
+	el: "#main-view",
+
+	render: function() {
+		$(this.el).html(_.template(JST['assets/templates/home.html']()))
+	},
 });
 
 // ==================================================
 // Footer view
 // ==================================================
 FooterView = Backbone.View.extend({
-	initialize: function() {
-		this.render();
+	initialize: function(version) {
+		// this.render(version);
 	},
 
-	render: function() {
-		var html = _.template(JST['assets/templates/footer.html']());
+	render: function(version) {
+		var html = _.template(JST['assets/templates/footer.html'](version));
 		this.$el.html(html);
 	}
 });
 
 // ==================================================
-// Footer view
+// Login view
 // ==================================================
 LoginView = Backbone.View.extend({
 	template: _.template(JST['assets/templates/login.html']()),

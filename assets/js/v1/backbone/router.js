@@ -28,6 +28,3 @@ var AppRouter = Backbone.Router.extend({
     active_account: function(key) {},
     defaultRoute: function(actions) {},
 });
-
-// Start Backbone history a necessary step for bookmarkable URL's
-Backbone.history.start();
