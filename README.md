@@ -2,6 +2,14 @@
 
 Feedback Social is platform, free for all to feedback, preview, complain,... about everything. They can get for supports from community about that.
 
+# Todo 
+
+* Mardown editor 
+* User page 
+* Static page 
+* Admin manager page
+* Comment for feedback report.
+
 # Contact 
 
 Van-Duyet Le (#duyetdev) <br />
