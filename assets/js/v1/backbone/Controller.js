@@ -23,7 +23,8 @@ define(function(require) {
         exploreMain: function() {
             var AppInstance = require('AppInstance');
             AppInstance.regionMain.show(new ExploreView());
-            AppInstance.regionFooter.hide();
+            AppInstance.regionFooter.reset();
+            //console.log(AppInstance.regionFooter);
         },
 
         exploreCat: function() {

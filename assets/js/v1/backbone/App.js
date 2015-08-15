@@ -38,6 +38,9 @@ define(function(require) {
 			// Add in the site navigation
 			this.regionNav.show(navigationView);
 
+            // show the footer
+            this.regionFooter.show(new Footer());
+
 			// Add routers
 			this.Router = new Router({
 				controller: new Controller()
@@ -54,11 +57,8 @@ define(function(require) {
 			// This is a very simple demo, and as such I'm going to use
 			// hashes for internal navigation.  If you want Backbone/Marionette
 			// to enforce full URLs use:
-			// Backbone.history.start( { pushState: true } );
-			Backbone.history.start();
-
-			// show the footer
-			this.regionFooter.show(new Footer());
+			Backbone.history.start( { pushState: false } );
+			//Backbone.history.start();
 		}
 	});
 });
