@@ -8,6 +8,13 @@
 // Width variables (appears count calculates by raw css)
 @width0: 1200px; // Appears 2 times
 
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+      -ms-border-radius: @radius;
+       -o-border-radius: @radius;
+}
 
 html {
     font-size:1em;
@@ -421,4 +428,20 @@ div.default-page {
 .portfolio-modal .modal-backdrop {
     display: none;
     opacity: 0;
+}
+
+/* Feedback flash error */
+.feedback-flash-error {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-bottom: 0;
+    z-index: 29000;
+    left: 0;
+    border-radius: 0;
+    text-align: center;
+    padding: 3px;
+    font-size: 1em;
+
+    .border-radius(0);
 }

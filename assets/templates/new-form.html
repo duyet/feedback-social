@@ -26,7 +26,7 @@
                         <div id="response"></div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
+                    <div class="col-sm-6 outer-top-md inner-left-sm inner-bottom-sm border-left animated">
                             
                         <ul>
                             <li>
@@ -45,6 +45,7 @@
 
                         <div id="addon-review">
                             <!-- Links and images preview view here -->
+                            <ul id="input-links"></ul>
                         </div>
 
                     </div>
@@ -75,10 +76,11 @@
                         <hr class="star-primary">
                         
                         <p>
-                            <input type="url" name="add-url" id="inputAdd-Url" class="form-control" value="" required="required" placeholder="http://">
+                            <input type="url" name="add-url" id="inputAddUrl" class="form-control input-strong" placeholder="http://">
                         </p>
                         
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-default" id="btn-add-link">Ok</button>
+                        <!-- data-dismiss="modal" -->
                     </div>
                 </div>
             </div>
