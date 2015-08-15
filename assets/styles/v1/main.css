@@ -1382,14 +1382,7 @@ aside .thumb figure {
     text-transform: uppercase;
     color: #506A85;
     padding: 15px 20px;
-	border: 1px solid rgba(255,255,255,0);
 	border-bottom: none;
-	-webkit-border-top-right-radius: 3px;
-	 -webkit-border-top-left-radius: 3px;
-	    -moz-border-radius-topright: 3px;
-	     -moz-border-radius-topleft: 3px;
-	        border-top-right-radius: 3px;
-	         border-top-left-radius: 3px;
 	bottom: -1px;
 	z-index: 1;
 }

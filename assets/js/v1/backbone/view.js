@@ -39,8 +39,31 @@ FooterView = Backbone.View.extend({
 });
 
 // ==================================================
+// Menu login view
+// ==================================================
+MainMenuLoginView = Marionette.ItemView.extend({
+	el: "#main-menu #login-register",
+
+	render: function() {
+		var html = _.template(JST['assets/templates/main-menu-login.html']());
+		$(this.el).html(html);
+	}
+});
+
+// ==================================================
 // Login view
 // ==================================================
 LoginView = Backbone.View.extend({
 	template: _.template(JST['assets/templates/login.html']()),
+});
+
+// ==================================================
+// Comming soon view
+// ==================================================
+CommingSoonView = Marionette.ItemView.extend({
+	el: "#main-view",
+
+	render: function() {
+		$(this.el).html(_.template(JST['assets/templates/comming-soon.html']()))
+	},
 });

@@ -22,9 +22,16 @@ var FeedbackApp = Backbone.Marionette.Application.extend({
 		this.version = options.version || "";
 		this.build = options.build || "";
 
+		// Router 
+		this.router = new AppRouter();
+
 		// Start history 
 		Backbone.history.start();
 
+		this.router.navigate(location.hash, true)
+
+		// User manager 
+		this.user = new UserModel();
 	},
 
 	StaticView: Marionette.ItemView.extend({
@@ -42,6 +49,8 @@ var FeedbackApp = Backbone.Marionette.Application.extend({
 
 	start: function() {
 		console.log("Start Application.");
+
+
 		
 		// Render defaul static view
 		var staticView = new this.StaticView({
@@ -51,6 +60,13 @@ var FeedbackApp = Backbone.Marionette.Application.extend({
 
 		// Render nav and footer 
 		(new FooterView({ el: $("footer") })).render(this.version);
+
+		// Render main menu > login view
+		var UserInfo = {
+			user_id: 0,
+			username: ""
+		};
+		(new MainMenuLoginView()).render();
 	},
 });
 

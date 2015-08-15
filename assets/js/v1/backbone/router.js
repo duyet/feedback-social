@@ -9,12 +9,17 @@
 // ================================================
 // ROUTER 
 // ================================================
-var AppRouter = Backbone.Router.extend({
+var AppRouter = Marionette.AppRouter.extend({
     routes: {
+        //Authen 
     	"login": "login",
     	"register": "register",
     	"forgot": "forgot_password",
     	"active/:key": "active_account",
+
+        // Explore
+        "explore" : "explore",
+
         "*actions": "defaultRoute"
         // matches http://example.com/#anything-here
     },
@@ -27,4 +32,8 @@ var AppRouter = Backbone.Router.extend({
     forgot_password: function() {},
     active_account: function(key) {},
     defaultRoute: function(actions) {},
+
+    explore: function() {
+        (new CommingSoonView()).render();
+    },
 });

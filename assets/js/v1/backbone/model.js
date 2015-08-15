@@ -9,7 +9,7 @@
 // ================================================
 // User
 // ================================================
-User = Backbone.Model.extend({
+UserModel = Backbone.Model.extend({
 	initialize: function() {
 
 	},

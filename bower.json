@@ -24,6 +24,7 @@
     "respond": "~1.4.2",
     "backbone": "~1.2.1",
     "owl.carousel": "~2.0.0-beta.3",
-    "backbone.marionette": "~2.4.2"
+    "backbone.marionette": "~2.4.2",
+    "requirejs": "~2.1.20"
   }
 }

@@ -129,7 +129,7 @@ var AuthController = {
    */
   callback: function (req, res) {
     function tryAgain (err) {
-
+      console.log(err, req.flash('error'));
       // Only certain error messages are returned via req.flash('error', someError)
       // because we shouldn't expose internal authorization errors to the user.
       // We do return a generic error and the original request body.
@@ -142,11 +142,16 @@ var AuthController = {
       }
       req.flash('form', req.body);
 
+      
+
+      // Send to API endpoint 
+      return res.json(401, req.flash('error'));
+
       // If an error was thrown, redirect the user to the
       // login, register or disconnect action initiator view.
       // These views should take care of rendering the error messages.
-      var action = req.param('action');
-
+      //var action = req.param('action');
+      /*
       switch (action) {
         case 'register':
           res.redirect('/register');
@@ -157,6 +162,7 @@ var AuthController = {
         default:
           res.redirect('/login');
       }
+      */
     }
 
     passport.callback(req, res, function (err, user, challenges, statuses) {
@@ -174,7 +180,10 @@ var AuthController = {
         
         // Upon successful login, send the user to the homepage were req.user
         // will be available.
-        res.redirect('/');
+        // res.redirect('/');
+
+        // Upon successful login, send req.user info to client
+        return res.json(req.user);
       });
     });
   },
@@ -187,6 +196,16 @@ var AuthController = {
    */
   disconnect: function (req, res) {
     passport.disconnect(req, res);
+  },
+
+  /**
+   * User info api endpoint 
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  user: function (req, res) {
+    return res.json(req.user || []);
   }
 };
 
