@@ -1,9 +1,9 @@
-<section id="login-form">
+<section id="register-form">
     <div class="container inner">
         <div class="row">
             <div class="col-md-8 col-sm-9 center-block text-center animated">
                 <header>
-                    <h1 id="main-title" class="container">Login</h1>
+                    <h1 id="main-title" class="container">Register</h1>
                     <p>Do you want to know more? We’d love to hear from you!</p>
                 </header>
             </div>
@@ -14,9 +14,18 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-6 outer-top-xs inner-right-sm">
-                        <h2>Login</h2>
-                        <form role="form" action="#" class="forms" method="post">
-                            <div class="alert alert-danger" id="error" style="hidden"></div>
+                        <h2>Register</h2>
+                        <form role="form" action="/auth/local/register" class="forms" method="post">
+                            <div class="row">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8 animated">
+                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-8 animated">
                                     <input type="text" name="email" class="form-control" placeholder="Email">
@@ -36,10 +45,10 @@
                     </div>
                     <!-- ./col -->
                     <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
-                        <h2>Register</h2>
-                        Do not have account?
-                            <a href="#register" class="btn">
-                                Register
+                        <h2>Login</h2>
+                        Already have account?
+                            <a href="#login" class="btn">
+                                Login
                             </a>
                             <!-- /.contacts -->
                             <div class="social-network">
@@ -54,7 +63,7 @@
                             <!-- /.social-network -->
                             <p>
                                 <a href="/">
-                                	back to home
+                                    Back to homepage
                                 </a>
                             </p>
                     </div>

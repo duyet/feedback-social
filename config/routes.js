@@ -39,17 +39,6 @@ module.exports.routes = {
     }
   },
 
-  '/new': {
-    view: 'form_new',
-    locals: {
-      layout: 'layout_v1'
-    }
-  },
-
-  '/event': {
-    view: 'event_home',
-  },
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

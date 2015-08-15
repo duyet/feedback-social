@@ -20,6 +20,9 @@ define(function(require) {
             'explore' : 'exploreMain',
             'explore/:cat': 'exploreCat',
 
+            'login': 'loginForm',
+            'register': 'registerForm',
+
             // the *path is a special formulation that will match any string
             '*path': 'notFound'
 

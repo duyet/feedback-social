@@ -3,7 +3,9 @@ define(function(require) {
     var Marionette = require('marionette'),
         HomePageView = require('view/Homepage'),
         NotFoundView = require('view/NotFound'),
-        ExploreView = require('view/Explore');
+        ExploreView = require('view/Explore'),
+        LoginFormView = require('view/LoginForm'),
+        RegisterFormView = require('view/RegisterForm');
 
     return Marionette.Controller.extend({
 
@@ -29,6 +31,18 @@ define(function(require) {
 
         exploreCat: function() {
 
+        },
+
+        loginForm: function() {
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new LoginFormView());
+            AppInstance.regionFooter.reset();
+        },
+
+        registerForm: function() {
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new RegisterFormView());
+            AppInstance.regionFooter.reset();
         },
 
     });
