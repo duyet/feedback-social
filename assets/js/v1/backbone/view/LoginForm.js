@@ -8,12 +8,17 @@ define(function(require) {
         }, 
 
         events: {
-        	"click button[type=submit]": "doLogin",
+        	"submit": "doLogin",
         },
 
         doLogin: function(e) {
         	// TODO: Validate
-        	
+        	var email = $('input[name="email"]').val();
+        	var password = $('input[name="password"]').val();
+
+        	console.log("Login: ", email, password);
+
+        	return false;
         },
     });
 });

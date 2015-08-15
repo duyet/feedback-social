@@ -1,0 +1,115 @@
+<section id="new-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6 outer-top-xs inner-right-sm">
+                        <h2>Tôi phản hồi</h2>
+                        <form role="form" action="#" class="forms" method="post">
+                            <div class="alert alert-danger" id="error" style="display:none"></div>
+                            <div class="row">
+                                <div class="col-sm-12 animated">
+                                    <input type="text" name="email" class="form-control" placeholder="Title...">
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                            <div class="row">
+                                <div class="col-sm-12 animated">
+                                    <textarea class="form-control" placeholder="Content..."></textarea>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+                            <button type="submit" class="btn btn-default btn-submit">Submit</button>    
+                        </form>
+                        <div id="response"></div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
+                            
+                        <ul>
+                            <li>
+                                <input type="text" id="tags" class="form-control" pattern="" placeholder="Tags...">
+                            </li>
+                            <li>
+                                <a href="javascript:;" id="add-link" class="btn"> + Liên kết </a>
+                                <a href="javascript:;" id="add-img" class="btn"> + Hình ảnh </a>
+                            </li>
+                            <li>
+                                <div>
+                                    [<span id="check-hidden-me">&nbsp;&nbsp;</span>] <i class="fa fa-user-secret"></i> <a href="javascript:;" title="Click để gửi ẩn danh" id="click-hidden-me">Gửi ẩn danh</a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div id="addon-review">
+                            <!-- Links and images preview view here -->
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+
+<div class="portfolio-modal modal fade" id="modalAddLink" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Add more links</h2>
+                        <hr class="star-primary">
+                        
+                        <p>
+                            <input type="url" name="add-url" id="inputAdd-Url" class="form-control" value="" required="required" placeholder="http://">
+                        </p>
+                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="portfolio-modal modal fade" id="modalAddImg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Add more images</h2>
+                        
+                        <hr class="star-primary">
+                        
+                        <p class="text-center">
+                            <a href="javascript:;" id="click-to-upload-image" class="btn btn-primary btn-lg">Upload</a>
+                        </p>
+                        <p class="text-center">or</p>
+                        <p class="text-center">Drag and Drop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

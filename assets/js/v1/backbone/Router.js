@@ -15,13 +15,17 @@ define(function(require) {
          *                                      the global route table
          */
         appRoutes: {
-            '': 'homePage',
-            '/': 'homePage',
-            'explore' : 'exploreMain',
-            'explore/:cat': 'exploreCat',
+            ''              : 'homePage',
+            '/'             : 'homePage',
+            'explore'       : 'exploreMain',
+            'explore/:cat'  : 'exploreCat',
 
-            'login': 'loginForm',
-            'register': 'registerForm',
+            'login'         : 'loginForm',
+            'register'      : 'registerForm',
+            'forgot'        : 'forgot',
+            'active/:key'   : 'activeAccount',
+
+            'new'           : 'newFeedback',
 
             // the *path is a special formulation that will match any string
             '*path': 'notFound'
