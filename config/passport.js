@@ -42,18 +42,19 @@ module.exports.passport = {
       clientSecret: 'your-client-secret'
     }
   },
-
+  */
   facebook: {
     name: 'Facebook',
     protocol: 'oauth2',
     strategy: require('passport-facebook').Strategy,
     options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret',
+      clientID: '344116659122210',
+      clientSecret: '211d877bd33806f9d42fa8988c2c779f',
       scope: ['email'] 
     }
   },
 
+  /*
   google: {
     name: 'Google',
     protocol: 'oauth2',
