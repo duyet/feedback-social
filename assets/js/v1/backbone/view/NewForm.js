@@ -16,16 +16,40 @@ define(function(require) {
         	});
 
         	this.formData = new FormDataModel();
-			this.formData.bind('change', function() {
-        		// Update link #input-links
-        		var links = this.formData.get('links');
-        		console.log(links);
-        	});
+        	this.bind('onAddNewUrl', this.renderUrlList);
+        	this.bind('onFetchedUrlData', this.renderUrlFetchedData);
     	},
 
         render: function() {
             this.$el.html(JST["assets/templates/new-form.html"]());
             return this;
+        },
+
+        renderUrlList: function() {
+        	console.log("Render URL List.");
+        	ItemListView = Backbone.View.extend({
+        		render: function(data) {
+        			if (!data || !data.get('url')) return '';
+        			var urlInfo = data.get('data') || {};
+
+        			if (!urlInfo.title) urlInfo.title = data.get('url');
+
+        			return '<li>'
+        			+ '<a href="'+ data.get('url') +'">' + urlInfo.title + '</a>'
+        			+ '<span class="host">'+ urlInfo.host +'</span>'
+        			+'</li>';
+        		},
+        	});
+        	var urls = this.formData.get('links');
+        	$("#input-links").html('');
+        	for (var i in urls) {
+        		var li = new ItemListView();
+        		$("#input-links").append(li.render(urls[i]));
+        	}
+        },
+
+        renderUrlFetchedData: function() {
+			return this.renderUrlList();
         },
 
         events: {
@@ -64,11 +88,12 @@ define(function(require) {
 
 		addNewLink: function(e) {
 			var inputUrl = $("#inputAddUrl").val();
+			var that = this;
 
 			if (this.isValidURL(inputUrl)) {
 				Backbone.ajax({
 					dataType: "json",
-					url: "/api/v1/helper/url_fetch?url=" + inputUrl,
+					url: "/api/v1/helper/url_fetch?url=" + encodeURIComponent(inputUrl),
 					data: "",
 					success: function(data){
 						console.log("Load URL Review, return: ", data);
@@ -76,12 +101,19 @@ define(function(require) {
 							url: inputUrl,
 							data: data
 						});
-						var urlList = this.formData.get('links');
+						//console.log(that.formData);
+						var urlList = that.formData.get('links') || [];
+						console.log("Current url list: ", urlList);
 						urlList.push(fetchedData);
 
-						this.formData.set({links: urlList});
+						that.formData.set({links: urlList});
+						that.trigger('onFetchedUrlData');
 					}
 				});
+				// this.trigger('onAddNewUrl');
+				$("#modalAddLink").modal('hide');
+			} else {
+				return alert("Invalid URL.")
 			}
 		},
 
