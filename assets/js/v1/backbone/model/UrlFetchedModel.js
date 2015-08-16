@@ -3,7 +3,7 @@ define(function(require) {
     return Backbone.Model.extend({
 		defaults: {
 			url: '',
-			data: []
+			data: {}
 		},
     });
 });
