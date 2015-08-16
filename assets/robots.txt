@@ -1,7 +1,9 @@
 # The robots.txt file is used to control how search engines index your live URLs.
 # See http://www.robotstxt.org/wc/norobots.html for more information.
 
-
+# Allow all 
+User-agent: *
+Disallow:
 
 # To prevent search engines from seeing the site altogether, uncomment the next two lines:
 # User-Agent: *
