@@ -1,75 +1,59 @@
 <section id="register-form">
-    <div class="container inner">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-9 center-block text-center animated">
-                <header>
-                    <h1 id="main-title" class="container">Register</h1>
-                    <p>Do you want to know more? We’d love to hear from you!</p>
-                </header>
+            <div class="col-sm-6 outer-top-md inner-right-sm">
+                <h2>Đăng ký</h2>
+                <form role="form" action="/auth/local/register" class="forms" method="post">
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 animated">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-8 animated">
+                            <input type="text" name="email" class="form-control" placeholder="Email">
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-8 animated">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <button type="submit" class="btn btn-default btn-submit">Submit</button>
+                </form>
+                <div id="response"></div>
             </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6 outer-top-xs inner-right-sm">
-                        <h2>Register</h2>
-                        <form role="form" action="/auth/local/register" class="forms" method="post">
-                            <div class="row">
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-8 animated">
-                                    <input type="text" name="username" class="form-control" placeholder="Username">
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
-                            <div class="row">
-                                <div class="col-sm-8 animated">
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
-                            <div class="row">
-                                <div class="col-sm-8 animated">
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <button type="submit" class="btn btn-default btn-submit">Submit</button>
-                        </form>
-                        <div id="response"></div>
+            <!-- ./col -->
+            <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
+                <h2>Đăng nhập</h2>
+                    Đã có tài khoản?
+                    <a href="#!/login" class="btn">
+                        Đăng nhập
+                    </a>
+                    <!-- /.contacts -->
+                    <div class="social-network">
+                        <h3>Social</h3>
+                        <ul class="social">
+                            <li><a href="#"><i class="icon-s-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-s-gplus"></i></a></li>
+                            <li><a href="#"><i class="icon-s-twitter"></i></a></li>
+                        </ul>
+                        <!-- /.social -->
                     </div>
-                    <!-- ./col -->
-                    <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
-                        <h2>Login</h2>
-                        Already have account?
-                            <a href="#login" class="btn">
-                                Login
-                            </a>
-                            <!-- /.contacts -->
-                            <div class="social-network">
-                                <h3>Social</h3>
-                                <ul class="social">
-                                    <li><a href="#"><i class="icon-s-facebook"></i></a></li>
-                                    <li><a href="#"><i class="icon-s-gplus"></i></a></li>
-                                    <li><a href="#"><i class="icon-s-twitter"></i></a></li>
-                                </ul>
-                                <!-- /.social -->
-                            </div>
-                            <!-- /.social-network -->
-                            <p>
-                                <a href="/">
-                                    Back to homepage
-                                </a>
-                            </p>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                    <!-- /.social-network -->
+                    <p>
+                        <a href="/">
+                            Back to homepage
+                        </a>
+                    </p>
             </div>
             <!-- /.col -->
         </div>

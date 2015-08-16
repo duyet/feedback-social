@@ -1,70 +1,55 @@
 <section id="login-form">
-    <div class="container inner">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-9 center-block text-center animated">
-                <header>
-                    <h1 id="main-title" class="container">Login</h1>
-                    <p>Do you want to know more? We’d love to hear from you!</p>
-                </header>
+            <div class="col-sm-6 outer-top-md inner-right-sm">
+                <h2>Đăng nhập</h2>
+                <form role="form" action="#" class="forms" method="post">
+                    <div class="alert alert-danger" id="error" style="display:none"></div>
+                    <div class="row">
+                        <div class="col-sm-8 animated">
+                            <input type="text" name="email" class="form-control" placeholder="Email">
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-8 animated">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <button type="submit" class="btn btn-default btn-submit">Submit</button>
+                </form>
+                <div id="response"></div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
+                <h2>Đăng ký</h2>
+                    Bạn chưa có tài khoản?
+                    <a href="#!/register" class="btn">
+                        Đăng ký ngay
+                    </a>
+                    <!-- /.contacts -->
+                    <div class="social-network">
+                        <h3>Social</h3>
+                        <ul class="social">
+                            <li><a href="#"><i class="icon-s-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-s-gplus"></i></a></li>
+                            <li><a href="#"><i class="icon-s-twitter"></i></a></li>
+                        </ul>
+                        <!-- /.social -->
+                    </div>
+                    <!-- /.social-network -->
+                    <p>
+                        <a href="/">
+                        	back to home
+                        </a>
+                    </p>
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6 outer-top-xs inner-right-sm">
-                        <h2>Login</h2>
-                        <form role="form" action="#" class="forms" method="post">
-                            <div class="alert alert-danger" id="error" style="display:none"></div>
-                            <div class="row">
-                                <div class="col-sm-8 animated">
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
-                            <div class="row">
-                                <div class="col-sm-8 animated">
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <button type="submit" class="btn btn-default btn-submit">Submit</button>
-                        </form>
-                        <div id="response"></div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-sm-6 outer-top-md inner-left-sm border-left animated">
-                        <h2>Register</h2>
-                        Do not have account?
-                            <a href="#register" class="btn">
-                                Register
-                            </a>
-                            <!-- /.contacts -->
-                            <div class="social-network">
-                                <h3>Social</h3>
-                                <ul class="social">
-                                    <li><a href="#"><i class="icon-s-facebook"></i></a></li>
-                                    <li><a href="#"><i class="icon-s-gplus"></i></a></li>
-                                    <li><a href="#"><i class="icon-s-twitter"></i></a></li>
-                                </ul>
-                                <!-- /.social -->
-                            </div>
-                            <!-- /.social-network -->
-                            <p>
-                                <a href="/">
-                                	back to home
-                                </a>
-                            </p>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+           
     </div>
     <!-- /.container -->
 </section>
