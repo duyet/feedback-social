@@ -50,8 +50,9 @@
         window.__c = window.__c || {}; window.__d = window.__d || {}; 
         __c._csrf = '<%= _csrf %>';
         __c.use = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
+        __c.api_prefix = '<%= sails.config.settings.api_prefix %>';
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
-        __.is_client = true;
+        __c.is_client = true;
         __c.debug = <%= sails.config.settings.get('client_debug') %>;
     </script>
     <!-- /Config -->

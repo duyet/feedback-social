@@ -9,6 +9,7 @@ module.exports.settings = {
 	},
 	
 	client_debug: true,
+	api_prefix: '/api/v1',
 	
 	// active_responsive: true,
 	
