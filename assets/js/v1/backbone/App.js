@@ -30,12 +30,11 @@ define(function(require) {
 		 * @param   {Object}	options
 		 */
 		start: function(options) {
-			var navigationView = new NavigationView();
-
 			// Perform the default 'start' functionality
 			Marionette.Application.prototype.start.apply(this, [options]);
 
 			// Add in the site navigation
+			var navigationView = new NavigationView();
 			this.regionNav.show(navigationView);
 
             // show the footer
