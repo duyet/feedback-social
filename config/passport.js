@@ -50,7 +50,8 @@ module.exports.passport = {
     options: {
       clientID: '344116659122210',
       clientSecret: '211d877bd33806f9d42fa8988c2c779f',
-      scope: ['email'] 
+      scope: ['email'],
+      callbackURL: 'https://phanhoi.xyz/auth/facebook/callback',
     }
   },
 
