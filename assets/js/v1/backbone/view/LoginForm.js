@@ -25,7 +25,7 @@ define(function(require) {
                 this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
                 return false;
             }
-            if (email.indexOf('@') && !this.isEmail(email)) {
+            if (email.indexOf('@') > 0 && !this.isEmail(email)) {
                 this.showMessage("danger", "Email không chính xác!");
                 return false; 
             }
