@@ -19,8 +19,8 @@ var FeedbackApp = Backbone.Marionette.Application.extend({
 		this.container = options.container || '#main-view';
 
 		// Version and build
-		this.version = options.version || "";
-		this.build = options.build || "";
+		this.version = options.version || '';
+		this.build = options.build || '';
 
 		// Router 
 		this.router = new AppRouter();
@@ -64,7 +64,7 @@ var FeedbackApp = Backbone.Marionette.Application.extend({
 		// Render main menu > login view
 		var UserInfo = {
 			user_id: 0,
-			username: ""
+			username: ''
 		};
 		(new MainMenuLoginView()).render();
 	},
@@ -74,7 +74,7 @@ var app = new FeedbackApp({
 	container: '#main-view',
 	debug: true,
 	version: "0.0.1",
-	build: "",
+	build: '',
 });
 app.start();
 
