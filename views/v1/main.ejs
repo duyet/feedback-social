@@ -47,7 +47,7 @@
     
     <!-- Config --> 
     <script>
-        window.__c = window.__c || {};
+        window.__c = window.__c || {}; window.__d = window.__d || {}; 
         __c._csrf = '<%= _csrf %>';
         __c.use = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
