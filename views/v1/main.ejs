@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="fragment" content="!" />
 
-    <title>Phản hồi xyz</title>
+    <title><%= sails.config.settings.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
     <meta name="keywords" content="phản hồi, ý kiến, thông tin nhanh, phản hồi nhanh, feedback, lên tiếng, ủng hộ, phàn nàn" />
@@ -42,6 +42,19 @@
         <script src="/lib/html5shiv/dist/html5shiv.min.js"></script>
         <script src="/lib/respond/dest/respond.min.js"></script>
     <![endif]-->
+    
+    <% if (sails.config.settings.reCaptcha.active) { %><script src='https://www.google.com/recaptcha/api.js'></script><% } %>
+    
+    <!-- Config --> 
+    <script>
+        window.__c = window.__c || {};
+        __c._csrf = '<%= _csrf %>';
+        __c.use = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
+        __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
+        __.is_client = true;
+        __c.debug = <%= sails.config.settings.get('client_debug') %>;
+    </script>
+    <!-- /Config -->
 </head>
 
 <body>
