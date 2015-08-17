@@ -6,6 +6,7 @@ define(function(require) {
         ExploreView = require('view/Explore'),
         LoginFormView = require('view/LoginForm'),
         RegisterFormView = require('view/RegisterForm'),
+        ForgotFormView = require('view/ForgotForm'),
         NewFormView = require('view/NewForm');
 
     return Marionette.Controller.extend({
@@ -46,7 +47,12 @@ define(function(require) {
             AppInstance.regionFooter.reset();
         },
 
-        forgot: function() {},
+        forgot: function() {
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new ForgotFormView());
+            AppInstance.regionFooter.reset();
+        },
+        
         activeAccount: function(key) {},
         
         newFeedback: function() {
