@@ -35,8 +35,9 @@ require.config({
     baseURL: '/js/v1/backbone'
 });
 
-require.onError = function() {
-    // TODO: Flash message show error, force reload page
+require.onError = function(e) {
+    console.error(e);
+    
     var errorFlash = document.getElementById("feedback-flash-error");
     errorFlash.innerHTML = ("Some things went wrong, please reload this page.");
     errorFlash.style.display = "block";
