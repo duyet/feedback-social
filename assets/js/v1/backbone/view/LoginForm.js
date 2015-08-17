@@ -22,10 +22,10 @@ define(function(require) {
             
             // Checking 
             if (!email || !password || email.length < 4 || password.length < 4) {
-                this.showMessage("warning", "Vui lòng điền chính xác username và password!");
+                this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
                 return false;
             }
-            if (!this.isEmail(email)) {
+            if (email.indexOf('@') && !this.isEmail(email)) {
                 this.showMessage("danger", "Email không chính xác!");
                 return false; 
             }
