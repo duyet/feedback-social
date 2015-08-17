@@ -39,7 +39,7 @@ define(function(require) {
 			this.regionNav.show(navigationView);
 
             // show the footer
-            this.regionFooter.show(new Footer());
+            // this.regionFooter.show(new Footer());
 
 			// Add routers
 			this.Router = new Router({
