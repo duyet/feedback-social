@@ -1,13 +1,13 @@
 define(function(require) {
 
-	var Marionette = require('marionette'),
-		Backbone = require('backbone'),
-		Router = require('Router'),
-		Controller = require('Controller'),
-		NavigationView = require('view/Navigation'),
-		//RedThemeModule = require('module/RedTheme/Module'),
-		//BlueThemeModule = require('module/BlueTheme/Module'),
-		Footer = require('view/Footer');
+	var Marionette = require('marionette');
+	var Backbone = require('backbone');
+	var Router = require('Router');
+	var Controller = require('Controller');
+	var NavigationView = require('view/Navigation');
+	//var RedThemeModule = require('module/RedTheme/Module');
+	//var BlueThemeModule = require('module/BlueTheme/Module');
+	//var Footer = require('view/Footer');
 
 	return Marionette.Application.extend({
 
