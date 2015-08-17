@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone');
+    var AuthenticatedModel = require('model/AuthenticatedModel');
 
     return Backbone.View.extend({
         render: function() {
@@ -13,14 +14,14 @@ define(function(require) {
 
         doLogin: function(e) {
             // Hidden previous message 
-            $("#messageBox").css('display', 'none');
+            this.hideMessage();
             
         	// TODO: Validate
         	var email = $('input[name="email"]').val();
         	var password = $('input[name="password"]').val();
             var _csrf = __c._csrf || '';
             
-            // Checking 
+            // Validate input
             if (!email || !password || email.length < 4 || password.length < 4) {
                 this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
                 return false;
@@ -30,7 +31,12 @@ define(function(require) {
                 return false; 
             }
             
+            // Get ready
             this.showMessage("success", "Login with " + email + "...");
+            var auth = new AuthenticatedModel({username: email, password: password, _csrf: _csrf});
+            auth.login(function(data) {
+              console.log(data); 
+            });
 
         	return false;
         },
@@ -45,6 +51,10 @@ define(function(require) {
               
               if (next) next();
               return true;
+        },
+        
+        hideMessage: function() {
+            $("#messageBox").css('display', 'hidden');
         },
         
         isEmail: function(email) {
