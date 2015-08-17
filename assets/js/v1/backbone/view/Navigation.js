@@ -3,8 +3,7 @@ define(function(require) {
      *  This view will draw the nav menu...
      */
 
-    var Backbone = require('backbone'),
-        _ = require('underscore');
+    var Backbone = require('backbone');
 
     return Backbone.View.extend({
         tagName: "ul",
