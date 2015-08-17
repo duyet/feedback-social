@@ -50,15 +50,15 @@ define(function(require) {
 			//this.module('BlueThemeModule', {
 			//	moduleClass: BlueThemeModule
 			//});
-			//this.module('RedThemeModule', {
-			//	moduleClass: RedThemeModule
-			//});
 
-			// This is a very simple demo, and as such I'm going to use
+			// I'm going to use
 			// hashes for internal navigation.  If you want Backbone/Marionette
 			// to enforce full URLs use:
-			Backbone.history.start( { pushState: false } );
+			Backbone.history.start({ pushState: false });
 			//Backbone.history.start();
+			
+			// If debug is active, I disable console log
+			if (__c.debug && __c.debug === false) console.log = function() {};
 		}
 	});
 });
