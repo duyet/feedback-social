@@ -48,11 +48,11 @@ module.exports.routes = {
   'get /login'                          : 'AuthController.login',
   'get /logout'                         : 'AuthController.logout',
   'get /register'                       : 'AuthController.register',
-  'post /auth/local'                    : 'AuthController.callback',
-  'post /auth/local/:action'            : 'AuthController.callback',
-  'get /auth/:provider'                 : 'AuthController.provider',
-  'get /auth/:provider/callback'        : 'AuthController.callback',
-  'get /user'                           : 'AuthController.user',
+  'post /api/v1/auth/local'                    : 'AuthController.callback',
+  'post /api/v1/auth/local/:action'            : 'AuthController.callback',
+  'get /api/v1/auth/:provider'                 : 'AuthController.provider',
+  'get /api/v1/auth/:provider/callback'        : 'AuthController.callback',
+  'get /api/v1/user'                           : 'AuthController.user',
 
   'get /api/v1/helper/url_fetch'        : 'HelperController.urlReview',
 };
