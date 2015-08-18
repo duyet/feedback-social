@@ -1,0 +1,54 @@
+<section id="login-form">
+    <div class="container outer-bottom-xs">
+        <div class="row">
+            <div class="col-sm-12 outer-top-md inner-right-sm">
+                <h2>New post</h2>
+                <form role="form" action="#" class="forms" method="post">
+                    <div class="alert alert-danger" id="messageBox" style="display:none"></div>
+                    <div class="row">
+                        <div class="col-sm-9 animated">
+                            Title
+                            <span id="postTitleAliasContainer">/post/<span id="postTitleAlias"></span></span>
+                            <input type="text" name="postTitle" id="postTitle" class="form-control" placeholder="Post title">
+                        </div>
+                        
+                        <div class="col-sm-2 animated">
+                            Created: 
+                            <input type="text" name="postCreated" id="postCreated" class="form-control" value="" placeholder="Created">
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-9 animated">
+                            Content
+                            <textarea class="form-control" id="postContent" placeholder="Content..."></textarea>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 animated">
+                            Publish
+                            <select id="post-state" class="form-control">
+                                <option name="publish">Publish</option>
+                                <option name="draft">Draft</option>
+                            </select>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <button type="submit" class="btn btn-default btn-submit">Submit</button>
+                </form>
+                <div id="response"></div>
+            </div>
+            <!-- ./col -->
+            <div class="col-sm-12 outer-top-md animated">
+               
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+           
+    </div>
+    <!-- /.container -->
+</section>
