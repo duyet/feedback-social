@@ -53,7 +53,7 @@ define(function(require) {
         	var post = new PostModel();
 
             post.set({ title : $('#postTitle').val()});
-            post.set({ alias : $('#postTitleAlias').text() });
+            post.set({ alias : $('#postTitleAlias').text().replace(/\/$/, '') });
             post.set({ content : $('#postContent').val() });
             post.set({ created : new Date() });
             post.set({ state: $('#postState').val() });
