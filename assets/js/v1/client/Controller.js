@@ -7,6 +7,7 @@ define(function(require) {
         LoginFormView = require('view/LoginForm'),
         RegisterFormView = require('view/RegisterForm'),
         ForgotFormView = require('view/ForgotForm'),
+        ViewPostView = require('view/ViewPost'),
         NewFormView = require('view/NewForm');
 
     return Marionette.Controller.extend({
@@ -58,6 +59,19 @@ define(function(require) {
         newFeedback: function() {
             var AppInstance = require('AppInstance');
             AppInstance.regionMain.show(new NewFormView());
+            AppInstance.regionFooter.reset();
+        },
+
+        viewPost: function(alias) {
+            var PostModel = require('model/PostModel');
+            console.log(alias);
+            var post = new PostModel();
+            post.getByAlias(alias);
+
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new ViewPostView({
+                model: post
+            }));
             AppInstance.regionFooter.reset();
         },
     });
