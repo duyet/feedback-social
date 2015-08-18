@@ -19,6 +19,7 @@ define(function(require) {
             '!/'                : 'homePage',
             '!/manager'         : 'managerMain',
             '!/manager/:managerItem'    : 'managerItem',
+            '!/manager/post/:alias/edit'    : 'editPost',
 
             // the *path is a special formulation that will match any string
             '*path': 'notFound'

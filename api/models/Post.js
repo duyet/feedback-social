@@ -16,7 +16,7 @@ module.exports = {
     state: {
   		type: 'string',
   		enum: ['publish', 'deleted', 'draft'],
-  		default: 'publish'
+  		//default: 'publish'
   	},
     author : { collection: 'User' }
   }

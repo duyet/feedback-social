@@ -1,7 +1,7 @@
 <section id="login-form">
     <div class="container outer-bottom-xs">
         <div class="row">
-            <div class="col-sm-12 outer-top-md inner-right-sm">
+            <div class="col-sm-12 outer-top-xs inner-right-sm">
                 <h2>New post</h2>
                 <form role="form" action="#" class="forms" method="post">
                     <div class="alert alert-danger" id="messageBox" style="display:none"></div>
@@ -12,10 +12,10 @@
                             <input type="text" name="postTitle" id="postTitle" class="form-control" placeholder="Post title">
                         </div>
                         
-                        <div class="col-sm-2 animated">
-                            Created: 
+                        <!--div class="col-sm-2 animated">
+                            Created: <strong id="postCreated"></strong>
                             <input type="text" name="postCreated" id="postCreated" class="form-control" value="" placeholder="Created">
-                        </div>
+                        </div-->
                     </div>
                     <!-- /.row -->
                     <div class="row">
@@ -27,11 +27,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-2 animated">
+                        <div class="col-sm-2 col-md-6 animated">
                             Publish
-                            <select id="post-state" class="form-control">
-                                <option name="publish">Publish</option>
-                                <option name="draft">Draft</option>
+                            <select id="postState" class="form-control">
+                                <option name="publish">publish</option>
+                                <option name="draft">draft</option>
                             </select>
                         </div>
                         <!-- /.col -->

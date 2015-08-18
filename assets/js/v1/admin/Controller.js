@@ -50,6 +50,10 @@ define(function(require) {
             AppInstance.regionMain.show(new ManagerItem['post']());
         },
 
+        editPost: function(alias) {
+            
+        },
+
         // Helper ==================
         capitalizeFirstLetter: function(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);

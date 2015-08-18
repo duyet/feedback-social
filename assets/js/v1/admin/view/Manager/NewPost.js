@@ -1,9 +1,10 @@
 define(function(require) {
     var Backbone = require('backbone');
+    var PostModel = require('model/PostModel');
     return Backbone.View.extend({
         render: function() {
             this.$el.html(JST["assets/admin_templates/manager-post-new.html"]());
-
+            $('#postCreated').text('00:00');
             return this;
         },
 
@@ -47,27 +48,25 @@ define(function(require) {
         doSubmit: function(e) {
             // Hidden previous message 
             this.hideMessage();
+            var that = this;
             
-        	// TODO: Validate
-        	var title = $('input[name="email"]').val();
-        	var password = $('input[name="password"]').val();
-            var _csrf = __c._csrf || '';
-            
-            // Validate input
-            if (!email || !password || email.length < 4 || password.length < 4) {
-                this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
-                return false;
-            }
-            if (email.indexOf('@') > 0 && !this.isEmail(email)) {
-                this.showMessage("danger", "Email không chính xác!");
-                return false; 
-            }
-            
-            // Get ready
-            this.showMessage("success", "Login with " + email + "...");
-            var auth = new AuthenticatedModel({username: email, password: password, _csrf: _csrf});
-            auth.login(function(data) {
-              console.log(data); 
+        	var post = new PostModel();
+
+            post.set({ title : $('#postTitle').val()});
+            post.set({ alias : $('#postTitleAlias').text() });
+            post.set({ content : $('#postContent').val() });
+            post.set({ created : new Date() });
+            post.set({ state: $('#postState').val() });
+
+            post.save(null, {
+                success : function(model, response) {
+                    console.log((model, response));
+                    that.showMessage('success', "Saved success!, click <a href='/#!/post/"+ response.alias +"'>here</a> to view post.");
+                }, 
+                error : function(model, response) {
+                    console.log((model, response));
+                    that.showMessage('danger', response);
+                }
             });
 
         	return false;
