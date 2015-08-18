@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="fragment" content="!" />
+
+    <title><%= sails.config.settings.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
+    <meta name="keywords" content="phản hồi, ý kiến, thông tin nhanh, phản hồi nhanh, feedback, lên tiếng, ủng hộ, phàn nàn" />
+    <link rel="shortcut icon" href="" />
+
+    <meta property="og:title" content="Phản hồi xyz" />
+    <meta property="og:site_name" content="Phản hồi xyz"/>
+    <meta property="og:url" content="http://phanhoi.xyz" />
+    <meta property="og:description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+
+    <meta name="twitter:url" content="http://phanhoi.xyz" />
+    <meta property="twitter:title" content="Phản hồi xyz" />
+    <meta property="twitter:description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/v1/animate.min.css">
+    <link rel="stylesheet" href="/styles/v1/fonts/fontello.css">
+    <link rel="stylesheet" href="/styles/v1/green.css">
+    <link rel="stylesheet" href="/styles/v1/main.css">
+    <link rel="stylesheet" href="/styles/v1/owl.carousel.css">
+    <link rel="stylesheet" href="/styles/v1/owl.transitions.css">
+    <!--STYLES END-->
+
+    <link rel="stylesheet" type="text/css" href="/lib/fontawesome/css/font-awesome.min.css" />
+
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Lato:400,900,300,700&subset=latin,vietnamese" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,vietnamese" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="/lib/html5shiv/dist/html5shiv.min.js"></script>
+        <script src="/lib/respond/dest/respond.min.js"></script>
+    <![endif]-->
+    
+    <% if (sails.config.settings.reCaptcha.active) { %><script src='https://www.google.com/recaptcha/api.js'></script><% } %>
+    
+    <!-- Config --> 
+    <script>
+        window.__c = window.__c || {}; window.__d = window.__d || {}; 
+        __c._csrf = '<%= _csrf %>';
+        __c.use = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
+        __c.api_prefix = '<%= sails.config.settings.api_prefix %>';
+        __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
+        __c.is_client = true;
+        __c.debug = <%= sails.config.settings.get('client_debug') %>;
+    </script>
+    <!-- /Config -->
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="yamm">
+                <div class="navbar-collapse collapse">
+                    <div class="container">
+                        <a class="navbar-brand" href="/">PHANHOI.XYZ / Admin</a>
+                        
+                        <span id="main-nav"></span>
+                    </div>
+                    <!-- /.container -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.yamm -->
+        </div>
+        <!-- /.navbar -->
+    </header>
+
+    <div id="feedback-flash-error" class="feedback-flash-error alert alert-danger" style="display:none"></div>
+
+    <main id="main-view">
+        <span class="loading"><i class="fa fa-circle-o-notch fa-spin"></i> Loading ...</span>
+    </main>
+
+
+    <footer></footer>
+
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/jst.js"></script>
+    <!--TEMPLATES END-->
+
+    <script type="text/javascript" data-main="/js/v1/admin/shim" src="/lib/requirejs/require.js"></script>
+    <!--script src="/js/dependencies/sails.io.js"></script-->
+</body>
+</html>
