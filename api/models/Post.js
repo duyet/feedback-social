@@ -14,10 +14,10 @@ module.exports = {
     created : { type: 'datetime' },
     lastEdit: { type: 'datetime' },
     state: {
-		type: 'string',
-		enum: ['publish', 'deleted', 'draft'],
-		default: 'publish'
-	}
+  		type: 'string',
+  		enum: ['publish', 'deleted', 'draft'],
+  		default: 'publish'
+  	},
     author : { collection: 'User' }
   }
 };
