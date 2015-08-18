@@ -1,7 +1,8 @@
-var phantom = require('node-phantom');
+//var phantom = require('node-phantom');
 
 module.exports = {
 	index : function(req, res) {
+		/*
 		if (typeof(req.query._escaped_fragment_) !== "undefined") {
 			phantom.create(function(err, ph) {
 				if (err) throw err;
@@ -18,6 +19,7 @@ module.exports = {
 				});
 			});
 		} else 
+		*/
 			return res.view('v1/main', {layout: 'layout_v1'});
 	},
 };
