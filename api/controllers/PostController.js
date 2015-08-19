@@ -7,7 +7,7 @@
 
 module.exports = {
 	findFromAlias: function(req, res) {
-		var _alias = req.params.id + '/' || '';
+		var _alias = req.params.id || '';
 		console.log(_alias);
 		Post.findOne({alias: _alias}, function(err, model) {
 			if (err || !model) return res.json(404, {});
