@@ -34,6 +34,9 @@ module.exports.routes = {
 
   'get /': 'MainController.index',
   'post /': 'MainController.index',
+  
+  'get /admin': 'MainAdminController.index',
+  'post /admin': 'MainAdminController.index',
 
   /***************************************************************************
   *                                                                          *

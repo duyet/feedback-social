@@ -17,15 +17,9 @@ define(function(require) {
         appRoutes: {
             ''                  : 'homePage',
             '!/'                : 'homePage',
-            '!/explore'         : 'exploreMain',
-            '!/explore/:cat'    : 'exploreCat',
-
-            '!/login'           : 'loginForm',
-            '!/register'        : 'registerForm',
-            '!/forgot'          : 'forgot',
-            '!/active/:key'     : 'activeAccount',
-
-            '!/new'             : 'newFeedback',
+            '!/manager'         : 'managerMain',
+            '!/manager/:managerItem'    : 'managerItem',
+            '!/manager/post/:alias/edit'    : 'editPost',
 
             // the *path is a special formulation that will match any string
             '*path': 'notFound'

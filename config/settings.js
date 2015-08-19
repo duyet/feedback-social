@@ -10,6 +10,7 @@ module.exports.settings = {
 	
 	client_debug: true,
 	api_prefix: '/api/v1',
+	google_analytic: 'UA-18218315-48',
 	
 	// active_responsive: true,
 	

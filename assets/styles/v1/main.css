@@ -3760,34 +3760,7 @@ input:focus:-ms-input-placeholder {
 	color: #1ABB9C;
 	cursor: pointer;
 }
-.meta li.url a:before {
-	content: "\f30e";
-}
-.meta li.author-posts a:before {
-	content: "\27a6";
-}
-.meta li.comments a:before {
-	content: "\e718";
-}
-.meta li.comments a:after {
-	content: "Comments";
-	margin-left: 4px;
-}
-.meta li.likes a:before {
-	content: "\2665";
-}
-.meta li.likes a:after {
-	content: "Likes";
-	margin-left: 4px;
-}
-.meta li:after {
-	/*content: "\0399";*/
-	content: "|";
-    margin-left: 12px;
-}
-.meta li:last-child:after {
-	content: "";
-}
+
 .classic-blog .sidemeta,
 .classic-blog .pagination {
 	padding-left: 59px;
@@ -3894,6 +3867,10 @@ input:focus:-ms-input-placeholder {
 .post-content > * {
 	margin-left: 80px;
 	margin-right: 80px;
+	padding: 0;
+}
+.post-content > h1.post-title {
+	font-size: 40px;
 }
 .post-content *:last-child {
 	margin-bottom: 0;
