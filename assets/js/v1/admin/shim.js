@@ -5,6 +5,7 @@ require.config({
         backbone: '../../../lib/backbone/backbone-min',
         marionette: '../../../lib/backbone.marionette/lib/backbone.marionette.min',
         bootstrap: '../../../lib/bootstrap/js',
+        marked: '../../../lib/marked/marked.min'
     },
 
     shim: {
@@ -24,6 +25,10 @@ require.config({
         marionette: {
             deps: ['jquery', 'underscore', 'backbone'],
             exports: 'Marionette'
+        },
+        
+        marked: {
+            exports: 'marked',  
         },
 
         'bootstrap/modal': {

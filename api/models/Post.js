@@ -11,6 +11,7 @@ module.exports = {
     title : { type: 'string', unique: true },
     alias: { type: 'string', unique: true },
     content: { type: 'string' },
+    htmlContent: { type: 'string' },
     created : { type: 'datetime' },
     lastEdit: { type: 'datetime' },
     state: {

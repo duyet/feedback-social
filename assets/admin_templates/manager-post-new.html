@@ -21,7 +21,9 @@
                     <div class="row">
                         <div class="col-sm-9 animated">
                             Content
-                            <textarea class="form-control" id="postContent" placeholder="Content..."></textarea>
+                            <span id="clickPreview" data-mode="edit">preview</span>
+                            <div id="postContent" placeholder="Content..." contentEditable></div>
+                            <div id="postPreviewContent" contentEditable></div>
                         </div>
                         <!-- /.col -->
                     </div>

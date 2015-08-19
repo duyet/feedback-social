@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone');
     var PostModel = require('model/PostModel');
+    var Marked = require('marked');
     return Backbone.View.extend({
         render: function() {
             this.$el.html(JST["assets/admin_templates/manager-post-new.html"]());
@@ -9,10 +10,30 @@ define(function(require) {
         },
 
         events: {
-        	"submit": "doSubmit",
-        	'keyup #postTitle': 'getAlias'
+        	'submit': 'doSubmit',
+        	'keyup #postTitle': 'getAlias',
+            'click #clickPreview': 'togglePreview',
         },
-
+        
+        togglePreview: function() {
+            var currentMode = $('#clickPreview').data('mode') || 'preview'; // preview & edit
+            if (currentMode == 'edit') {
+                var postContent = this.getPostMarkdownContent();
+                var postPreview = this.markdownToHtml(postContent);
+                console.log(postPreview)
+                $('#postPreviewContent').html(postPreview);
+                
+                $('#clickPreview').data('mode', 'preview');
+                $('#postContent').hide();
+                $('#postPreviewContent').show();
+                
+            } else {
+                $('#clickPreview').data('mode', 'edit');
+                $('#postContent').show();
+                $('#postPreviewContent').hide();
+            }
+        },
+        
         getAlias: function() {
         	var title = this.titleToAlias($('#postTitle').val());
         	console.log(title);
@@ -54,7 +75,8 @@ define(function(require) {
 
             post.set({ title : $('#postTitle').val()});
             post.set({ alias : $('#postTitleAlias').text().replace(/\/$/, '') });
-            post.set({ content : $('#postContent').val() });
+            post.set({ content : this.getPostMarkdownContent() });
+            post.set({ htmlContent: this.markdownToHtml(post.get('content')) });
             post.set({ created : new Date() });
             post.set({ state: $('#postState').val() });
 
@@ -70,6 +92,15 @@ define(function(require) {
             });
 
         	return false;
+        },
+        
+        getPostMarkdownContent : function( ) {
+            var box = document.getElementById('postContent');
+            return box.innerText || box.textContent;
+        },
+        
+        markdownToHtml : function(text) {
+              return Marked(text);
         },
         
         showMessage: function(messageType, messageContent, next) {
