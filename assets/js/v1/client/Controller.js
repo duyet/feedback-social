@@ -64,7 +64,6 @@ define(function(require) {
 
         viewPost: function(alias) {
             var PostModel = require('model/PostModel');
-            console.log(alias);
             var post = new PostModel();
             post.getByAlias(alias);
 
