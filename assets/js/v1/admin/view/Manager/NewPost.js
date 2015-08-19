@@ -75,8 +75,9 @@ define(function(require) {
 
             post.set({ title : $('#postTitle').val()});
             post.set({ alias : $('#postTitleAlias').text().replace(/\/$/, '') });
+            post.set({ tags: this.getPostTags() });
             post.set({ content : this.getPostMarkdownContent() });
-            post.set({ htmlContent: this.markdownToHtml(post.get('content')) });
+            post.set({ htmlContent: this.getPostHtmlContent() });
             post.set({ created : new Date() });
             post.set({ state: $('#postState').val() });
 
@@ -86,17 +87,36 @@ define(function(require) {
                     that.showMessage('success', "Saved success!, click <a href='/#!/post/"+ response.alias +"'>here</a> to view post.");
                 }, 
                 error : function(model, response) {
-                    console.log((model, response));
-                    that.showMessage('danger', response);
+                    console.log((response));
+                    that.showMessage('danger', response.responseJSON.summary || "Some thing went wrong!");
                 }
             });
 
         	return false;
         },
         
+        getPostTags : function() {
+            var tags = $('#postTags').val();
+            if (!tags) return [];
+            
+            return tags.split(",").map(function(tag) { return tag.trim() });
+        },  
+        
         getPostMarkdownContent : function( ) {
             var box = document.getElementById('postContent');
             return box.innerText || box.textContent;
+        },
+        
+        getPostHtmlContent : function() {
+            var content = $('#postPreviewContent').html();
+            
+            if (!content) {
+                var box = document.getElementById('postContent');
+                var markdownContent = box.innerText || box.textContent;
+                return Marked(markdownContent);
+            }
+            
+            return content;
         },
         
         markdownToHtml : function(text) {

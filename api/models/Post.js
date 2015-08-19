@@ -19,7 +19,16 @@ module.exports = {
   		enum: ['publish', 'deleted', 'draft'],
   		//default: 'publish'
   	},
+    tags: {
+      type: 'array'
+    },
     author : { collection: 'User' }
+  }, 
+  
+  beforeCreate: function(values, next) {
+    if (!values.tags) values.tags = new Array();
+    if (!values.created) values.created = new Date();
+    next();
   }
 };
 

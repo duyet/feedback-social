@@ -5,13 +5,18 @@
 				    
 				    <!-- /.format-wrapper -->
 				    <div class="post-content">
-				        <h2 class="post-title">
+				        <h1 class="post-title">
 				        	<%= model.get('title') %>
-				        </h2>	
+				        </h1>	
 				        <ul class="meta">
-				            <li><%= model.get('created') %></li>
-				            <li class="comments"><a href="#">14</a></li>
-				            <li class="likes"><a href="#">30</a></li>
+				            <li>
+								<i class="fa fa-calendar"></i>
+								<%= model.get('created') %>
+							</li>
+				            <li>
+								<i class="fa fa-tags"></i>
+								<%= model.get('tags').map(function(tag) { return '<a href="#!/tag/'+ tag +'">'+ tag +'</a>' }).join(', ') %>
+							</li>
 				        </ul>
 				        <!-- /.meta -->
 				        <p>
