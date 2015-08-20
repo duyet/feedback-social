@@ -18,6 +18,13 @@ Van-Duyet Le (#duyetdev) <br />
 Email: me(a)duyetdev.com<br />
 Website: http://blog.duyetdev.com <br />
 
+# How to contribute
+
+1. Fork the project on Github
+2. Create a topic branch for your changes
+3. Ensure that you provide documentation and test coverage for your changes (patches won’t be accepted without)
+4. Create a pull request on Github (these are also a great place to start a conversation around a patch as early as possible)
+
 # License
 MIT License
 
