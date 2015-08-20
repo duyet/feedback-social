@@ -21,6 +21,7 @@ module.exports = {
     links: {
       collection: 'FeedbackLink',
     },
+    image: 'string',
     images: {
       collection: 'FeedbackImage',
     },
