@@ -129,7 +129,6 @@ var AuthController = {
    */
   callback: function (req, res) {
     function tryAgain (err) {
-      console.log(err, req.flash('error'));
       // Only certain error messages are returned via req.flash('error', someError)
       // because we shouldn't expose internal authorization errors to the user.
       // We do return a generic error and the original request body.
@@ -166,13 +165,9 @@ var AuthController = {
     }
 
     passport.callback(req, res, function (err, user, challenges, statuses) {
-      console.log(user, challenges, statuses);
-      
       if (err || !user) {
-        return tryAgain(challenges);
+        return tryAgain(err);
       }
-
-      
 
       req.login(user, function (err) {
         if (err) {
@@ -187,7 +182,7 @@ var AuthController = {
         // res.redirect('/');
 
         // Upon successful login, send req.user info to client
-        return res.json(req.user);
+        return res.json(req);
       });
     });
   },

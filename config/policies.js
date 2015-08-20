@@ -27,7 +27,10 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-  '*': [ 'passport', /* your auth dependant policies go here */ ]
+  //'*': [ 'passport', /* your auth dependant policies go here */ ]
+  //'*': 'sessionAuth',
+  '*' : true,
+  
 
   /***************************************************************************
   *                                                                          *

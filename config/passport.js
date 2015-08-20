@@ -32,17 +32,18 @@ module.exports.passport = {
       consumerSecret: 'your-consumer-secret'
     }
   },
-
+*/
   github: {
     name: 'GitHub',
     protocol: 'oauth2',
     strategy: require('passport-github').Strategy,
     options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret'
+      clientID: '485d43d4fa8cc9147430',
+      clientSecret: '88d9774b66d6fae4859af0ffeed5510baa61e516',
+      callbackURL: 'http://phanhoi.xyz:1337/api/v1/auth/github/callback',
     }
   },
-  */
+  
   facebook: {
     name: 'Facebook',
     protocol: 'oauth2',
@@ -51,7 +52,7 @@ module.exports.passport = {
       clientID: '344116659122210',
       clientSecret: '211d877bd33806f9d42fa8988c2c779f',
       scope: ['email'],
-      callbackURL: 'https://phanhoi.xyz/auth/facebook/callback',
+      callbackURL: 'http://phanhoi.xyz:1337/api/v1/auth/facebook/callback',
     }
   },
 
