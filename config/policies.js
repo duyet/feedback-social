@@ -30,7 +30,9 @@ module.exports.policies = {
     //'*': [ 'passport', /* your auth dependant policies go here */ ]
     //'*': 'sessionAuth',
     //'*' : true,
-    '*': ['isAuthenticated'],
+    '*': true,
+
+    '/api/v1/*': ['isAuthenticated'],
 
     AuthController: {
         '*': true
