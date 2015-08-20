@@ -6,7 +6,9 @@ define(function(require) {
         ManagerView = require('view/Manager'),
         ManagerItem = {
             'post' : require('view/Manager/Post'),
-            'postnew' : require('view/Manager/NewPost')
+            'postnew' : require('view/Manager/NewPost'),
+            'feedback' : require('view/Manager/Feedback'),
+            'feedbacknew' : require('view/Manager/NewFeedback'),
         };
         
     return Marionette.Controller.extend({
