@@ -2,6 +2,8 @@
 
 Feedback Social is platform, free for all to feedback, preview, complain,... about everything. They can get for supports from community about that.
 
+Admin manager: <strong>[https://github.com/duyetdev/feedback-social-admin](https://github.com/duyetdev/feedback-social-admin)</strong>
+
 # Todo 
 
 * Mardown editor 
