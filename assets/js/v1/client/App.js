@@ -5,8 +5,6 @@ define(function(require) {
 	var Router = require('Router');
 	var Controller = require('Controller');
 	var NavigationView = require('view/Navigation');
-	//var RedThemeModule = require('module/RedTheme/Module');
-	//var BlueThemeModule = require('module/BlueTheme/Module');
 	//var Footer = require('view/Footer');
 
 	return Marionette.Application.extend({
