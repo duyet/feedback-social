@@ -1,7 +1,7 @@
 /**
  * FeedbackController
  *
- * @description :: Server-side logic for managing feedbacks
+ * @description :: Server-side logic for managing Feedbacks
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
