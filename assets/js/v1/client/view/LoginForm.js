@@ -7,7 +7,16 @@ define(function(require) {
     $.cookie.json = true;
 
     return Backbone.View.extend({
+        initialize: function() {
+            if (window.__c.isAuth) 
+                Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+        },
+
         render: function() {
+            if (window.__c.isAuth) {
+                return this;
+            }
+
             this.$el.html(JST["assets/templates/login-form.html"]());
             return this;
         }, 
