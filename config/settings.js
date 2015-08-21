@@ -1,6 +1,10 @@
 module.exports.settings = {
 	title: "Phản hồi", 
+	logo_text : "PHANHOI.XYZ",
+	logo_img: "",
 	description: "",
+	
+	system_build: "0.0.1",
 	
 	reCaptcha: {
 		active: false,
@@ -10,8 +14,8 @@ module.exports.settings = {
 	
 	client_debug: true,
 	api_prefix: '/api/v1',
-	google_analytic: 'UA-18218315-48',
 	
+	google_analytic: 'UA-18218315-48',
 	// active_responsive: true,
 	
 	// =======================

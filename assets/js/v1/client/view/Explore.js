@@ -4,13 +4,11 @@ define(function(require) {
     
     return Backbone.View.extend({
         initialize: function() {
-            this.model = new  new FeedbackModel();
+            this.model = new FeedbackModel();
             this.model.on('change', this.render);
         },
         
         render: function() {
-            
-            
             this.$el.html(JST["assets/templates/explore-main.html"]({
                 data: this.model
             }));

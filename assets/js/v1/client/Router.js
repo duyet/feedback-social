@@ -3,9 +3,8 @@ define(function(require) {
      * This will be the generic router, used primarily to 
      * choose the proper module
      */
-    var Marionette = require('marionette'),
-        HeaderView = require('view/Header'),
-        AppInstance;
+    var Marionette = require('marionette');
+    var AppInstance;
 
     return Marionette.AppRouter.extend({
 
@@ -15,17 +14,19 @@ define(function(require) {
          *                                      the global route table
          */
         appRoutes: {
-            ''                  : 'homePage',
-            '!/'                : 'homePage',
-            '!/explore'         : 'exploreMain',
-            '!/explore/:cat'    : 'exploreCat',
+            ''                   : 'homePage',
+            '!/'                 : 'homePage',
+            '!/explore'          : 'exploreMain',
+            '!/explore/:cat'     : 'exploreCat',
 
-            '!/login'           : 'loginForm',
-            '!/register'        : 'registerForm',
-            '!/forgot'          : 'forgot',
-            '!/active/:key'     : 'activeAccount',
+            '!/login'            : 'loginForm',
+            '!/register'         : 'registerForm',
+            '!/forgot'           : 'forgot',
+            '!/active/:key'      : 'activeAccount',
+            
+            '!/user/:username'   : 'userPage',
 
-            '!/new'             : 'newFeedback',
+            '!/new'              : 'newFeedback',
 
             '!/post/:alias/'     : 'viewPost',            
             '!/post/:alias'      : 'viewPost',            
@@ -36,8 +37,7 @@ define(function(require) {
         },
 
         onRoute: function() {
-            // AppInstance = require('AppInstance');
-            // AppInstance.regionHeader.show(new HeaderView());
+            
         }
 
     });

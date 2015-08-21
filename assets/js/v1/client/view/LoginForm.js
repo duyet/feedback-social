@@ -1,6 +1,10 @@
 define(function(require) {
     var Backbone = require('backbone');
-    var AuthenticatedModel = require('model/AuthenticatedModel');
+    var SigninModel = require('model/SigninModel');
+    var NavigationView = require('view/Navigation');
+    var cookie = require('cookie');
+    
+    $.cookie.json = true;
 
     return Backbone.View.extend({
         render: function() {
@@ -13,6 +17,7 @@ define(function(require) {
         },
 
         doLogin: function(e) {
+            var that = this;
             // Hidden previous message 
             this.hideMessage();
             
@@ -33,9 +38,29 @@ define(function(require) {
             
             // Get ready
             this.showMessage("success", "Login with " + email + "...");
-            var auth = new AuthenticatedModel({username: email, password: password, _csrf: _csrf});
-            auth.login(function(data) {
-              console.log(data); 
+            $('form.login-form').slideUp();
+
+            var login = new SigninModel({email: email, password: password});
+            login.save(null, {
+                error: function() {
+                    that.showMessage("danger", "Sai tên đăng nhập hoặc mật khẩu!");
+                    $('form.login-form').slideDown();
+                }, 
+
+                success: function(m, res) {
+                    // Save token to global 
+                    window.__c.user = res;
+                    $.cookie(window.__c.feedbackAuthenCookieKey, res);
+                    that.showMessage("success", "Đăng nhập thành công!");
+                    
+                    // Redirect to userpage 
+                    // TODO: Redirect to last page
+                    Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                    
+                    // Re-render nav 
+                    var navigationView = new NavigationView({ el: $('#main-nav ul') });
+                    navigationView.render();
+                }
             });
 
         	return false;

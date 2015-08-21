@@ -28,7 +28,11 @@ module.exports = {
     comments: {
       collection: 'FeedbackComment',
     },
-    author : { collection: 'User' }
+    author : { collection: 'User' },
+    hiddenInfo: {
+      type: 'boolean',
+      defaultsTo: false
+    },
   }, 
   
   beforeCreate: function(values, next) {

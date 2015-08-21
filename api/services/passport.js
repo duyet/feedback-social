@@ -221,6 +221,7 @@ passport.endpoint = function (req, res) {
  * @param {Function} next
  */
 passport.callback = function (req, res, next) {
+  console.log(req.params);
   var provider = req.param('provider', 'local')
     , action   = req.param('action');
 

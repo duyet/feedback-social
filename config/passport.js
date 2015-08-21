@@ -1,80 +1,77 @@
 /**
- * Passport configuration
- *
- * This is the configuration for your Passport.js setup and where you
- * define the authentication strategies you want your application to employ.
- *
- * I have tested the service with all of the providers listed below - if you
- * come across a provider that for some reason doesn't work, feel free to open
- * an issue on GitHub.
- *
- * Also, authentication scopes can be set through the `scope` property.
- *
- * For more information on the available providers, check out:
- * http://passportjs.org/guide/providers/
+ * Passport configuration file where you should configure strategies
  */
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
 
-module.exports.passport = {
-  local: {
-    strategy: require('passport-local').Strategy
-  },
-/*
-  bearer: {
-    strategy: require('passport-http-bearer').Strategy
-  },
+var EXPIRES_IN_MINUTES = 60 * 24;
+var SECRET = process.env.tokenSecret || "4ukI0uIVnB3iI6fTbNg7jO41EAtl20J5F7Trtwe7OM";
+var ALGORITHM = "HS256";
+var ISSUER = "phanhoi.xyz";
+var AUDIENCE = "phanhoi.xyz";
 
-  twitter: {
-    name: 'Twitter',
-    protocol: 'oauth',
-    strategy: require('passport-twitter').Strategy,
-    options: {
-      consumerKey: 'your-consumer-key',
-      consumerSecret: 'your-consumer-secret'
-    }
-  },
+/**
+ * Configuration object for local strategy
+ */
+var LOCAL_STRATEGY_CONFIG = {
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: false
+};
 
-  github: {
-    name: 'GitHub',
-    protocol: 'oauth2',
-    strategy: require('passport-github').Strategy,
-    options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret'
-    }
-  },
-  */
-  facebook: {
-    name: 'Facebook',
-    protocol: 'oauth2',
-    strategy: require('passport-facebook').Strategy,
-    options: {
-      clientID: '344116659122210',
-      clientSecret: '211d877bd33806f9d42fa8988c2c779f',
-      scope: ['email'],
-      callbackURL: 'https://phanhoi.xyz/auth/facebook/callback',
-    }
-  },
+/**
+ * Configuration object for JWT strategy
+ */
+var JWT_STRATEGY_CONFIG = {
+    secretOrKey: SECRET,
+    issuer: ISSUER,
+    audience: AUDIENCE,
+    passReqToCallback: false
+};
 
-  /*
-  google: {
-    name: 'Google',
-    protocol: 'oauth2',
-    strategy: require('passport-google-oauth').OAuth2Strategy,
-    options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret'
-    }
-  },
+/**
+ * Triggers when user authenticates via local strategy
+ */
+function _onLocalStrategyAuth(email, password, next) {
+    var criteria = (email.indexOf('@') === -1) ? {username: email} : {email: email};
+    User.findOne(criteria)
+        .exec(function(error, user) {
+            if (error) return next(error, false, {});
 
-  cas: {
-    name: 'CAS',
-    protocol: 'cas',
-    strategy: require('passport-cas').Strategy,
-    options: {
-      ssoBaseURL: 'http://your-cas-url',
-      serverBaseURL: 'http://localhost:1337',
-      serviceURL: 'http://localhost:1337/auth/cas/callback'
-    }
-  }
-  */
+            if (!user) return next(null, false, {
+                code: 'E_USER_NOT_FOUND',
+                message: email + ' is not found'
+            });
+
+            // TODO: replace with new cipher service type
+            if (!CipherService.comparePassword(password, user))
+                return next(null, false, {
+                    code: 'E_WRONG_PASSWORD',
+                    message: 'Password is wrong'
+                });
+
+            return next(null, user, {});
+        });
+}
+
+/**
+ * Triggers when user authenticates via JWT strategy
+ */
+function _onJwtStrategyAuth(payload, next) {
+    var user = payload.user;
+    return next(null, user, {});
+}
+
+passport.use(
+    new LocalStrategy(LOCAL_STRATEGY_CONFIG, _onLocalStrategyAuth));
+passport.use(
+    new JwtStrategy(JWT_STRATEGY_CONFIG, _onJwtStrategyAuth));
+
+module.exports.jwtSettings = {
+    expiresInMinutes: EXPIRES_IN_MINUTES,
+    secret: SECRET,
+    algorithm: ALGORITHM,
+    issuer: ISSUER,
+    audience: AUDIENCE
 };

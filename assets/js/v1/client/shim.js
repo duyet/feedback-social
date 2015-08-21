@@ -5,6 +5,7 @@ require.config({
         backbone: '../../../lib/backbone/backbone-min',
         marionette: '../../../lib/backbone.marionette/lib/backbone.marionette.min',
         bootstrap: '../../../lib/bootstrap/js',
+        cookie: '../../../lib/jquery.cookie/jquery.cookie'
     },
 
     shim: {
@@ -30,6 +31,11 @@ require.config({
             deps: ['jquery'], 
             exports: '$.fn.modal'
         },
+
+        cookie: {
+            deps: ['jquery'],
+            exports: '$.cookie'
+        }
     },
 
     baseURL: '/js/v1/backbone'

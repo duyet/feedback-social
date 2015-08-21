@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone');
-    
-    return Backbone.View.extend({
-            
+    var __c = window.__c || {};
+    return Backbone.Model.extend({
+		
     });
 });
