@@ -13,6 +13,7 @@ define(function(require) {
         events: {
             'click #signoutClick' : 'signMeOut',
             'click #editClick' : 'viewFormEditInfo',
+            'click #changeLanguage' : 'onChangeLanguage',
         },
         
         signMeOut: function() {
@@ -29,7 +30,13 @@ define(function(require) {
             Backbone.history.navigate('!/login', {trigger: true});
         },
         
-        viewFormEditInfo: function() {},
+        viewFormEditInfo: function() {
+            $('#editForm').fadeIn();
+        },
+        
+        onChangeLanguage: function() {
+            $('#changeLanguageMessage').text("Notice: Hệ thống hiện tại chỉ hỗ trợ Tiếng Việt.");
+        },
         
         render: function() {
             console.log(this.model);
@@ -51,9 +58,10 @@ define(function(require) {
             this.model.set({user : user});
             
         	this.$el.html(JST["assets/templates/userpage.html"]({
-            	model: this.model
+            	model: this.model,
+                __c: window.__c
             }));
-
+            
             return this;
         }, 
         
