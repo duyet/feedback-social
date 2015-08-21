@@ -12,8 +12,8 @@ module.exports = {
     name     	: { type: 'string' },
     email 		: { type: 'email' },
     content 	: { type: 'string' },
-    createAt 	: { type: 'date', default: Date() },
-    seen 		: { type: 'boolean', default: false },
+    createAt 	: { type: 'date',  },
+    seen 		: { type: 'boolean', },
   }
 };
 
