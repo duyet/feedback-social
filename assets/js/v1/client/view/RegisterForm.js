@@ -69,6 +69,9 @@ define(function(require) {
                             // Re-render nav 
                             var navigationView = new NavigationView({ el: $('#main-nav ul') });
                             navigationView.render();
+                            
+                            // TODO: Redirect to last page
+                            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
             			}
             		})
             	}
