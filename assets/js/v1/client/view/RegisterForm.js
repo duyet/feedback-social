@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone');
     var SignupModel = require('model/SignupModel');
     var SigninModel = require('model/SigninModel');
+    var NavigationView = require('view/Navigation');
     var cookie = require('cookie');
     
     $.cookie.json = true;
@@ -64,6 +65,10 @@ define(function(require) {
             				// Save user data to cookie 
             				$.cookie(window.__c.feedbackAuthenCookieKey, res);
             				that.showMessage("success", "Login success!!");
+                            
+                            // Re-render nav 
+                            var navigationView = new NavigationView({ el: $('#main-nav ul') });
+                            navigationView.render();
             			}
             		})
             	}

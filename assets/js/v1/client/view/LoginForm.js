@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone');
     var SigninModel = require('model/SigninModel');
+    var NavigationView = require('view/Navigation');
     var cookie = require('cookie');
     
     $.cookie.json = true;
@@ -51,6 +52,10 @@ define(function(require) {
                     window.__c.user = res;
                     $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
+                    
+                    // Re-render nav 
+                    var navigationView = new NavigationView({ el: $('#main-nav ul') });
+                    navigationView.render();
                 }
             });
 
