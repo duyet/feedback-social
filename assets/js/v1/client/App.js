@@ -31,6 +31,20 @@ define(function(require) {
 		 * @param   {Object}	options
 		 */
 		start: function(options) {
+			// If debug is active, I disable console log
+			if (!window.__c.debug || window.__c.debug == false) console.log = function() {};
+			
+			// System config 
+			window.__c.feedbackAuthenCookieKey = '__feedbackAuth';
+			
+			// Load user login info 
+			window.__c.user = window.__c.user || {};
+			window.__c.isAuth = false;
+			if (!window.__c.user.length) {
+				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey);
+				window.__c.isAuth = true;
+			}
+			
 			// Perform the default 'start' functionality
 			Marionette.Application.prototype.start.apply(this, [options]);
 
@@ -55,18 +69,6 @@ define(function(require) {
 			// hashes for internal navigation.
 			Backbone.history.start({ pushState: false });
 			//Backbone.history.start();
-			
-			// If debug is active, I disable console log
-			if (!window.__c.debug || window.__c.debug == false) console.log = function() {};
-			
-			// System config 
-			window.__c.feedbackAuthenCookieKey = '__feedbackAuthen';
-			
-			// Load user login info 
-			window.__c.user = window.__c.user || {};
-			if (!window.__c.user.length) {
-				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey);
-			}
 		}
 	});
 });
