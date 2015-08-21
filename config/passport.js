@@ -6,7 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var JwtStrategy = require('passport-jwt').Strategy;
 
 var EXPIRES_IN_MINUTES = 60 * 24;
-var SECRET = process.env.tokenSecret || "4ukI0uIVnB3iI1yxj646fVXSE3ZVk4doZgz6fTbNg7jO41EAtl20J5F7Trtwe7OM";
+var SECRET = process.env.tokenSecret || "4ukI0uIVnB3iI6fTbNg7jO41EAtl20J5F7Trtwe7OM";
 var ALGORITHM = "HS256";
 var ISSUER = "phanhoi.xyz";
 var AUDIENCE = "phanhoi.xyz";
