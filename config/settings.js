@@ -4,6 +4,8 @@ module.exports.settings = {
 	logo_img: "",
 	description: "",
 	
+	system_build: "0.0.1",
+	
 	reCaptcha: {
 		active: false,
 		site_key: '6LdBZAsTAAAAAACF7i6WYy5KmyZl_1SxrdplP-sk',
