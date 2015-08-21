@@ -50,8 +50,7 @@
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
         __c.is_client = true;
         __c.user = {};
-        __c.debug = <%= sails.config.settings.get('client_debug') %>;
-        __c.userInfo = JSON.parse('<%= req.cookies.__feedbackAuthen %>')
+        __c.debug = <%= sails.config.settings.client_debug %>;
     </script>
     
 </head>
