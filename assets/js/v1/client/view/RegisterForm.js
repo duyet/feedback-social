@@ -3,6 +3,8 @@ define(function(require) {
     var SignupModel = require('model/SignupModel');
     var SigninModel = require('model/SigninModel');
     var cookie = require('cookie');
+    
+    $.cookie.json = true;
 
     return Backbone.View.extend({
         render: function() {
@@ -60,7 +62,7 @@ define(function(require) {
             				// Save token to global 
             				window.__c.user = res;
             				// Save user data to cookie 
-            				$.cookie('__phanhoiUser', res);
+            				$.cookie(window.__c.feedbackAuthenCookieKey, res);
             				that.showMessage("success", "Login success!!");
             			}
             		})
