@@ -27,8 +27,6 @@
     <link rel="stylesheet" href="/styles/v1/fonts/fontello.css">
     <link rel="stylesheet" href="/styles/v1/green.css">
     <link rel="stylesheet" href="/styles/v1/main.css">
-    <link rel="stylesheet" href="/styles/v1/owl.carousel.css">
-    <link rel="stylesheet" href="/styles/v1/owl.transitions.css">
     <!--STYLES END-->
 
     <link rel="stylesheet" type="text/css" href="/lib/fontawesome/css/font-awesome.min.css" />
@@ -44,18 +42,18 @@
     <![endif]-->
     
     <% if (sails.config.settings.reCaptcha.active) { %><script src='https://www.google.com/recaptcha/api.js'></script><% } %>
-    
-    <!-- Config --> 
     <script>
         window.__c = window.__c || {}; window.__d = window.__d || {}; 
         __c._csrf = '<%= _csrf %>';
-        __c.use = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
+        __c.require = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
         __c.api_prefix = '<%= sails.config.settings.api_prefix %>';
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
         __c.is_client = true;
+        __c.user = {};
         __c.debug = <%= sails.config.settings.get('client_debug') %>;
+        __c.userInfo = JSON.parse('<%= req.cookies.__feedbackAuthen %>')
     </script>
-    <!-- /Config -->
+    
 </head>
 
 <body>
@@ -64,7 +62,7 @@
             <div class="yamm">
                 <div class="navbar-collapse collapse">
                     <div class="container">
-                        <a class="navbar-brand" href="/">PHANHOI.XYZ</a>
+                        <a class="navbar-brand" href="/"><%= sails.config.settings.logo_text %></a>
                         
                         <span id="main-nav"></span>
                     </div>
