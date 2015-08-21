@@ -1,28 +1,27 @@
 define(function(require) {
     var Backbone = require('backbone');
-    var $ = require('jquery');
     window.__c = window.__c || {};
 
     return Backbone.View.extend({
         tagName: "ul",
         className: "nav navbar-nav navbar-right",
         render: function() {
-            this.$el.html(JST['assets/templates/main-menu.html']());
-            console.log("!!!", window.__c.hasOwnProperty('user'))
-            console.log(__c.user)
-            if (window.__c.user.hasOwnProperty('token') == true) {
-                window.__c.isAuthentication = true;
+            var displayName = '';
+            var username = '';
+            window.__c.user = window.__c.user || {};
+            if (window.__c.isAuth) {
                 
-                console.log("~~~~~")
-                
-                var displayName = 'Guest';
-                if (window.__c.user.user.hasOwnProperty('username'))
+                displayName = 'Guest';
+                if (window.__c.user.user.username.length)
                     displayName = window.__c.user.user.username;
-                if (window.__c.user.user.hasOwnProperty('firstName') && window.__c.user.user.hasOwnProperty('lastName'))
+                if (window.__c.user.user.firstName.length && window.__c.user.user.lastName.length)
                     displayName = window.__c.user.user.firstName + window.__c.user.user.firstName;
-
-                $('#login-register').html($('<a href="">'+ displayName +'</a>'))
+                username = window.__c.user.user.username || '';
             }
+            
+            this.$el.html(JST['assets/templates/main-menu.html']({
+                displayName: displayName, username: username
+            }));
         },
     });
 });

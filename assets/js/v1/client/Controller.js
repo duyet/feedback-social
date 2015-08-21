@@ -8,7 +8,8 @@ define(function(require) {
         RegisterFormView = require('view/RegisterForm'),
         ForgotFormView = require('view/ForgotForm'),
         ViewPostView = require('view/ViewPost'),
-        NewFormView = require('view/NewForm');
+        NewFormView = require('view/NewForm'),
+        UserPageView = require('view/UserPage');
 
     return Marionette.Controller.extend({
 
@@ -64,12 +65,26 @@ define(function(require) {
 
         viewPost: function(alias) {
             var PostModel = require('model/PostModel');
+            var AppInstance = require('AppInstance');
+            
             var post = new PostModel();
             post.getByAlias(alias);
 
-            var AppInstance = require('AppInstance');
+            
             AppInstance.regionMain.show(new ViewPostView({
                 model: post
+            }));
+            AppInstance.regionFooter.reset();
+        },
+        
+        userPage: function() {
+            var UserModel = require('model/UserModel');
+            var AppInstance = require('AppInstance');
+            
+            var user = new UserModel(window.__c.user || {});
+            
+            AppInstance.regionMain.show(new UserPageView({
+                model: user
             }));
             AppInstance.regionFooter.reset();
         },

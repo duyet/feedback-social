@@ -24,6 +24,8 @@ define(function(require) {
             '!/register'        : 'registerForm',
             '!/forgot'          : 'forgot',
             '!/active/:key'     : 'activeAccount',
+            
+            '!/user/:username'  : 'userPage',
 
             '!/new'             : 'newFeedback',
 

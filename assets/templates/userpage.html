@@ -1,0 +1,53 @@
+<section id="userpage">
+    <div class="container outer-bottom-xs outer-top-xs">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Tài khoản</a></li>
+                    <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Liên kết</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Tin nhắn & thông báo</a></li>
+                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Cài đặt</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content inner-top-xs">
+                    <div role="tabpanel" class="tab-pane active" id="info">
+                        <h2>Thông tin tài khoản</h2>
+                        <div class="alert alert-danger" id="messageBox" style="display:none"></div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="<%= model.get('user').photo %>" class="img-responsive img-thumbnail" />
+                            </div>
+                            <div class="col-md-4">
+                                <p>
+                                    <%= model.get('user').username %>
+                                </p>
+                                <p>
+                                    <a href="/">
+                                      Đăng xuất
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="social">
+                        Coming soon
+                        <div class="social-network">
+                            <h3>Social</h3>
+                            <ul class="social">
+                                <li><a href="#"><i class="icon-s-facebook"></i></a></li>
+                                <li><a href="#"><i class="icon-s-gplus"></i></a></li>
+                                <li><a href="#"><i class="icon-s-twitter"></i></a></li>
+                            </ul>
+                            <!-- /.social -->
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">Coming soon</div>
+                    <div role="tabpanel" class="tab-pane" id="settings">Coming soon</div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
