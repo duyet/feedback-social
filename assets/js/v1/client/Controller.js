@@ -11,6 +11,7 @@ define(function(require) {
         PostView = require('view/PostView'),
         FeedbackView = require('view/FeedbackView'),
         NewFormView = require('view/NewForm'),
+        StaticPageView = require('view/StaticPageView'),
         UserPageView = require('view/UserPage');
 
     return Marionette.Controller.extend({
@@ -104,6 +105,24 @@ define(function(require) {
                 model: user
             }));
             AppInstance.regionFooter.reset();
+        },
+
+        pageList: function() {
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new StaticPageView({
+                page: 'index'
+            }));
+        },
+
+        viewPage: function(page) {
+            var AppInstance = require('AppInstance');
+            AppInstance.regionMain.show(new StaticPageView({
+                page: page
+            }));
+        },
+
+        viewContact: function() {
+
         },
     });
 
