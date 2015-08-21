@@ -3,6 +3,9 @@ define(function(require) {
     var Modal = require('bootstrap/modal');
     var UrlFetchedModel = require('model/UrlFetchedModel');
     var FormDataModel = require('model/FormDataModel');
+    var Marked = require('marked');
+
+    window.__c = window.__c || {};
 
     return Backbone.View.extend({
     	// Default variable 
@@ -10,7 +13,7 @@ define(function(require) {
         inputUrls : [],
 
         initialize: function() {
-        	this.on("changed:isHiddenMe", function() {
+            this.on("changed:isHiddenMe", function() {
         		if (this.isHiddenMe) $("#check-hidden-me").html("x");
         		else $("#check-hidden-me").html("&nbsp;&nbsp;");
         	});
@@ -20,9 +23,30 @@ define(function(require) {
         	this.bind('onFetchedUrlData', this.renderUrlFetchedData);
     	},
 
+        events: {
+            "click #add-link": "openModalAddLink",
+            "click #add-img": "openModalAddImg",
+            "click #click-to-upload-image": "clickToUploadImage",
+            "click #click-hidden-me": "toggleHiddenMe",
+            "paste #inputAdd-Url": "onPasteUrl",
+            "click #btn-add-link" : "addNewLink",
+            "keyup #postTitle" : "getAlias",
+            'click #clickPreview': 'togglePreview',
+            'submit form': 'onSubmitForm',
+        }, 
+
         render: function() {
+            if (!window.__c.isAuth || window.__c.isAuth == false) {
+                this.$el.html(JST["assets/templates/please-login.html"]());    
+                return this;
+            }
+
             this.$el.html(JST["assets/templates/new-form.html"]());
             return this;
+        },
+
+        onSubmitForm: function() {
+
         },
 
         renderUrlList: function() {
@@ -52,14 +76,77 @@ define(function(require) {
 			return this.renderUrlList();
         },
 
-        events: {
-        	"click #add-link": "openModalAddLink",
-        	"click #add-img": "openModalAddImg",
-        	"click #click-to-upload-image": "clickToUploadImage",
-        	"click #click-hidden-me": "toggleHiddenMe",
-        	"paste #inputAdd-Url": "onPasteUrl",
-        	"click #btn-add-link" : "addNewLink",
-        }, 
+        togglePreview: function() {
+            var currentMode = $('#clickPreview').data('mode') || 'preview'; // preview & edit
+            if (currentMode == 'edit') {
+                var postContent = this.getPostMarkdownContent();
+                var postPreview = this.markdownToHtml(postContent);
+                console.log(postPreview)
+                $('#postPreviewContent').html(postPreview);
+                
+                $('#clickPreview').data('mode', 'preview');
+                $('#postContent').hide();
+                $('#postPreviewContent').show();
+                
+            } else {
+                $('#clickPreview').data('mode', 'edit');
+                $('#postContent').show();
+                $('#postPreviewContent').hide();
+            }
+        },
+
+        getPostMarkdownContent : function( ) {
+            var box = document.getElementById('postContent');
+            return box.innerText || box.textContent;
+        },
+        
+        getPostHtmlContent : function() {
+            var content = $('#postPreviewContent').html();
+            
+            if (!content) {
+                var box = document.getElementById('postContent');
+                var markdownContent = box.innerText || box.textContent;
+                return Marked(markdownContent);
+            }
+            
+            return content;
+        },
+        
+        markdownToHtml : function(text) {
+              return Marked(text);
+        },
+
+        getAlias: function() {
+            var title = this.titleToAlias($('#postTitle').val());
+            console.log(title);
+            if (!title.length) {
+                $("#postTitleAliasContainer").css('display', 'none');
+                return;
+            }
+
+            $("#postTitleAliasContainer").css('display', 'block');
+            $("#postTitleAlias").text(title + '/');
+        },
+
+        titleToAlias: function(t) {
+            var title = t || '';
+            title = title.toLowerCase()
+                .replace(/ /g,'-')
+                .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+                .replace(/\ /g, '-')
+                .replace(/đ/g, "d")
+                .replace(/đ/g, "d")
+                .replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y")
+                .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u")
+                .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ.+/g,"o")
+                .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ.+/g, "e")
+                .replace(/ì|í|ị|ỉ|ĩ/g,"i")
+                .replace(/[-_]+/g, '-')
+                .replace(/[^\w-]+/g,'')
+                .replace(/^[^A-z0-9]+/, '')
+                .replace(/([^A-z0-9]+)$/, '');
+            return title;
+        },
 
         openModalAddLink : function(e) {
         	$("#modalAddLink").modal('show');
@@ -83,7 +170,6 @@ define(function(require) {
 			console.log("URL: ", inputUrl);
 			console.log("Check ", e);
 
-			
 		},
 
 		addNewLink: function(e) {
