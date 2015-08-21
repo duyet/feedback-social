@@ -1,6 +1,7 @@
 define(function(require) {
 
     var Marionette = require('marionette'),
+        NavigationView = require('view/Navigation'),
         HomePageView = require('view/Homepage'),
         NotFoundView = require('view/NotFound'),
         ExploreView = require('view/Explore'),
@@ -83,6 +84,7 @@ define(function(require) {
             
             var user = new UserModel(window.__c.user || {});
             
+            AppInstance.regionNav.show(new NavigationView());
             AppInstance.regionMain.show(new UserPageView({
                 model: user
             }));

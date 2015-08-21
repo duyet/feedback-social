@@ -5,6 +5,7 @@ define(function(require) {
     return Backbone.View.extend({
         tagName: "ul",
         className: "nav navbar-nav navbar-right",
+        
         render: function() {
             var displayName = '';
             var username = '';

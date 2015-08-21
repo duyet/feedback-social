@@ -53,13 +53,13 @@ define(function(require) {
                     $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
                     
-                    // Re-render nav 
-                    var navigationView = new NavigationView({ el: $('#main-nav ul') });
-                    navigationView.render();
-                    
                     // Redirect to userpage 
                     // TODO: Redirect to last page
                     Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                    
+                    // Re-render nav 
+                    var navigationView = new NavigationView({ el: $('#main-nav ul') });
+                    navigationView.render();
                 }
             });
 

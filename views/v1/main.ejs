@@ -49,6 +49,7 @@
         __c.api_prefix = '<%= sails.config.settings.api_prefix %>';
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
         __c.is_client = true;
+        __c.system_build = '<%= sails.config.settings.system_build  %>';
         __c.user = {};
         __c.debug = <%= sails.config.settings.client_debug %>;
     </script>
