@@ -20,12 +20,17 @@
                             </div>
                             <div class="col-md-4">
                                 <p>
-                                    <%= model.get('user').username %>
+                                    <strong>#<%= model.get('user').username %></strong>
                                 </p>
                                 <p>
-                                    <a href="/">
-                                      Đăng xuất
-                                    </a>
+                                    Email: <%= model.get('user').email || "" %>
+                                </p>
+                                <p>
+                                    Created At: <%= model.get('user').createdAt || "" %>
+                                </p>
+                                <p>
+                                    <a href="javascript:;" id="editClick">Sửa thông tin</a> |
+                                    <a href="javascript:;" id="signoutClick">Đăng xuất</a>
                                 </p>
                             </div>
                         </div>

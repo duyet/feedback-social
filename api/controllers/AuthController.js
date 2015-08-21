@@ -52,4 +52,12 @@ module.exports = {
         passport.authenticate('local',
             _onPassportAuth.bind(this, req, res))(req, res);
     },
+    
+    signout: function(req, res) {
+        req.logout();  
+        
+        res.ok({
+            message: 'logout'
+        });
+    },
 };

@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone');
     var Tab = require('bootstrap/tab');
+    var NavigationView = require('view/Navigation');
     
     return Backbone.View.extend({
         initialize: function() {
@@ -8,6 +9,27 @@ define(function(require) {
                 this.model.on('change', this.render, this);
             }
         },
+        
+        events: {
+            'click #signoutClick' : 'signMeOut',
+            'click #editClick' : 'viewFormEditInfo',
+        },
+        
+        signMeOut: function() {
+            console.log("Request signout..")
+            var SignOut = require('model/SignoutModel');
+            var action = new SignOut();
+            action.signout();
+            
+            // Re-render nav 
+            var navigationView = new NavigationView({ el: $('#main-nav ul') });
+            navigationView.render();
+            
+            // Redirect to login page   
+            Backbone.history.navigate('!/login', {trigger: true});
+        },
+        
+        viewFormEditInfo: function() {},
         
         render: function() {
             console.log(this.model);
@@ -21,7 +43,9 @@ define(function(require) {
             var user = this.model.get('user') || {};
             
             if (!user.photo) {
-                user.photo = 'https://placeholdit.imgix.net/~text?txtsize=250&w=350&h=350&bg=1e7145&txtclr=fff&txt=' + this.getFirstLetterFromName(user.username);
+                var colors = ['99b433', '1e7145', 'ff0097', '9f00a7', '7e3878', '603cba', '00aba9', '2d89ef', '2b5797', 'e3a21a', 'da532c', 'b91d47'];
+                var color = colors[Math.floor(Math.random()*colors.length)];
+                user.photo = 'https://placeholdit.imgix.net/~text?txtsize=250&w=350&h=350&bg='+ color +'&txtclr=fff&txt=' + this.getFirstLetterFromName(user.username);
             }
             
             this.model.set({user : user});
