@@ -2,6 +2,8 @@ define(function(require) {
     var Backbone = require('backbone');
     var SigninModel = require('model/SigninModel');
     var cookie = require('cookie');
+    
+    $.cookie.json = true;
 
     return Backbone.View.extend({
         render: function() {
@@ -47,7 +49,7 @@ define(function(require) {
                 success: function(m, res) {
                     // Save token to global 
                     window.__c.user = res;
-                    $.cookie('__phanhoiUser', res);
+                    $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
                 }
             });
