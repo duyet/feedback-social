@@ -41,8 +41,9 @@ define(function(require) {
 			window.__c.user = window.__c.user || {};
 			window.__c.isAuth = false;
 			if (!window.__c.user.length) {
-				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey);
-				window.__c.isAuth = true;
+				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey) || false;
+				if (!window.__c.user) window.__c.user = false;
+				if (window.__c.user) window.__c.isAuth = true;
 			}
 			
 			// Perform the default 'start' functionality
