@@ -32,7 +32,12 @@ define(function(require) {
             '!/post/:alias'      : 'viewPost',
 
             '!/f/:alias/'        : 'viewFeedback',            
-            '!/f/:alias'         : 'viewFeedback',         
+            '!/f/:alias'         : 'viewFeedback', 
+
+            '!/p'                : 'pageList',
+            '!/p/:page'          : 'viewPage',  
+
+            '!/contact'          : 'viewContact',      
 
             // the *path is a special formulation that will match any string
             '*path': 'notFound'
