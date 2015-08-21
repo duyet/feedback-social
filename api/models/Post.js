@@ -8,7 +8,7 @@
 module.exports = {
 
   attributes: {
-    title : { type: 'string', unique: true },
+    title : { type: 'string' },
     alias: { type: 'string', unique: true },
     content: { type: 'string' },
     htmlContent: { type: 'string' },
