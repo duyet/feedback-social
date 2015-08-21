@@ -5,6 +5,9 @@ define(function(require) {
 	var Router = require('Router');
 	var Controller = require('Controller');
 	var NavigationView = require('view/Navigation');
+	var cookie = require('cookie');
+	window.__c = window.__c || {};
+	
 	//var Footer = require('view/Footer');
 
 	return Marionette.Application.extend({
@@ -49,13 +52,21 @@ define(function(require) {
 			//});
 
 			// I'm going to use
-			// hashes for internal navigation.  If you want Backbone/Marionette
-			// to enforce full URLs use:
+			// hashes for internal navigation.
 			Backbone.history.start({ pushState: false });
 			//Backbone.history.start();
 			
 			// If debug is active, I disable console log
-			if (__c.debug && __c.debug === false) console.log = function() {};
+			if (!window.__c.debug || window.__c.debug == false) console.log = function() {};
+			
+			// System config 
+			window.__c.feedbackAuthenCookieKey = '__feedbackAuthen';
+			
+			// Load user login info 
+			window.__c.user = window.__c.user || {};
+			if (!window.__c.user.length) {
+				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey);
+			}
 		}
 	});
 });
