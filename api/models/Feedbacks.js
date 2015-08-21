@@ -9,30 +9,16 @@ module.exports = {
   attributes: {
     title : { type: 'string', unique: true },
     alias: { type: 'string', unique: true },
+    markdownContent: { type: 'string' },
     htmlContent: { type: 'string' },
-    state: {
-  		type: 'string',
-  		enum: ['publish', 'deleted', 'draft'],
-  		//default: 'publish'
-  	},
-    tags: {
-      type: 'array'
-    },
-    links: {
-      collection: 'FeedbackLink',
-    },
-    image: 'string',
-    images: {
-      collection: 'FeedbackImage',
-    },
-    comments: {
-      collection: 'FeedbackComment',
-    },
-    author : { collection: 'User' },
-    hiddenInfo: {
-      type: 'boolean',
-      defaultsTo: false
-    },
+    state: { type: 'string', num: ['publish', 'deleted', 'draft'], defaultsTo: 'publish' },
+    tags: { type: 'array' },
+    links: { collection: 'FeedbackLink' },
+    image: { type: 'string' },
+    images: { collection: 'FeedbackImage' },
+    author : { model: 'User' },
+    hiddenInfo: { type: 'boolean', defaultsTo: false },
+    noticeMessage: { type: 'string' },
   }, 
   
   beforeCreate: function(values, next) {

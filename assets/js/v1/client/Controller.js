@@ -8,7 +8,8 @@ define(function(require) {
         LoginFormView = require('view/LoginForm'),
         RegisterFormView = require('view/RegisterForm'),
         ForgotFormView = require('view/ForgotForm'),
-        ViewPostView = require('view/ViewPost'),
+        PostView = require('view/PostView'),
+        FeedbackView = require('view/FeedbackView'),
         NewFormView = require('view/NewForm'),
         UserPageView = require('view/UserPage');
 
@@ -72,8 +73,22 @@ define(function(require) {
             post.getByAlias(alias);
 
             
-            AppInstance.regionMain.show(new ViewPostView({
+            AppInstance.regionMain.show(new PostView({
                 model: post
+            }));
+            AppInstance.regionFooter.reset();
+        },
+
+        viewFeedback: function(alias) {
+            var FeedbackModel = require('model/FeedbackModel');
+            var AppInstance = require('AppInstance');
+            
+            var feedback = new FeedbackModel();
+            feedback.getByAlias(alias);
+
+            
+            AppInstance.regionMain.show(new FeedbackView({
+                model: feedback
             }));
             AppInstance.regionFooter.reset();
         },

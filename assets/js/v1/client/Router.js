@@ -29,7 +29,10 @@ define(function(require) {
             '!/new'              : 'newFeedback',
 
             '!/post/:alias/'     : 'viewPost',            
-            '!/post/:alias'      : 'viewPost',            
+            '!/post/:alias'      : 'viewPost',
+
+            '!/f/:alias/'        : 'viewFeedback',            
+            '!/f/:alias'         : 'viewFeedback',         
 
             // the *path is a special formulation that will match any string
             '*path': 'notFound'

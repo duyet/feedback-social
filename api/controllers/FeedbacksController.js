@@ -8,11 +8,18 @@
 module.exports = {
 	findFromAlias: function(req, res) {
 		var _alias = req.params.id || '';
-		console.log(_alias);
 		Feedbacks.findOne({alias: _alias}, function(err, model) {
 			if (err || !model) return res.json(404, {});
 			
 			return res.json(model);
+		});
+	},
+
+	lite: function(req, res) {
+		Feedbacks.find({}, function(err, models) {
+			if (err || !models) return res.json(401, []);
+			
+			return res.json(models);
 		});
 	},
 };

@@ -1,0 +1,32 @@
+<section class="container">
+	<div class="row">
+		<div class="col-md-12">
+				<div class=" format-standard isotope-item">
+				    
+				    <!-- /.format-wrapper -->
+				    <div class="post-content">
+				        <h1 class="post-title">
+				        	<%= model.get('title') %>
+				        </h1>	
+				        <ul class="meta">
+				            <li>
+								<i class="fa fa-calendar"></i>
+								<%= model.get('created') %>
+							</li>
+				            <li>
+								<i class="fa fa-tags"></i>
+								<%= model.get('tags').map(function(tag) { return '<a href="#!/tag/'+ tag +'">'+ tag +'</a>' }).join(', ') %>
+							</li>
+				        </ul>
+				        <!-- /.meta -->
+				        <p>
+				        	<%= model.get('htmlContent') %>
+				        </p>
+				    </div>
+				    <!-- /.post-content -->
+				</div>
+
+		</div>
+	</div>
+</section>
+

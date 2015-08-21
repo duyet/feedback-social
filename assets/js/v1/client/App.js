@@ -1,5 +1,5 @@
 define(function(require) {
-
+	var $ = require('jquery');
 	var Marionette = require('marionette');
 	var Backbone = require('backbone');
 	var Router = require('Router');
@@ -43,7 +43,16 @@ define(function(require) {
 			if (!window.__c.user.length) {
 				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey) || false;
 				if (!window.__c.user) window.__c.user = false;
-				if (window.__c.user) window.__c.isAuth = true;
+				if (window.__c.user) {
+					window.__c.isAuth = true;
+
+					// Authorization header token
+					$.ajaxSetup({
+						headers: {
+							'Authorization': 'JWT ' + window.__c.user.token
+						}
+					});
+				}
 			}
 			
 			// Perform the default 'start' functionality

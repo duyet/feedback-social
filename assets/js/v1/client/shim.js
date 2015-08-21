@@ -5,7 +5,8 @@ require.config({
         backbone: '../../../lib/backbone/backbone-min',
         marionette: '../../../lib/backbone.marionette/lib/backbone.marionette.min',
         bootstrap: '../../../lib/bootstrap/js',
-        cookie: '../../../lib/jquery.cookie/jquery.cookie'
+        cookie: '../../../lib/jquery.cookie/jquery.cookie',
+        marked: '../../../lib/marked/marked.min'
     },
 
     shim: {
@@ -35,7 +36,11 @@ require.config({
         cookie: {
             deps: ['jquery'],
             exports: '$.cookie'
-        }
+        },
+        
+        marked: {
+            exports: 'marked',  
+        },
     },
 
     baseURL: '/js/v1/backbone'
