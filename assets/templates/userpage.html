@@ -29,9 +29,15 @@
                                     Created At: <%= model.get('user').createdAt || "" %>
                                 </p>
                                 <p>
-                                    <a href="javascript:;" id="editClick">Sửa thông tin</a> |
-                                    <a href="javascript:;" id="signoutClick">Đăng xuất</a>
+                                    <a href="javascript:;" id="editClick" class="text-primary">Sửa thông tin</a> |
+                                    <a href="javascript:;" id="signoutClick" class="text-danger">Đăng xuất</a>
                                 </p>
+                            </div>
+                            
+                            <div class="col-md-4" style="display:none" id="editForm">
+                                <form>
+                                    <span class="text-primary">Notice: Edit profile feature will be coming soon</span>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -48,7 +54,14 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="messages">Coming soon</div>
-                    <div role="tabpanel" class="tab-pane" id="settings">Coming soon</div>
+                    <div role="tabpanel" class="tab-pane" id="settings">
+                        <p>
+                            Ngôn ngữ: <a href="javascript:;" id="changeLanguage"><strong>Tiếng Việt</strong></a>
+                        </p>
+                        <p id="changeLanguageMessage" class="text-info"></p>
+                        
+                        <p>System build: <%= __c.system_build %></script></p>
+                    </div>
                 </div>
             </div>
         </div>
