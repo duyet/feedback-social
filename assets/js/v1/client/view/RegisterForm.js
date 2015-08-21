@@ -62,6 +62,8 @@ define(function(require) {
             			success: function(m, res) {
             				// Save token to global 
             				window.__c.user = res;
+                            window.__c.firstLogin = true;
+
             				// Save user data to cookie 
             				$.cookie(window.__c.feedbackAuthenCookieKey, res);
             				that.showMessage("success", "Login success!!");
