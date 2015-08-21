@@ -3,34 +3,42 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-6 outer-top-xs inner-right-sm">
+                    <div class="col-sm-7 outer-top-xs inner-right-sm inner-bottom-sm">
                         <h2>Tôi phản hồi</h2>
                         <form role="form" action="#" class="forms" method="post">
-                            <div class="alert alert-danger" id="error" style="display:none"></div>
+                            <div id="messageBox" style="display:none"></div>
                             <div class="row">
                                 <div class="col-sm-12 animated">
-                                    <input type="text" name="email" class="form-control" placeholder="Title...">
+                                    Tiêu đề
+                                    <span id="postTitleAliasContainer">/post/<span id="postTitleAlias"></span></span>
+
+                                    <input type="text" name="postTitle" id="postTitle" class="form-control" placeholder="Title...">
                                 </div>
                                 <!-- /.col -->
                             </div>
                             <!-- /.row -->
                             <div class="row">
                                 <div class="col-sm-12 animated">
-                                    <textarea class="form-control" placeholder="Content..."></textarea>
+                                    Content
+                                    <span id="clickPreview" data-mode="edit">preview</span>
+                                    <div id="postContent" placeholder="Content..." contentEditable></div>
+                                    <div id="postPreviewContent" contentEditable></div>
                                 </div>
                                 <!-- /.col -->
                             </div>
 
                             <button type="submit" class="btn btn-default btn-submit">Submit</button>    
                         </form>
-                        <div id="response"></div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-sm-6 outer-top-md inner-left-sm inner-bottom-sm border-left animated">
+                    <div class="col-sm-4 outer-top-md inner-left-sm inner-bottom-sm border-left animated">
                             
                         <ul>
                             <li>
-                                <input type="text" id="tags" class="form-control" pattern="" placeholder="Tags...">
+                                <input type="text" id="postTags" class="form-control" pattern="" placeholder="Tags...">
+                            </li>
+                            <li>
+                                <input type="text" id="noticeMessage" class="form-control" pattern="" placeholder="Notice message">
                             </li>
                             <li>
                                 <a href="javascript:;" id="add-link" class="btn"> + Liên kết </a>
