@@ -3,6 +3,9 @@ define(function(require) {
     var Modal = require('bootstrap/modal');
     var UrlFetchedModel = require('model/UrlFetchedModel');
     var FormDataModel = require('model/FormDataModel');
+    var FeedbackModel = require('model/FeedbackModel');
+    var FeedbackLinkCollection = require('collection/FeedbackLinkCollection');
+    var FeedbackImageCollection = require('collection/FeedbackImageCollection');
     var Marked = require('marked');
 
     window.__c = window.__c || {};
@@ -30,7 +33,7 @@ define(function(require) {
             "click #click-hidden-me": "toggleHiddenMe",
             "paste #inputAdd-Url": "onPasteUrl",
             "click #btn-add-link" : "addNewLink",
-            "keyup #postTitle" : "getAlias",
+            "keyup #postTitle" : "renderPostAlias",
             'click #clickPreview': 'togglePreview',
             'submit form': 'onSubmitForm',
         }, 
@@ -46,7 +49,49 @@ define(function(require) {
         },
 
         onSubmitForm: function() {
+            var that = this;
+            this.hideMessage();
 
+            var title = this.getPostTitle();
+            if (!title || title.length < 5) {
+                this.showMessage('danger', 'Vui lòng nhập tiêu đề hợp lệ');
+                return false;
+            }
+
+            var markdownContent = this.getPostMarkdownContent();
+            if (!markdownContent || markdownContent.length < 10) {
+                this.showMessage('danger', 'Vui lòng nhập nội dung bài viết');
+                return false;
+            }
+
+            var data = {
+                title: title,
+                alias: this.getPostAlias(),
+                markdownContent: markdownContent,
+                htmlContent: this.getPostHtmlContent(),
+                links: new FeedbackLinkCollection(this.formData.get('links')),
+                images: new FeedbackImageCollection(this.formData.get('images')),
+                image: '',
+                tags: this.getPostTags(),
+                state: 'publish',
+                author: window.__c.user.user || {},
+                hiddenInfo: this.isHiddenMe,
+                noticeMessage: this.getNoticeMessage()
+            };
+
+            var action = new FeedbackModel(data);
+            action.save(null, {
+                success:function(model, response) {
+                    that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.data.alias +'">tại đây</a>');
+                },
+                error: function(model, error) {
+                    that.showMessage('danger', "Lỗi, bài viết đã tồn tại");
+                }
+            });
+            
+            console.log(action);
+
+            return false;
         },
 
         renderUrlList: function() {
@@ -111,18 +156,27 @@ define(function(require) {
             
             return content;
         },
+
+        getNoticeMessage: function() {
+            return $('#noticeMessage').val() || '';
+        },
         
         markdownToHtml : function(text) {
               return Marked(text);
         },
 
-        getAlias: function() {
-            var title = this.titleToAlias($('#postTitle').val());
-            console.log(title);
-            if (!title.length) {
-                $("#postTitleAliasContainer").css('display', 'none');
-                return;
-            }
+        getPostTitle : function() {
+            return $('#postTitle').val() || '';
+        },
+
+        getPostAlias : function() {
+            var title = this.titleToAlias(this.getPostTitle());
+            
+            return title || '';
+        },
+
+        renderPostAlias: function() {
+            var title = this.getPostAlias();
 
             $("#postTitleAliasContainer").css('display', 'block');
             $("#postTitleAlias").text(title + '/');
@@ -203,6 +257,13 @@ define(function(require) {
 			}
 		},
 
+        getPostTags : function() {
+            var tags = $('#postTags').val();
+            if (!tags) return [];
+            
+            return tags.split(",").map(function(tag) { return tag.trim() });
+        },
+
         // ==============================
         // Helper function
         // ==============================
@@ -212,7 +273,23 @@ define(function(require) {
 			if (RegExp.test(url)) return true;
 
 			return false;
-		} 
+		},
+
+        showMessage: function(messageType, messageContent, next) {
+              var messageBox = $("#messageBox");
+              
+              messageBox.removeClass();
+              messageBox.addClass("alert alert-" + messageType);
+              messageBox.html(messageContent);
+              messageBox.css('display', 'block');
+              
+              if (next) next();
+              return true;
+        },
+        
+        hideMessage: function() {
+            $("#messageBox").css('display', 'hidden');
+        },
     });
 
 });
