@@ -26,7 +26,6 @@ define(function(require) {
 
             var changeExploreTo = ($(e.toElement).data('inexplore') ? false : true);
 
-            console.log("!!!!!!!1", changeExploreTo, $(e.toElement).data('inexplore'));
             action.set({ inExplore: changeExploreTo });
             action.save(null, {
                 error: function() {
