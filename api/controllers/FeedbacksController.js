@@ -44,16 +44,13 @@ module.exports = {
 				if (err || !model) return res.json(404, {});
 			}
 
+			// Remove author info
 			if (Array.isArray(model)) {
 				model.map(function(row) {
 					if (row.hiddenInfo) row.author = {};
 
 					return row;
 				})
-			}
-
-			if (model && model.hiddenInfo == true) {
-				model.author = {};
 			}
 
 			return res.json(model);
@@ -68,6 +65,7 @@ module.exports = {
 				if (err || !model) return res.json(404, {});
 			}
 
+			// Remove author info
 			if (model && model.hiddenInfo) {
 				model.author = {};
 			}
@@ -93,6 +91,28 @@ module.exports = {
 	lite: function(req, res) {
 		Feedbacks.find({}, function(err, models) {
 			if (err || !models) return res.json(401, []);
+			
+			return res.json(models);
+		});
+	},
+
+	explore: function(req, res) {
+		Feedbacks.find({
+			where: {inExplore: true, state: 'publish'}, 
+			sort: 'createdAt', 
+			select: ['author', 'title', 'alias', 'image', 'tags', 'hiddenInfo', 'createdAt', 'inExplore', 'id']
+		})
+		.exec(function(err, models) {
+			if (err || !models) return res.json(401, []);
+
+			// Remove author info
+			if (Array.isArray(models)) {
+				models.map(function(row) {
+					if (row.hiddenInfo) row.author = {};
+
+					return row;
+				})
+			}
 			
 			return res.json(models);
 		});
