@@ -60,7 +60,8 @@ define(function(require) {
 
             			success: function(m, res) {
             				// Save token to global 
-            				window.__c.user = res;
+                            window.__c.user = res;
+            				window.__c.isAuth = true;
                             window.__c.firstLogin = true;
 
             				// Save user data to cookie 
@@ -68,11 +69,11 @@ define(function(require) {
             				that.showMessage("success", "Login success!!");
                             
                             // TODO: Redirect to last page
-                            //Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
                             
                             // Re-render nav 
                             var navigationView = new NavigationView();
-                            this.regionNav.show(navigationView);
+                            window.__App.regionNav.show(navigationView);
             			}
             		})
             	}

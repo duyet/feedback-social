@@ -59,6 +59,7 @@ define(function(require) {
                 success: function(m, res) {
                     // Save token to global 
                     window.__c.user = res;
+                    window.__c.isAuth = true;
                     $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
                     
@@ -67,8 +68,8 @@ define(function(require) {
                     Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
                     
                     // Re-render nav 
-                    var navigationView = new NavigationView({ el: $('#main-nav ul') });
-                    navigationView.render();
+                    var navigationView = new NavigationView();
+                    window.__App.regionNav.show(navigationView);
                 }
             });
 
