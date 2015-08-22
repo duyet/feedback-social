@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     url : { type: 'string' },
-    data : { type: 'array' },
+    data : { type: 'json' },
     feedback_post : { model: 'Feedbacks' },
   }
 };
