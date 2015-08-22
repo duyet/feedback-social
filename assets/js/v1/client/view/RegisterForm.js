@@ -71,6 +71,9 @@ define(function(require) {
                             // TODO: Redirect to last page
                             Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
                             
+                            // Restart App 
+                            window.__App.start();
+                            
                             // Re-render nav 
                             var navigationView = new NavigationView();
                             window.__App.regionNav.show(navigationView);
