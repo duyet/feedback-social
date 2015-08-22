@@ -48,12 +48,11 @@ define(function(require) {
         actionVote: function(vote_type) {
             var action = new VoteModel();
             action.vote(this.model.get('alias'), vote_type, function(err, data) {
-                console.log(err, data);
                 if (err) {
-
+                    return alert(err);
                 }
 
-                // Vote ok
+                // Update local vote, disable vote function
             })
         },
     });
