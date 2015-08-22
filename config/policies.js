@@ -43,8 +43,21 @@ module.exports.policies = {
         'create': 'hasToken',
     },
 
-    Feedbacklinks: {
+    FeedbackLinkController: {
         '*': 'hasToken',
+    },
+
+    FeedbackImageController: {
+        '*': 'hasToken',
+    },
+
+    FeedbackVoteController: {
+        '*': true,// 'hasToken',  
+        'counter': true,
+    },
+
+    FeedbackCommentController: {
+        '*': 'hasToken',  
     },
 
     UserController: {

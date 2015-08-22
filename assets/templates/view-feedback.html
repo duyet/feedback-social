@@ -10,18 +10,18 @@
 					<div id="vote" class="row vote-panel">
 														
 						<div class="col-sm-6 reset-padding animated" style="opacity: 1;">
-							<a href="javascript:;" class="btn-vote-xs">
+							<a href="javascript:;" class="btn-vote-xs" id="voteUp">
 								<p class="name"></p>
 								<i class="icon-thumbs-up-1"></i>
-								<p class="counter">1080</p>
+								<p class="counter"><%= voteCounter.get('up') %></p>
 							</a>
 						</div><!-- /.col -->
 						
 						<div class="col-sm-6 reset-padding animated" style="opacity: 1;">
-							<a href="javascript:;" class="btn-vote-xs">
+							<a href="javascript:;" class="btn-vote-xs" id="voteDown">
 								<p class="name"></p>
 								<i class="icon-thumbs-down-1"></i>
-								<p class="counter">963</p>
+								<p class="counter"><%= voteCounter.get('down') %></p>
 							</a>
 						</div><!-- /.col -->
 						
