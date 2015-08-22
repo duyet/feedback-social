@@ -97,5 +97,18 @@ module.exports = {
 			return res.json(models);
 		});
 	},
+
+	makeInExplore: function(req, res) {
+		var _alias = req.params.id || '';
+		var _value = req.body.inExplore || false;
+		Feedbacks.findOne({alias: _alias}, function(err, model) {
+			if (err || !model) return res.forbidden({message: 'Some thing went wrong'});
+
+			model.inExplore = _value;
+			model.save();
+			
+			return res.json(model);
+		});
+	},
 };
 
