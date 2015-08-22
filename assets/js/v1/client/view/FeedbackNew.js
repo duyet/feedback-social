@@ -44,7 +44,7 @@ define(function(require) {
                 return this;
             }
 
-            this.$el.html(JST["assets/templates/new-form.html"]());
+            this.$el.html(JST["assets/templates/new-feedback.html"]());
             return this;
         },
 

@@ -10,7 +10,7 @@ module.exports = {
 		var links = req.body.links || [];
 		var images = req.body.images || [];
 
-		Feedbacks.create(req.body).exec(function(err, model) {
+		Feedbacks.create(req.body || {}).exec(function(err, model) {
 			if (err) {
 				console.log(err.message);
 				if (err || !model) return res.badRequest('Save feedback error');
