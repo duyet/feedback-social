@@ -7,10 +7,17 @@
 
 module.exports = {
 
-  attributes: {
-  	feedback_post: { model: 'Feedbacks' },
-  	user: { model: 'user', via: 'feedback_comment_by' },
-  	vote_type: { type: 'string', enum: ['up', 'down'], defaultsTo: 'up' }, // 'up' or 'down'
-  }
+	attributes: {
+		feedback_post: { model: 'Feedbacks' },
+		user: { model: 'user', via: 'feedback_comment_by' },
+		vote_type: { type: 'string', enum: ['up', 'down'], defaultsTo: 'up' }, // 'up' or 'down'
+	},
+
+	indexes:[
+		{
+			attributes:  ['feedback_post', 'user', 'vote_type'],
+			unique: true
+		}
+	]
 
 };
