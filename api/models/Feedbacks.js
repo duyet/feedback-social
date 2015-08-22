@@ -7,16 +7,16 @@
 
 module.exports = {
   attributes: {
-    title : { type: 'string', unique: true },
-    alias: { type: 'string', unique: true },
+    title : { type: 'string', required: true },
+    alias: { type: 'string', unique: true, required: true, primaryKey: true },
     markdownContent: { type: 'string' },
-    htmlContent: { type: 'string' },
-    state: { type: 'string', num: ['publish', 'deleted', 'draft'], defaultsTo: 'publish' },
+    htmlContent: { type: 'string', required: true },
+    state: { type: 'string', enum: ['publish', 'deleted', 'draft'], defaultsTo: 'publish' },
     tags: { type: 'array' },
     links: { collection: 'FeedbackLink' },
     image: { type: 'string' },
     images: { collection: 'FeedbackImage' },
-    author : { model: 'User' },
+    author : { model: 'User', required: true },
     hiddenInfo: { type: 'boolean', defaultsTo: false },
     noticeMessage: { type: 'string' },
   }, 

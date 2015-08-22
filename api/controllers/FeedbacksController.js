@@ -7,6 +7,7 @@
 
 module.exports = {
 	findFromAlias: function(req, res) {
+		console.log(this);
 		var _alias = req.params.id || '';
 		Feedbacks.findOne({alias: _alias}, function(err, model) {
 			if (err || !model) return res.json(404, {});
