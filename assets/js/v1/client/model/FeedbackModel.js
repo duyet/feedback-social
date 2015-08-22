@@ -10,10 +10,5 @@ define(function(require) {
 			
 			return this.fetch();
 		},
-
-		getByAlias: function(alias){
-			this.url = this.url + "/findFromAlias/" + alias;
-			return this.fetch();
-		}
     });
 });

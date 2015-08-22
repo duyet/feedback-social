@@ -85,8 +85,7 @@ define(function(require) {
             var AppInstance = require('AppInstance');
             
             var feedback = new FeedbackModel();
-            feedback.getByAlias(alias);
-
+            feedback.fetch();
             
             AppInstance.regionMain.show(new FeedbackView({
                 model: feedback
