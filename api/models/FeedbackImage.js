@@ -8,7 +8,10 @@
 module.exports = {
 
   attributes: {
-
+  	url : { type: 'string' },
+    name : { type: 'string' },
+    title : { type: 'string' },
+    feedback_post : { model: 'Feedbacks' },
   }
 };
 
