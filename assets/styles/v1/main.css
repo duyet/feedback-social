@@ -2941,6 +2941,9 @@ blockquote:before {
 .item-details li.url:before {
 	content: "\f30e";
 }
+.item-details li.notice:before {
+	content: "\f4e3";
+}
 .text-center .item-details li {
 	display: inline-block;
 	margin: 0 15px 6px;
@@ -4025,7 +4028,7 @@ input:focus:-ms-input-placeholder {
 .post-author,
 #comments {
 	background: #FFF;
-    padding: 40px;
+    padding: 25px;
 	border: 1px solid #E6E9ED;
 	border-bottom-width: 2px;
 	border-radius: 3px;
@@ -4229,9 +4232,10 @@ input:focus:-ms-input-placeholder {
     padding: 0;
 }
 #comments .commentlist > .comment {
-    padding-top: 40px;
+    padding-top: 20px;
     border-top: 1px solid #E6E9ED;
-    margin-top: 40px;
+    margin-top: 20px;
+	font-size: 15px;
 }
 #comments .commentlist > .comment:first-child {
     border-top: none;
@@ -4262,7 +4266,7 @@ input:focus:-ms-input-placeholder {
     overflow: hidden;
 }
 #comments .author {
-    margin-bottom: 15px;
+    margin-bottom: 4px;
 }
 #comments .author h3 {
 	display: inline-block;

@@ -85,11 +85,9 @@ define(function(require) {
                     that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.data.alias +'">tại đây</a>');
                 },
                 error: function(model, error) {
-                    that.showMessage('danger', "Lỗi, bài viết đã tồn tại");
+                    that.showMessage('danger', "Lỗi, không thể gửi phản hồi.");
                 }
             });
-            
-            console.log(action);
 
             return false;
         },

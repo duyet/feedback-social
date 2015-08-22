@@ -43,7 +43,6 @@ define(function(require) {
             var auth = new SignupModel({username: username, email: email, password: password, _csrf: _csrf});
             auth.save(null, {
             	error : function(e) {
-            		console.log("here!!!");
             		that.showMessage("danger", "Thông tin không chính xác hoặc tài khoản/email đã có người sử dụng.");
             		return false;
             	},
@@ -69,11 +68,11 @@ define(function(require) {
             				that.showMessage("success", "Login success!!");
                             
                             // TODO: Redirect to last page
-                            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                            //Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
                             
                             // Re-render nav 
-                            var navigationView = new NavigationView({ el: $('#main-nav ul') });
-                            navigationView.render();
+                            var navigationView = new NavigationView();
+                            this.regionNav.show(navigationView);
             			}
             		})
             	}
