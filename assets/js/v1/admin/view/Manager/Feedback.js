@@ -1,6 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone');
-    var Posts = require('collection/PostCollection');
+    var Feedbacks = require('collection/FeedbackCollection');
 
     return Backbone.View.extend({
         initialize: function(options) {
@@ -10,7 +10,7 @@ define(function(require) {
 
         render: function(posts) {
             var that = this;
-        	this.collection = new Posts();
+        	this.collection = new Feedbacks();
             
             this.$el.html(JST["assets/admin_templates/manager-feedback-list.html"]({
             	//posts: posts.fetch()
@@ -26,10 +26,10 @@ define(function(require) {
                 render: function() {
                     this.$el.empty();
 
-                    this.$el.append($('<td><a href="/#!/post/'+ this.model.alias +'">' + this.model.title + '</a></td>'));
+                    this.$el.append($('<td><a href="/#!/f/'+ this.model.alias +'">' + this.model.title + '</a></td>'));
                     this.$el.append($('<td>'+ this.model.created +'</td>'));
                     this.$el.append('<td><span class="label label-'+ (this.model.state == 'publish' ? 'success' : 'default') +'">'+ this.model.state +'</span></td>');
-                    this.$el.append($('<td><a href="/#!/manager/post/'+ this.model.alias +'edit">edit</a> | <a href="/#!/post/'+ this.model.alias +'delete">delete</a></td>'));
+                    this.$el.append($('<td><a href="/#!/manager/feedback/'+ this.model.alias +'/edit">edit</a> | <a href="/#!/post/'+ this.model.alias +'delete">delete</a></td>'));
 
                     return this;
                 }

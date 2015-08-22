@@ -47,7 +47,7 @@ iframe {
     color: #FFF;
 }
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     /*background-color: #283645;*/
     color: #73879C;
     font-size: 18px;
@@ -58,6 +58,7 @@ body {
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden !important;
 	height: auto !important;
+	font-weight: 400;
 }
 .csstransitions main [class*="col-"] {
 	/*opacity: 0;*/
@@ -91,6 +92,11 @@ a:focus {
     color: #1ABB9C;
     text-decoration: none;
 }
+
+header {
+	font-family: 'Lato', sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -98,8 +104,8 @@ h4,
 h5,
 h6 {
     font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-	letter-spacing: 0.025em;
     color: #384D62; /*#506A85;*/
     margin-top: 0;
 	/*word-wrap: break-word;*/
@@ -1308,6 +1314,7 @@ aside .thumb figure {
 /*===================================================================================*/
 
 .navbar .container {
+	font-family: 'Source Sans Pro';
 	display: table;
     padding: 0;
 }
