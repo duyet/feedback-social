@@ -9,12 +9,13 @@ define(function(require) {
         
         render: function() {
             if (!this.model.id) {
-                this.$el.html(JST["assets/templates/notfound.html"]());
+                this.$el.html(JST["assets/templates/blank.html"]());
                 return this;
             }
             
         	this.$el.html(JST["assets/templates/view-feedback.html"]({
-            	model: this.model
+            	model: this.model,
+                __c: window.__c
             }));
 
             return this;
