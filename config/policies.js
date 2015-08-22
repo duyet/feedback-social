@@ -38,6 +38,15 @@ module.exports.policies = {
         '*': true
     },
 
+    Feedbacks: {
+        '*': true,
+        'create': 'hasToken',
+    },
+
+    Feedbacklinks: {
+        '*': 'hasToken',
+    },
+
     UserController: {
         '*': 'hasToken',
     },
