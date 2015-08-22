@@ -12,7 +12,7 @@ define(function(require) {
 		},
 
 		getByAlias: function(alias){
-			this.url = this.url + "/findFromAlias/" + alias;
+			this.url = this.url + "/" + alias;
 			return this.fetch();
 		}
     });

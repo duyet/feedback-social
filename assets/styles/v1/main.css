@@ -4097,12 +4097,8 @@ input:focus:-ms-input-placeholder {
     margin: 0;
 }
 .sidenav {
-	background: #F5F7FA;
     padding: 0;
 	border: 1px solid #E6E9ED;
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
     margin: 0;
 }
 .sidenav li {

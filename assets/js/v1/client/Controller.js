@@ -86,7 +86,6 @@ define(function(require) {
             
             var feedback = new FeedbackModel();
             feedback.getByAlias(alias);
-
             
             AppInstance.regionMain.show(new FeedbackView({
                 model: feedback
