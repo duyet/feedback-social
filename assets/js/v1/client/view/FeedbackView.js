@@ -9,8 +9,12 @@ define(function(require) {
 
     return Backbone.View.extend({
         isHiddenMe: false,
+        alias: '',
 
-        initialize: function() {
+        initialize: function(options) {
+            if (options && options.alias) 
+                this.alias = options.alias;
+
             this.on("changed:isHiddenMe", function() {
                 if (this.isHiddenMe) {
                     $("#check-hidden-me").html("x");
@@ -21,12 +25,13 @@ define(function(require) {
                 }
             });
 
-            this.voteCounter = new VoteCounter();
-
             if (this.model) {
                 this.model.on('change', this.render, this);
-                this.voteCounter.on('change', this.render, this);
             }
+
+            this.voteCounter = new VoteCounter();
+            this.voteCounter.fetchCounter(this.alias);
+            this.voteCounter.on('change', this.renderVoteCounter, this);
         },
 
         events: {
@@ -43,9 +48,6 @@ define(function(require) {
             }
 
             if (this.model.get('alias')) {
-                // Fetch counter 
-                this.voteCounter.fetchCounter(this.model.get('alias'));
-
                 // Render comments
                 this.renderComment();
             }
@@ -57,6 +59,10 @@ define(function(require) {
             }));
 
             return this;
+        },
+
+        renderVoteCounter: function() {
+            
         },
 
         renderComment: function() {
