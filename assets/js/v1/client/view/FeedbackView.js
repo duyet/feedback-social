@@ -33,7 +33,7 @@ define(function(require) {
             'click #voteUp'   : 'voteUp',
             'click #voteDown' : 'voteDown',
             'click #click-hidden-me': 'toggleHiddenMe',
-            'submit #commentform' : 'doSubmitComment',
+            'submit #comment-form' : 'doSubmitComment',
         },
         
         render: function() {
@@ -137,7 +137,7 @@ define(function(require) {
                 },
                 success: function(message, response) {
                     that.showMessage('success', 'Thành công');
-                    $('#commentform').slideUp();
+                    $('#comment-form').slideUp();
                 },
             });
 
@@ -145,7 +145,8 @@ define(function(require) {
         },
 
         getCommentContent : function() {
-            return $('textarea[name="commentMessage"]').val() || '';
+            // TODO: Replace all ban html tag
+            return $('#commentMessage').html() || '';
         },
 
         toggleHiddenMe: function(e) {

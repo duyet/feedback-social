@@ -30,7 +30,7 @@
 	        </header>
 	    </div>
 	    <!-- /.col -->
-	    <div class="col-sm-4 col-sm-offset-1 outer-top-xs inner-left-xs border-left animated" style="opacity: 1;">
+	    <div class="col-sm-4 col-sm-offset-1 outer-top-xs outer-bottom-xs inner-left-xs border-left animated" style="opacity: 1;">
 	        <ul class="item-details">
 	            <li class="date"><%= model.get('createdAt') %></li>
 	            <li class="categories">
@@ -67,6 +67,35 @@
 		<div class="col-md-8">
 		    <div id="comments">
 		        <h2><span id="feedbackcomment_counter"></span> Phản hồi</h2>
+
+		        <% if (__c.isAuth) { %>
+		        <div class="alert alert-danger" id="messageBox" style="display:none"></div>
+		        <form id="comment-form" class="forms" action="javascript:;" novalidate="novalidate">
+		            
+		            <div class="row">
+		                <div class="col-sm-10 animated" style="opacity: 1;">
+		                    Nội dung phản hồi
+
+		                    <span class="helperRight">
+		                    	<a href="javascript:;" id="click-hidden-me">Ẩn danh</a>
+		                    	[<span id="check-hidden-me">&nbsp;&nbsp;</span>]
+		                    </span>
+
+		                    <div name="commentMessage" id="commentMessage" placeholder="Content..." contentEditable></div>
+		                </div>
+		                <!-- /.col -->
+		                <div class="col-sm-2 ">
+		                	<button type="submit" class="btn btn-default btn-submit">Gửi</button>
+		                </div>
+		                <!-- /.col -->
+		            </div>
+		            <!-- /.row -->
+		        </form>
+
+		        <% } else { %>
+		        	<a href="#!/login" class="btn btn-primary">Login</a> or <a href="#!/register"  class="btn btn-primary">Register</a> to comments.
+		        <% } %>
+
 		        <ol class="commentlist"></ol>
 		        <!-- /.commentlist -->
 		    </div>
@@ -74,43 +103,5 @@
 
 	    <div class="col-md-4"></div>
 	</div>
-
-	<div class="row">
-		<div class="col-md-12 inner-bottom-md ">
-		    <div class="comment-form-wrapper" id="comment-form">
-		        <h2>Gửi phản hồi</h2>
-
-		        <% if (__c.isAuth) { %>
-		        <div class="alert alert-danger" id="messageBox" style="display:none"></div>
-		        <form id="commentform" class="forms" action="javascript:;" novalidate="novalidate">
-		            <div class="row">
-		                <div class="col-sm-6 animated" style="opacity: 1;">
-		                    Send as <strong><span id="sendAs"><%= __c.user.user.username %></span></strong>
-		                </div>
-		                <!-- /.col -->
-		                <div class="col-sm-6 animated" style="opacity: 1;">
-		                    [<span id="check-hidden-me">&nbsp;&nbsp;</span>] <a href="javascript:;" id="click-hidden-me">Ẩn thông tin</a>
-		                </div>
-		                <!-- /.col -->
-		            </div>
-		            <!-- /.row -->
-		            <div class="row">
-		                <div class="col-sm-12 inner-top-xs animated" style="opacity: 1;">
-		                    Nội dung phản hồi
-		                    <textarea name="commentMessage" class="form-control" placeholder="Nội dung phản hồi"></textarea>
-		                </div>
-		                <!-- /.col -->
-		            </div>
-		            <!-- /.row -->
-		            <button type="submit" class="btn btn-default btn-submit">Gửi</button>
-		        </form>
-
-		        <% } else { %>
-		        	<a href="#!/login" class="btn btn-primary">Login</a> or <a href="#!/register"  class="btn btn-primary">Register</a> to comments.
-		        <% } %>
-		    </div>
-		</div>
-	</div>
-
 
 </section>
