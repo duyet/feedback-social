@@ -57,7 +57,7 @@ define(function(require) {
             
             this.model.set({user : user});
             
-        	this.$el.html(JST["assets/templates/userpage.html"]({
+        	this.$el.html(JST["assets/templates/view-user-index.html"]({
             	model: this.model,
                 __c: window.__c
             }));
