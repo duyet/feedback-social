@@ -14,7 +14,7 @@ module.exports = {
 		var _alias = req.params.id || '';
 		if (!_alias) return res.badRequest('Error');
 
-		FeedbackComment.find({feedback_post: _alias}).populate('user').exec(function(err, models) {
+		FeedbackComment.find({ where : {feedback_post: _alias}, sort: { createdAt: -1 } }).populate('user').exec(function(err, models) {
 			if (err) return res.badRequest('Error');
 
 			// Remove author info

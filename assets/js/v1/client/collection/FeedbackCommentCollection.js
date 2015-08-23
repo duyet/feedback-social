@@ -8,7 +8,7 @@ define(function(require) {
 		model: FeedbackCommentModel,
 
 		initialize: function(options) {
-			if (options.alias) this.url = this.rootUrl + '/' + options.alias;
+			if (options && options.alias) this.url = this.rootUrl + '/' + options.alias;
 		}
     });
 });

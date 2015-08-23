@@ -6,7 +6,9 @@ require.config({
         marionette: '../../../lib/backbone.marionette/lib/backbone.marionette.min',
         bootstrap: '../../../lib/bootstrap/js',
         cookie: '../../../lib/jquery.cookie/jquery.cookie',
-        marked: '../../../lib/marked/marked.min'
+        marked: '../../../lib/marked/marked.min',
+        moment: '../../../lib/moment/min/moment.min',
+        moment_vi: '../../../lib/moment/locale/vi',
     },
 
     shim: {
@@ -40,6 +42,14 @@ require.config({
         
         marked: {
             exports: 'marked',  
+        },
+
+        moment_vi: {
+            exports: 'moment_vi',
+        },
+
+        moment: {
+            exports: 'moment',
         },
     },
 

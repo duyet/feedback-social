@@ -1,8 +1,11 @@
 define(function(require) {
     var Backbone = require('backbone');
+    var moment = require('moment');
+    var moment_vi = require('moment_vi');
     var VoteModel = require('model/VoteModel');
     var VoteCounter = require('model/VoteCounter');
-    var FeedbackComment = require('collection/FeedbackCommentCollection');
+    var FeedbackCommentCollection = require('collection/FeedbackCommentCollection');
+    var FeedbackComment = require('model/FeedbackCommentModel');
 
     return Backbone.View.extend({
         isHiddenMe: false,
@@ -79,11 +82,12 @@ define(function(require) {
                         if (this.model.user.photo)
                             avatar = this.model.user.photo || avatar;
 
+                    moment.locale('vi');
                     var html = JST["assets/templates/comment-item.html"]({
                         data: {
                             avatar: avatar, 
                             name: name,
-                            date: this.model.createdAt || '',
+                            date: moment(this.model.createdAt).fromNow() || '',
                             message: this.model.content || '',
                         }
                     });
@@ -95,7 +99,7 @@ define(function(require) {
             });
 
             // Fetch commment 
-            this.comments = new FeedbackComment({ alias: this.model.get('alias') });
+            this.comments = new FeedbackCommentCollection({ alias: this.model.get('alias') });
             this.comments.fetch({
                 success: function (collection, response, options) {
                     var commentList = $('.commentlist');
