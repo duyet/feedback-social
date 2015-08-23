@@ -59,8 +59,43 @@
 	            <% } %>
 	        </ul>
 	        <!-- /.item-details -->
-			<div class="addthis_responsive_sharing"></div>
-			<script type="text/javascript">addthis.toolbox('.addthis_responsive_sharing')</script>
+
+	        <div class="shareBox">
+	        	<div class="facebook">
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=344116659122210";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>
+					<div class="fb-like"  data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+				</div>
+
+				<div class="plusone">
+					<div class="g-plusone" data-callback="onPlusoneShare"></div>
+
+					<!-- Place this tag after the last +1 button tag. -->
+					<script type="text/javascript">
+					  window.___gcfg = {lang: 'vi'};
+
+					  (function() {
+					    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					    po.src = 'https://apis.google.com/js/platform.js';
+					    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+					</script>
+				</div>
+
+				<div class="twitter">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="duyetdev"></a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</div>
+
+	        </div>
+
+
 	    </div>
 	    <!-- /.col -->
 	</div>
