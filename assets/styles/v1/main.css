@@ -4270,6 +4270,10 @@ input:focus:-ms-input-placeholder {
 	padding-left: 22px;
     overflow: hidden;
 }
+#comments .commentbody .message {
+	word-break: break-word;
+}
+
 #comments .author {
     margin-bottom: 4px;
 }
@@ -4291,6 +4295,7 @@ input:focus:-ms-input-placeholder {
 	color: #BCC7D1;
 	padding-left: 0;
 }
+
 #comments .message .meta li {
 	padding-top: 0;
 	border-top: none;
