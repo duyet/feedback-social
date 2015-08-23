@@ -140,6 +140,12 @@ define(function(require) {
             action.set({ hideMe: this.isHiddenMe });
             action.set({ content: this.getCommentContent() });
 
+            // Validate 
+            if (!action.isValidate()) {
+                this.showMessage('danger', action.getError());
+                return false;
+            }
+
             action.save(null, {
                 error: function(message, response) {
                     that.showMessage('danger', '');
