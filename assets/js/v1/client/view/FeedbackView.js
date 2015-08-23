@@ -29,7 +29,7 @@ define(function(require) {
             }
 
             // View
-            this.CommentRowItem = Backbone.View.extend({
+            this.CommentRowItem = this.CommentRowItem || Backbone.View.extend({
                 tagName: 'li',
                 className: 'comment',
 
@@ -44,6 +44,8 @@ define(function(require) {
 
                 render: function() {
                     if (!this.model) return this;
+
+                    console.log("new model", this.model.content);
 
                     var name = '[Hidden]';
                     var user_link = '#!';
@@ -157,8 +159,9 @@ define(function(require) {
                     
                     console.log(message);
                     message.set({ user: __c.user.user });
+                    
                     var itemView = new that.CommentRowItem({
-                        model: message,
+                        model: message.attributes,
                         isNewComment: true
                     });
                     var commentList = $('.commentlist');
