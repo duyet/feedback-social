@@ -20,6 +20,7 @@ module.exports = {
     author : { model: 'User', required: true },
     hiddenInfo: { type: 'boolean', defaultsTo: false },
     noticeMessage: { type: 'string' },
+    inExplore: { type: 'boolean', defaultsTo: false },
   }, 
   
   beforeCreate: function(values, next) {

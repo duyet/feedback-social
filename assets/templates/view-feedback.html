@@ -48,7 +48,8 @@
 	            	<% } %>
 	            </li>
 	            <li class="url">
-	            	Share: Facebook | Twitter | G+
+	            	Share: <a href="https://www.facebook.com/sharer/sharer.php?u=<%= __c.baseUrl %>/%23!/f/<%= model.get('alias') %>" target="_blank">Facebook</a> | 
+	            		<a href="https://twitter.com/home?status=<%= model.get('title') %>%20%23phanhoixyz%20<%= __c.baseUrl %>/%23!/f/<%= model.get('alias') %>" target="_blank">Twitter</a> | <a href="https://plus.google.com/share?url=<%= __c.baseUrl %>/%23!/f/<%= model.get('alias') %>" target="_blank">Google+</a>
 	            </li>
 
 	            <% if (model.get('noticeMessage')) { %>
