@@ -27,6 +27,56 @@ define(function(require) {
                 this.model.on('change', this.render, this);
                 this.voteCounter.on('change', this.render, this);
             }
+
+            // View
+            this.CommentRowItem = Backbone.View.extend({
+                tagName: 'li',
+                className: 'comment',
+
+                initialize: function(options) {
+                    if (options && options.isNewComment) {
+                        this.isNewComment = true;
+                        this.className += ' isNewComment';
+                    }
+
+                    _.bindAll(this, 'render');
+                },
+
+                render: function() {
+                    if (!this.model) return this;
+
+                    var name = '[Hidden]';
+                    var user_link = '#!';
+
+                    if (this.model.hideMe === false) {
+                        name = this.model.user.username;
+                        user_link += '/user/' + this.model.user.username;
+                    } else {
+                        user_link += '/p/hidden-user';
+                    }
+
+                    var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
+                    var avatar = (new AvatarPlaceHolder()).generate(name);
+                    if (this.model.hideMe && this.model.hideMe === false) 
+                        if (this.model.user.photo)
+                            avatar = this.model.user.photo || avatar;
+
+                    moment.locale('vi');
+                    var html = JST["assets/templates/comment-item.html"]({
+                        data: {
+                            avatar: avatar, 
+                            name: name,
+                            user_link: user_link,
+                            date: moment(this.model.createdAt).fromNow() || '',
+                            message: this.model.content
+                        }
+                    });
+
+                    this.$el.html(html);
+                    return this;
+                }
+
+            });
         },
 
         events: {
@@ -60,57 +110,14 @@ define(function(require) {
         },
 
         renderComment: function() {
-            CommentRowItem = Backbone.View.extend({
-                tagName: 'li',
-                className: 'comment',
-
-                initialize: function(options) {
-                    _.bindAll(this, 'render');
-                },
-
-                render: function() {
-                    if (!this.model) return this;
-                    
-                    var name = '[Hidden]';
-                    var user_link = '#!';
-
-                    if (this.model.hideMe === false) {
-                        name = this.model.user.username;
-                        user_link += '/user/' + this.model.user.username;
-                    } else {
-                        user_link += '/p/hidden-user';
-                    }
-
-                    var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
-                    var avatar = (new AvatarPlaceHolder()).generate(name);
-                    if (this.model.hideMe && this.model.hideMe === false) 
-                        if (this.model.user.photo)
-                            avatar = this.model.user.photo || avatar;
-
-                    moment.locale('vi');
-                    var html = JST["assets/templates/comment-item.html"]({
-                        data: {
-                            avatar: avatar, 
-                            name: name,
-                            user_link: user_link,
-                            date: moment(this.model.createdAt).fromNow() || '',
-                            message: this.model.content || '',
-                        }
-                    });
-
-                    this.$el.html(html);
-                    return this;
-                }
-
-            });
-
+            var that = this;
             // Fetch commment 
             this.comments = new FeedbackCommentCollection({ alias: this.model.get('alias') });
             this.comments.fetch({
                 success: function (collection, response, options) {
                     var commentList = $('.commentlist');
                     response.forEach(function(comment) {
-                        var itemView = new CommentRowItem({
+                        var itemView = new that.CommentRowItem({
                             model: comment
                         });
                         commentList.append(itemView.render().el);
@@ -121,6 +128,8 @@ define(function(require) {
 
         doSubmitComment : function(e) {
             var that = this;
+            that.hideMessage();
+
             if (!window.__c.isAuth) {
                 return alert('Please login');
             }
@@ -136,8 +145,18 @@ define(function(require) {
                     that.showMessage('danger', '');
                 },
                 success: function(message, response) {
-                    that.showMessage('success', 'Thành công');
-                    $('#comment-form').slideUp();
+                    //that.showMessage('success', 'Thành công');
+                    that.clearCommentContent();
+                    //$('#comment-form').fadeOut();
+                    
+                    console.log(message);
+                    message.set({ user: __c.user.user });
+                    var itemView = new that.CommentRowItem({
+                        model: message,
+                        isNewComment: true
+                    });
+                    var commentList = $('.commentlist');
+                    commentList.prepend(itemView.render().el);
                 },
             });
 
@@ -147,6 +166,10 @@ define(function(require) {
         getCommentContent : function() {
             // TODO: Replace all ban html tag
             return $('#commentMessage').html() || '';
+        },
+
+        clearCommentContent : function() {
+            return $('#commentMessage').html(''); 
         },
 
         toggleHiddenMe: function(e) {
