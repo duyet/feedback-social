@@ -10,7 +10,8 @@ module.exports = {
   attributes: {
   	content: { type: 'string' },
   	user: { model: 'user', via: 'feedback_comment_by' },
-  	feedback_post: { model: 'Feedbacks' }
+  	feedback_post: { model: 'Feedbacks' },
+  	hideMe: { type: 'boolean', defaultsTo: false }
   }
 };
 

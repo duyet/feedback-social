@@ -50,9 +50,8 @@ define(function(require) {
             var user = this.model.get('user') || {};
             
             if (!user.photo) {
-                var colors = ['99b433', '1e7145', 'ff0097', '9f00a7', '7e3878', '603cba', '00aba9', '2d89ef', '2b5797', 'e3a21a', 'da532c', 'b91d47'];
-                var color = colors[Math.floor(Math.random()*colors.length)];
-                user.photo = 'https://placeholdit.imgix.net/~text?txtsize=250&w=350&h=350&bg='+ color +'&txtclr=fff&txt=' + this.getFirstLetterFromName(user.username);
+                var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
+                user.photo = (new AvatarPlaceHolder()).generate(user.username);
             }
             
             this.model.set({user : user});
@@ -63,10 +62,6 @@ define(function(require) {
             }));
             
             return this;
-        }, 
-        
-        getFirstLetterFromName : function(username) {
-              return username[0].toUpperCase() || "";
-        },
+        }
     });
 });

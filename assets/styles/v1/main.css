@@ -50,7 +50,7 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     /*background-color: #283645;*/
     color: #73879C;
-    font-size: 18px;
+    font-size: 17px;
 	line-height: 150%;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -4272,6 +4272,7 @@ input:focus:-ms-input-placeholder {
 	display: inline-block;
 	margin-bottom: 0;
 	margin-right: 15px;
+	font-size: 17px;
 }
 #comments .author .meta {
     display: inline-block;

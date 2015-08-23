@@ -38,9 +38,11 @@ module.exports.policies = {
         '*': true
     },
 
-    Feedbacks: {
+    FeedbacksController: {
         '*': true,
         'create': 'hasToken',
+        'comment' : 'hasToken',
+        'makeInExplore' : 'hasToken'
     },
 
     FeedbackLinkController: {
