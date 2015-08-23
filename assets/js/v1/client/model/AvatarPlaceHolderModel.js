@@ -13,7 +13,27 @@ define(function(require) {
 		},
 
 		getFirstLetterFromName : function(username) {
-              return username[0].toUpperCase() || "";
+              return this.titleToAlias(username)[0].toUpperCase() || "";
+        },
+
+        titleToAlias: function(t) {
+            var title = t || '';
+            title = title.toLowerCase()
+                .replace(/ /g,'')
+                .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+                .replace(/\ /g, '')
+                .replace(/đ/g, "d")
+                .replace(/đ/g, "d")
+                .replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y")
+                .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u")
+                .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ.+/g,"o")
+                .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ.+/g, "e")
+                .replace(/ì|í|ị|ỉ|ĩ/g,"i")
+                .replace(/[-_]+/g, '')
+                .replace(/[^\w-]+/g,'')
+                .replace(/^[^A-z0-9]+/, '')
+                .replace(/([^A-z0-9]+)$/, '');
+            return title;
         },
     });
 
