@@ -60,7 +60,6 @@ define(function(require) {
         },
 
         renderComment: function() {
-            
             CommentRowItem = Backbone.View.extend({
                 tagName: 'li',
                 className: 'comment',
@@ -71,14 +70,20 @@ define(function(require) {
 
                 render: function() {
                     if (!this.model) return this;
-
+                    
                     var name = '[Hidden]';
-                    if (this.model.hideMe && this.model.hideMe == false) 
-                        name = this.model.user.username || name;
+                    var user_link = '#!';
+
+                    if (this.model.hideMe === false) {
+                        name = this.model.user.username;
+                        user_link += '/user/' + this.model.user.username;
+                    } else {
+                        user_link += '/p/hidden-user';
+                    }
 
                     var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
                     var avatar = (new AvatarPlaceHolder()).generate(name);
-                    if (this.model.hideMe && this.model.hideMe == false) 
+                    if (this.model.hideMe && this.model.hideMe === false) 
                         if (this.model.user.photo)
                             avatar = this.model.user.photo || avatar;
 
@@ -87,6 +92,7 @@ define(function(require) {
                         data: {
                             avatar: avatar, 
                             name: name,
+                            user_link: user_link,
                             date: moment(this.model.createdAt).fromNow() || '',
                             message: this.model.content || '',
                         }
