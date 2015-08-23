@@ -10,6 +10,17 @@ module.exports = {
 		res.badRequest('Error');
 	},
 
+	create: function(req, res) {
+		var data = req.body;
+		console.log(data);
+
+		FeedbackComment.create(data).exec(function(err, model) {
+			if (err || !model) return res.json(404, {});
+			
+			return res.json(model);
+		});
+	},
+
 	byFeedbackAlias: function(req, res) {
 		var _alias = req.params.id || '';
 		if (!_alias) return res.badRequest('Error');

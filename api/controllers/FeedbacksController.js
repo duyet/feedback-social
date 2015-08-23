@@ -73,17 +73,7 @@ module.exports = {
 			return res.json(model);
 		});
 	},
-
-	comment: function(req, res) {
-		var data = req.body;
-
-		FeedbackComment.create(data).exec(function(err, model) {
-			if (err || !model) return res.json(404, {});
-			
-			return res.json(model);
-		});
-	},
-
+	
 	findFromAlias: function(req, res) {
 		console.log(this);
 		var _alias = req.params.id || '';

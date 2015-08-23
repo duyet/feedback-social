@@ -3,6 +3,6 @@ define(function(require) {
 	var __c = window.__c || {};
 	
     return Backbone.Model.extend({
-		url: __c.api_prefix + '/feedbacks/comment',
+		url: __c.api_prefix + '/feedbacks/create',
     });
 });
