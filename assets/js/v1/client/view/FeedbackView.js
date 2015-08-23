@@ -25,7 +25,7 @@ define(function(require) {
 
             if (this.model) {
                 this.model.on('change', this.render, this);
-                this.voteCounter.on('change', this.render, this);
+                //this.voteCounter.on('change', this.render, this);
             }
 
             // View
@@ -115,17 +115,21 @@ define(function(require) {
             var that = this;
             // Fetch commment 
             this.comments = new FeedbackCommentCollection({ alias: this.model.get('alias') });
-            this.comments.fetch({
-                success: function (collection, response, options) {
-                    var commentList = $('.commentlist');
-                    response.forEach(function(comment) {
-                        var itemView = new that.CommentRowItem({
-                            model: comment
+            if (!this.comments.fetched) {
+                this.comments.fetch({
+                    success: function (collection, response, options) {
+                        this.fetched = true;
+
+                        var commentList = $('.commentlist');
+                        response.forEach(function(comment) {
+                            var itemView = new that.CommentRowItem({
+                                model: comment
+                            });
+                            commentList.append(itemView.render().el);
                         });
-                        commentList.append(itemView.render().el);
-                    });
-                }
-            });
+                    }
+                });
+            }
         },
 
         doSubmitComment : function(e) {
