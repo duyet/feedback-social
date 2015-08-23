@@ -14,6 +14,7 @@ define(function(require) {
             'click #signoutClick' : 'signMeOut',
             'click #editClick' : 'viewFormEditInfo',
             'click #changeLanguage' : 'onChangeLanguage',
+            'submit #editInfoForm' : 'onUpdateInfo',
         },
         
         signMeOut: function() {
@@ -32,6 +33,10 @@ define(function(require) {
         
         viewFormEditInfo: function() {
             $('#editForm').fadeIn();
+        },
+
+        onUpdateInfo: function() {
+
         },
         
         onChangeLanguage: function() {
