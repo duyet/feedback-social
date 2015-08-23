@@ -1056,10 +1056,8 @@ footer p {
 }
 .bordered {
     border: 1px solid #E6E9ED;
-	border-bottom-width: 2px;
 	border-radius: 3px;
     padding: 25px;
-    background: #F5F7FA;
 }
 .light-bg .bordered {
 	background: #FFF;
