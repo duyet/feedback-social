@@ -19,15 +19,35 @@
                                 <img src="<%= model.get('user').photo %>" class="img-responsive img-thumbnail" />
                             </div>
                             <div class="col-md-4">
-                                <p>
-                                    <strong>#<%= model.get('user').username %></strong>
-                                </p>
-                                <p>
-                                    Email: <%= model.get('user').email || "" %>
-                                </p>
-                                <p>
-                                    Created At: <%= model.get('user').createdAt || "" %>
-                                </p>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Tài khoản</td>
+                                            <td>#<%= model.get('user').username %></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Họ tên</td>
+                                            <td>
+                                                <%= model.get('user').firstName %> <%= model.get('user').lastName %> 
+                                                <% if (!model.get('user').firstName && !model.get('user').lastName) { %>
+                                                    [<a href="javascript:;" id="updateName">Cập nhật</a>]
+                                                <% } %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Email</td>
+                                            <td><%= model.get('user').email || "" %></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Created At</td>
+                                            <td><%= model.get('user').createdAt || "" %></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                                 <p>
                                     <a href="javascript:;" id="editClick" class="text-primary">Sửa thông tin</a> |
                                     <a href="javascript:;" id="signoutClick" class="text-danger">Đăng xuất</a>
@@ -35,7 +55,7 @@
                             </div>
                             
                             <div class="col-md-4" style="display:none" id="editForm">
-                                <form>
+                                <form id="editInfoForm">
                                     <span class="text-primary">Notice: Edit profile feature will be coming soon</span>
                                 </form>
                             </div>

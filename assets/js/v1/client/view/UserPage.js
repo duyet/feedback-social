@@ -14,6 +14,7 @@ define(function(require) {
             'click #signoutClick' : 'signMeOut',
             'click #editClick' : 'viewFormEditInfo',
             'click #changeLanguage' : 'onChangeLanguage',
+            'submit #editInfoForm' : 'onUpdateInfo',
         },
         
         signMeOut: function() {
@@ -32,6 +33,10 @@ define(function(require) {
         
         viewFormEditInfo: function() {
             $('#editForm').fadeIn();
+        },
+
+        onUpdateInfo: function() {
+
         },
         
         onChangeLanguage: function() {
@@ -56,7 +61,7 @@ define(function(require) {
             
             this.model.set({user : user});
             
-        	this.$el.html(JST["assets/templates/userpage.html"]({
+        	this.$el.html(JST["assets/templates/view-user-index.html"]({
             	model: this.model,
                 __c: window.__c
             }));
