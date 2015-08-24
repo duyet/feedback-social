@@ -88,7 +88,8 @@ define(function(require) {
             feedback.getByAlias(alias);
             
             AppInstance.regionMain.show(new FeedbackView({
-                model: feedback
+                model: feedback,
+                alias: alias
             }));
             AppInstance.regionFooter.reset();
         },

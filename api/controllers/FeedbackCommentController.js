@@ -5,14 +5,25 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var sanitizeHtml = require('sanitize-html');
+
 module.exports = {
 	find: function(req, res) {
 		res.badRequest('Error');
 	},
 
 	create: function(req, res) {
+		var filterTag = function(html) {
+			var html = html || '';
+			
+			return sanitizeHtml(html, {
+				allowedTags: sails.config.settings.comment_allow_tags || [],
+				selfClosing: [ 'img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta' ],
+			});
+		};
+		
 		var data = req.body;
-		console.log(data);
+		data.content = filterTag(data.content);
 
 		FeedbackComment.create(data).exec(function(err, model) {
 			if (err || !model) return res.json(404, {});
