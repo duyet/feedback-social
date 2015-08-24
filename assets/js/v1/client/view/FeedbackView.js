@@ -4,6 +4,7 @@ define(function(require) {
     var moment_vi = require('moment_vi');
     var VoteModel = require('model/VoteModel');
     var VoteCounter = require('model/VoteCounter');
+    var VoteInfo = require('model/VoteInfoModel');
     var FeedbackCommentCollection = require('collection/FeedbackCommentCollection');
     var FeedbackComment = require('model/FeedbackCommentModel');
 
@@ -22,10 +23,12 @@ define(function(require) {
             });
 
             this.voteCounter = new VoteCounter();
+            this.voteInfo = new VoteInfo();
 
             if (this.model) {
                 this.model.on('change', this.render, this);
                 this.voteCounter.on('change', this.renderVoteCounter, this);
+                this.voteInfo.on('change', this.renderVoteInfo, this);
             }
 
             // View
@@ -44,8 +47,6 @@ define(function(require) {
 
                 render: function() {
                     if (!this.model) return this;
-
-                    console.log("new model", this.model.content);
 
                     var name = '-hidden-';
                     var user_link = '#!';
@@ -97,6 +98,9 @@ define(function(require) {
             if (this.model.get('alias')) {
                 // Fetch counter 
                 this.voteCounter.fetchCounter(this.model.get('alias'));
+                
+                // Fetch vote status
+                this.voteInfo.fetchInfo(this.model.get('alias'));
 
                 // Render comments
                 this.renderComment();
@@ -118,6 +122,24 @@ define(function(require) {
         updateVoteCounter: function(vote_type) {
             if (vote_type == 'up') $('#voteUp .counter').html( parseInt($('#voteUp .counter').text()) + 1 );
             else $('#voteDown .counter').html( parseInt($('#voteDown .counter').text()) + 1 );
+        },
+        
+        renderVoteInfo: function() {
+            if (!window.__c.isAuth) return false;
+            console.log('renderVotePanel')
+            
+            if (this.voteInfo.get('user') && this.voteInfo.get('vote_type')) {
+                if (this.voteInfo.get('user') != window.__c.user.user.id) return false;
+                if (this.lockVotePanel(this.voteInfo.get('vote_type')));
+            }
+        },
+        
+        lockVotePanel: function(vote_type) {
+            if (!vote_type || (vote_type != 'up' && vote_type != 'down')) return false;
+            $('.vote-panel').addClass('vote-panel-clocked');
+            
+            if (vote_type == 'up') $('.vote-panel #voteUp').addClass('selectedMe');
+            if (vote_type == 'down') $('.vote-panel #voteDown').addClass('selectedMe');
         },
 
         renderComment: function() {
@@ -212,24 +234,28 @@ define(function(require) {
 
         voteUp : function() {
             if (this.canVote()) {
-                this.actionVote('up');
-                this.updateVoteCounter('up');   
+                this.actionVote('up', function(err, data) {
+                    if (err) return $('#voteMessage').html('Lỗi, không thể vote').addClass('text-danger inner-xs text-center').fadeIn();
+                    
+                    this.updateVoteCounter('up');    
+                });
             }
         },
 
         voteDown : function() {
             if (this.canVote()) {
-                this.actionVote('down');
-                this.updateVoteCounter('down');
+                this.actionVote('down', function(err, data) {
+                    if (err) return $('#voteMessage').html('Lỗi, không thể vote').addClass('text-danger inner-xs text-center').fadeIn();
+                    
+                    this.updateVoteCounter('down');  
+                });
             }
         },
 
-        actionVote: function(vote_type) {
+        actionVote: function(vote_type, next) {
             var action = new VoteModel();
             action.vote(this.model.get('alias'), vote_type, function(err, data) {
-                if (err) {
-                    return alert(err);
-                }
+                next(err, data);
             })
         },
 

@@ -28,7 +28,7 @@ module.exports = {
 		FeedbackVote.create(data).exec(function(err, model) {
 			if (err || !model) {
 				console.log(err);
-				return res.forbidden();
+				return res.forbidden({message: 'Already vote'});
 			}
 
 			return res.json(model);
@@ -50,6 +50,25 @@ module.exports = {
 
 			models.map(function(row) { if (row.vote_type == 'up') result.up++; else result.down++; });
 			return res.json(result);
+		});
+	},
+	
+	info: function(req, res) {
+		if (!req.body) return res.forbidden({message: 'Some thing went wrong'});
+		
+		var id = req.params.id;
+		var user = req.body.user || '';
+		
+		if (!req.body.feedback_post || req.body.feedback_post != id || !user) 
+			return res.forbidden({message: 'Some thing went wrong'});
+		
+		// TODO: Fix that by using groupby
+		FeedbackVote.findOne({feedback_post: id, user: user}).exec(function(err, models) {
+			if (err || !models) {
+				return res.forbidden({message: 'Some thing went wrong'});
+			}
+			
+			return res.json(models);
 		});
 	},
 };

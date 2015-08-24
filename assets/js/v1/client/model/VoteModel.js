@@ -14,7 +14,7 @@ define(function(require) {
 			this.set({user: window.__c.user.user.id});
 			this.set({vote_type: value});
 
-			return this.save({
+			return this.save(null, {
 				error: function(err) {
 					next(err);
 				},
