@@ -54,8 +54,9 @@ module.exports.policies = {
     },
 
     FeedbackVoteController: {
-        '*': true,// 'hasToken',  
+        '*': 'hasToken',  
         'counter': true,
+        'info': true, 
     },
 
     FeedbackCommentController: {
