@@ -60,7 +60,8 @@ module.exports.policies = {
     },
 
     FeedbackCommentController: {
-        '*': 'hasToken',  
+        '*': 'hasToken',
+        'byFeedbackAlias': true
     },
 
     UserController: {
