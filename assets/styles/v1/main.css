@@ -48,6 +48,7 @@ iframe {
 }
 body {
     font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
     /*background-color: #283645;*/
     color: #73879C;
     font-size: 17px;
@@ -103,10 +104,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Lato', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: #384D62; /*#506A85;*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #33ac71; /*#384D62;*/ /*#506A85;*/
     margin-top: 0;
 	/*word-wrap: break-word;*/
 }
@@ -4116,7 +4116,7 @@ input:focus:-ms-input-placeholder {
 	display: block;
     position: relative;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 300;
 	line-height: 20px;
     text-transform: uppercase;
     color: #506A85;
