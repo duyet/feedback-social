@@ -9,12 +9,8 @@ define(function(require) {
 
     return Backbone.View.extend({
         isHiddenMe: false,
-        alias: '',
 
-        initialize: function(options) {
-            if (options && options.alias) 
-                this.alias = options.alias;
-
+        initialize: function() {
             this.on("changed:isHiddenMe", function() {
                 if (this.isHiddenMe) {
                     $("#check-hidden-me").html("x");
@@ -24,6 +20,8 @@ define(function(require) {
                     $('#sendAs').html(window.__c.user.user.username);
                 }
             });
+
+            this.voteCounter = new VoteCounter();
 
             if (this.model) {
                 this.model.on('change', this.render, this);

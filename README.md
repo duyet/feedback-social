@@ -6,11 +6,13 @@ Admin manager: <strong>[https://github.com/duyetdev/feedback-social-admin](https
 
 # Todo 
 
-* Mardown editor 
-* User page 
-* Static page 
+* <strike>Mardown editor</strike> 
+* User page: Change info, change password, social connect, show own feedbacks, activites, messages and announs, ...  
+* Static page: <strike>Show static page</strike>, save to database, manager by admin. 
 * Admin manager page
-* Comment for feedback report.
+* <strike>Comment for feedback report.</strike> -> Improve performent.
+* User can post feedbacks.
+* View counter.
 
 # Contact 
 
