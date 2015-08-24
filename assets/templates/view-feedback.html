@@ -36,9 +36,7 @@
 	            <li class="date"><%= model.get('createdAt') %></li>
 	            <li class="categories">
 	            	<% var tag = model.get('tags'); for (var i in tag) { %>
-	            		<span class="label label-success">
-	            			<%= tag[i] %>
-	            		</span>
+	            		<span class="label label-success"><%= tag[i] %></span> 
 	            	<% } %>
 	            </li>
 	            <li class="client">
@@ -131,7 +129,7 @@
 		        </form>
 
 		        <% } else { %>
-		        	<a href="#!/login" class="btn btn-primary">Login</a> or <a href="#!/register"  class="btn btn-primary">Register</a> to comments.
+		        	<a href="#!/login" class="btn btn-primary">Đăng nhập</a> hoặc <a href="#!/register"  class="btn btn-primary">Đăng ký tài khoản</a> để tham gia gửi phản hồi.
 		        <% } %>
 
 		        <ol class="commentlist"></ol>
