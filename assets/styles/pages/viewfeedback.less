@@ -1,5 +1,6 @@
 @voteUpBackground: #1e7145;
 @voteDownBackground: #DD4B39;
+@colorWhite: #fff;
 
 .feedback-content > * {
   font-size: 1em;
@@ -15,22 +16,28 @@
 	pointer-events: none;
 	cursor: default;
 	
-	#voteUp > * {
+	#voteUp * {
 		color: @voteUpBackground;
 	}
 	
-	#voteDown > * {
+	#voteDown * {
 		color: @voteDownBackground;
 	}
 	
-	#voteUp.selectedMe > * {
+	#voteUp.selectedMe {
+		pointer-events: all;
+	}
+	#voteUp.selectedMe * {
 		background-color: @voteUpBackground;
-		color: #fff;
+		color: @colorWhite;
 	}
 	
-	#voteDown.selectedMe > * {
+	#voteDown.selectedMe {
+		pointer-events: all;
+	}
+	#voteDown.selectedMe * {
 		background-color: @voteDownBackground;
-		color: #fff;
+		color: @colorWhite;
 	}
 }
 
@@ -120,7 +127,7 @@
 	line-height: 100%;
 	color: #FFF;
 	margin: auto;
-	opacity: 0;
+	opacity: 1;
 }
 .btn-vote-lg p,
 .btn-vote-md p {
@@ -149,12 +156,27 @@
 .btn-vote-xs .name {
 	left: 25px;
 }
-.btn-vote-lg .counter,
-.btn-vote-md .counter,
-.btn-vote-sm .counter,
-.btn-vote-xs .counter {
-	right: 25px;
+
+#voteDown {
+	.btn-vote-lg .counter,
+	.btn-vote-md .counter,
+	.btn-vote-sm .counter,
+	.btn-vote-xs .counter {
+		right: 25px;
+	}	
 }
+
+#voteUp {
+	.btn-vote-lg,
+	.btn-vote-md,
+	.btn-vote-sm,
+	.btn-vote-xs {
+		.counter {
+			left: 25px;	
+		}
+	}
+}
+
 .btn-vote-lg:hover,
 .btn-vote-md:hover,
 .btn-vote-sm:hover,

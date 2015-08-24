@@ -6,6 +6,10 @@ define(function(require) {
 		rooturl: __c.api_prefix + '/feedbackvote/info',
 
 		fetchInfo(alias) {
+			// Clear the previous data 
+			this.clear();
+
+			// Check authentication
 			if (!__c.isAuth) return next('Please login');
 
 			if (alias) {

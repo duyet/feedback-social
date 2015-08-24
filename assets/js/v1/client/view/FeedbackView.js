@@ -83,8 +83,8 @@ define(function(require) {
         },
 
         events: {
-            'click #voteUp'   : 'voteUp',
-            'click #voteDown' : 'voteDown',
+            'click #voteUp'   : 'onClickVoteUp',
+            'click #voteDown' : 'onClickVoteDown',
             'click #click-hidden-me': 'toggleHiddenMe',
             'submit #comment-form' : 'doSubmitComment',
         },
@@ -125,9 +125,13 @@ define(function(require) {
         },
         
         renderVoteInfo: function() {
+            // Remove panel lock 
+            $('.vote-panel').removeClass('vote-panel-clocked');
+            $('.vote-panel #voteUp').removeClass('selectedMe');
+            $('.vote-panel #voteDown').removeClass('selectedMe');
+
             if (!window.__c.isAuth) return false;
-            console.log('renderVotePanel')
-            
+
             if (this.voteInfo.get('user') && this.voteInfo.get('vote_type')) {
                 if (this.voteInfo.get('user') != window.__c.user.user.id) return false;
                 if (this.lockVotePanel(this.voteInfo.get('vote_type')));
@@ -232,31 +236,84 @@ define(function(require) {
             return true;
         },
 
-        voteUp : function() {
+        onClickVoteUp: function() {
+            $('#voteMessage').html('').hide();
+            if ($('#voteUp').hasClass('selectedMe')) {
+                // Is voted, action now is un-vote
+                return this.unVote('up');
+            }
+
             if (this.canVote()) {
                 this.actionVote('up', function(err, data) {
                     if (err) return $('#voteMessage').html('Lỗi, không thể vote').addClass('text-danger inner-xs text-center').fadeIn();
-                    
-                    this.updateVoteCounter('up');    
+
                 });
             }
         },
 
-        voteDown : function() {
+        onClickVoteDown: function() {
+            $('#voteMessage').html('').hide();
+            if ($('#voteDown').hasClass('selectedMe')) {
+                // Is voted, action now is un-vote
+                return this.unVote('down');
+            }
+
             if (this.canVote()) {
                 this.actionVote('down', function(err, data) {
                     if (err) return $('#voteMessage').html('Lỗi, không thể vote').addClass('text-danger inner-xs text-center').fadeIn();
-                    
-                    this.updateVoteCounter('down');  
                 });
             }
         },
 
-        actionVote: function(vote_type, next) {
+        unVote: function(vote_type, next) {
+            var that = this;
             var action = new VoteModel();
-            action.vote(this.model.get('alias'), vote_type, function(err, data) {
-                next(err, data);
+
+            action.unVote(this.model.get('alias'), function(err, data) {
+                // Remove panel lock 
+                $('.vote-panel').removeClass('vote-panel-clocked');
+                $('.vote-panel #voteUp').removeClass('selectedMe');
+                $('.vote-panel #voteDown').removeClass('selectedMe');
+
+                // Update counter
+                that.voteCounter.set({
+                    up: (vote_type == 'up' ? that.voteCounter.get('up') - 1 : that.voteCounter.get('up')),
+                    down: (vote_type == 'down' ? that.voteCounter.get('down') - 1 : that.voteCounter.get('down'))
+                });
+                
+                // Fetch vote status
+                that.voteInfo.clear();
+
+                // Re-render
+                that.renderVoteCounter();
             })
+        },
+
+        actionVote: function(vote_type, next) {
+            var that = this;
+            var action = new VoteModel();
+            
+            action.vote(this.model.get('alias'), vote_type, function(err, data) {
+                if (err) return next(err);
+
+                // Update counter
+                that.voteCounter.set({
+                    up: (vote_type == 'up' ? that.voteCounter.get('up') + 1 : that.voteCounter.get('up')),
+                    down: (vote_type == 'down' ? that.voteCounter.get('down') + 1 : that.voteCounter.get('down'))
+                });
+
+                // Fetch vote status
+                that.voteInfo.fetchInfo(that.model.get('alias'));
+
+                // Update information about vote action, lock the panel
+                that.renderVoteInfo();
+
+                // Vote message
+                $('#voteMessage').html('Bạn đã vote <i class="icon-thumbs-'+ vote_type +'-1"></i>').addClass('text-success inner-xs text-center').fadeIn();
+
+                // Callback
+                next(null, data);
+            });
         },
 
         showMessage: function(messageType, messageContent, next) {

@@ -6,6 +6,9 @@ define(function(require) {
 		rooturl: __c.api_prefix + '/feedbackvote/counter',
 
 		fetchCounter(alias) {
+			// Clear the previous data 
+			this.clear();
+
 			if (alias) {
 				this.url = this.rooturl + '/' + alias;
 				return this.fetch();
