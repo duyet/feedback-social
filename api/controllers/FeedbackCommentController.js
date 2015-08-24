@@ -20,7 +20,7 @@ module.exports = {
 				allowedTags: sails.config.settings.comment_allow_tags || [],
 				selfClosing: [ 'img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta' ],
 				exclusiveFilter: function(frame) {
-					return (frame.tag === 'p' || frame.tag === 'span' || frame.tag === 'div') && !frame.text.trim();
+					return !frame.text.trim();
 				}
 			});
 		};
