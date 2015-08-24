@@ -25,7 +25,7 @@ define(function(require) {
 
             if (this.model) {
                 this.model.on('change', this.render, this);
-                //this.voteCounter.on('change', this.render, this);
+                this.voteCounter.on('change', this.renderVoteCounter, this);
             }
 
             // View
@@ -47,7 +47,7 @@ define(function(require) {
 
                     console.log("new model", this.model.content);
 
-                    var name = '[Hidden]';
+                    var name = '-hidden-';
                     var user_link = '#!';
 
                     if (this.model.hideMe === false) {
@@ -105,10 +105,19 @@ define(function(require) {
         	this.$el.html(JST["assets/templates/view-feedback.html"]({
             	model: this.model,
                 __c: window.__c,
-                voteCounter: this.voteCounter,
             }));
 
             return this;
+        },
+        
+        renderVoteCounter: function() {
+            $('#voteUp .counter').html(this.voteCounter.get('up') || 0);
+            $('#voteDown .counter').html(this.voteCounter.get('down') || 0);
+        },
+        
+        updateVoteCounter: function(vote_type) {
+            if (vote_type == 'up') $('#voteUp .counter').html( parseInt($('#voteUp .counter').text()) + 1 );
+            else $('#voteDown .counter').html( parseInt($('#voteDown .counter').text()) + 1 );
         },
 
         renderComment: function() {
@@ -191,11 +200,13 @@ define(function(require) {
         },
 
         voteUp : function() {
-            return this.actionVote('up');
+            this.actionVote('up');
+            this.updateVoteCounter('up');
         },
 
         voteDown : function() {
-            return this.actionVote('down');
+            this.actionVote('down');
+            this.updateVoteCounter('down');
         },
 
         actionVote: function(vote_type) {
@@ -204,8 +215,6 @@ define(function(require) {
                 if (err) {
                     return alert(err);
                 }
-
-                // Update local vote, disable vote function
             })
         },
 
