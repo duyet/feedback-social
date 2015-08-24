@@ -199,14 +199,29 @@ define(function(require) {
             this.trigger("changed:isHiddenMe");
         },
 
+        canVote: function() {
+            $('#voteMessage').hide();
+            
+            if (! window.__c.isAuth) {
+                $('#voteMessage').html('Vui lòng <a href="#!/login">đăng nhập</a> hoặc <a href="#!/register">đăng kí</a> để xác nhận phản hồi.').addClass('text-danger inner-xs text-center').fadeIn();
+                return false;
+            }
+            
+            return true;
+        },
+
         voteUp : function() {
-            this.actionVote('up');
-            this.updateVoteCounter('up');
+            if (this.canVote()) {
+                this.actionVote('up');
+                this.updateVoteCounter('up');   
+            }
         },
 
         voteDown : function() {
-            this.actionVote('down');
-            this.updateVoteCounter('down');
+            if (this.canVote()) {
+                this.actionVote('down');
+                this.updateVoteCounter('down');
+            }
         },
 
         actionVote: function(vote_type) {
