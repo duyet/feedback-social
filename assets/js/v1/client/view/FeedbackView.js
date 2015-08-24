@@ -27,56 +27,28 @@ define(function(require) {
 
             if (this.model) {
                 this.model.on('change', this.render, this);
+                //this.voteCounter.on('change', this.render, this);
             }
 
-            this.voteCounter = new VoteCounter();
-            this.voteCounter.fetchCounter(this.alias);
-            this.voteCounter.on('change', this.renderVoteCounter, this);
-        },
-
-        events: {
-            'click #voteUp'   : 'voteUp',
-            'click #voteDown' : 'voteDown',
-            'click #click-hidden-me': 'toggleHiddenMe',
-            'submit #commentform' : 'doSubmitComment',
-        },
-        
-        render: function() {
-            if (!this.model.id) {
-                this.$el.html(JST["assets/templates/blank.html"]());
-                return this;
-            }
-
-            if (this.model.get('alias')) {
-                // Render comments
-                this.renderComment();
-            }
-            
-        	this.$el.html(JST["assets/templates/view-feedback.html"]({
-            	model: this.model,
-                __c: window.__c,
-                voteCounter: this.voteCounter,
-            }));
-
-            return this;
-        },
-
-        renderVoteCounter: function() {
-            
-        },
-
-        renderComment: function() {
-            CommentRowItem = Backbone.View.extend({
+            // View
+            this.CommentRowItem = this.CommentRowItem || Backbone.View.extend({
                 tagName: 'li',
                 className: 'comment',
 
                 initialize: function(options) {
+                    if (options && options.isNewComment) {
+                        this.isNewComment = true;
+                        this.className += ' isNewComment';
+                    }
+
                     _.bindAll(this, 'render');
                 },
 
                 render: function() {
                     if (!this.model) return this;
-                    
+
+                    console.log("new model", this.model.content);
+
                     var name = '[Hidden]';
                     var user_link = '#!';
 
@@ -100,7 +72,7 @@ define(function(require) {
                             name: name,
                             user_link: user_link,
                             date: moment(this.model.createdAt).fromNow() || '',
-                            message: this.model.content || '',
+                            message: this.model.content
                         }
                     });
 
@@ -109,24 +81,63 @@ define(function(require) {
                 }
 
             });
+        },
 
+        events: {
+            'click #voteUp'   : 'voteUp',
+            'click #voteDown' : 'voteDown',
+            'click #click-hidden-me': 'toggleHiddenMe',
+            'submit #comment-form' : 'doSubmitComment',
+        },
+        
+        render: function() {
+            if (!this.model.id) {
+                this.$el.html(JST["assets/templates/blank.html"]());
+                return this;
+            }
+
+            if (this.model.get('alias')) {
+                // Fetch counter 
+                this.voteCounter.fetchCounter(this.model.get('alias'));
+
+                // Render comments
+                this.renderComment();
+            }
+            
+        	this.$el.html(JST["assets/templates/view-feedback.html"]({
+            	model: this.model,
+                __c: window.__c,
+                voteCounter: this.voteCounter,
+            }));
+
+            return this;
+        },
+
+        renderComment: function() {
+            var that = this;
             // Fetch commment 
             this.comments = new FeedbackCommentCollection({ alias: this.model.get('alias') });
-            this.comments.fetch({
-                success: function (collection, response, options) {
-                    var commentList = $('.commentlist');
-                    response.forEach(function(comment) {
-                        var itemView = new CommentRowItem({
-                            model: comment
+            if (!this.comments.fetched) {
+                this.comments.fetch({
+                    success: function (collection, response, options) {
+                        this.fetched = true;
+
+                        var commentList = $('.commentlist');
+                        response.forEach(function(comment) {
+                            var itemView = new that.CommentRowItem({
+                                model: comment
+                            });
+                            commentList.append(itemView.render().el);
                         });
-                        commentList.append(itemView.render().el);
-                    });
-                }
-            });
+                    }
+                });
+            }
         },
 
         doSubmitComment : function(e) {
             var that = this;
+            that.hideMessage();
+
             if (!window.__c.isAuth) {
                 return alert('Please login');
             }
@@ -137,13 +148,30 @@ define(function(require) {
             action.set({ hideMe: this.isHiddenMe });
             action.set({ content: this.getCommentContent() });
 
+            // Validate 
+            if (!action.isValidate()) {
+                this.showMessage('danger', action.getError());
+                return false;
+            }
+
             action.save(null, {
                 error: function(message, response) {
                     that.showMessage('danger', '');
                 },
                 success: function(message, response) {
-                    that.showMessage('success', 'Thành công');
-                    $('#commentform').slideUp();
+                    //that.showMessage('success', 'Thành công');
+                    that.clearCommentContent();
+                    //$('#comment-form').fadeOut();
+                    
+                    console.log(message);
+                    message.set({ user: __c.user.user });
+                    
+                    var itemView = new that.CommentRowItem({
+                        model: message.attributes,
+                        isNewComment: true
+                    });
+                    var commentList = $('.commentlist');
+                    commentList.prepend(itemView.render().el);
                 },
             });
 
@@ -151,7 +179,12 @@ define(function(require) {
         },
 
         getCommentContent : function() {
-            return $('textarea[name="commentMessage"]').val() || '';
+            // TODO: Replace all ban html tag
+            return $('#commentMessage').html() || '';
+        },
+
+        clearCommentContent : function() {
+            return $('#commentMessage').html(''); 
         },
 
         toggleHiddenMe: function(e) {

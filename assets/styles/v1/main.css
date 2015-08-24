@@ -4270,6 +4270,10 @@ input:focus:-ms-input-placeholder {
 	padding-left: 22px;
     overflow: hidden;
 }
+#comments .commentbody .message {
+	word-break: break-word;
+}
+
 #comments .author {
     margin-bottom: 4px;
 }
@@ -4291,6 +4295,7 @@ input:focus:-ms-input-placeholder {
 	color: #BCC7D1;
 	padding-left: 0;
 }
+
 #comments .message .meta li {
 	padding-top: 0;
 	border-top: none;
@@ -4399,6 +4404,7 @@ input:focus:-ms-input-placeholder {
 	.container {
 	    padding-right: 0;
 	    padding-left: 0;
+	    width: 90%;
 	}
 	.owl-buttons {
 		display: block;
@@ -5043,8 +5049,9 @@ input:focus:-ms-input-placeholder {
 	
 	.navbar .container,
 	.container {
-	    padding-right: 15px;
-	    padding-left: 15px;
+	    padding-right: 0;
+	    padding-left: 0;
+	    width: 90%;
 	}
 	.tabs-side .etabs {
 	    width: 240px;
@@ -5498,7 +5505,7 @@ input:focus:-ms-input-placeholder {
 	}
 	
 	.post-author, #comments {
-		padding: 30px;
+		padding: 15px;
 	}
 	
 	.post-author .author-image {
@@ -5513,7 +5520,8 @@ input:focus:-ms-input-placeholder {
 	
 	#comments .avatar {
 		float: none;
-		display: inline-block;
+		/* display: inline-block; */
+		display: none;
 		margin-bottom: 15px;
 	}
 	
@@ -5662,8 +5670,13 @@ input:focus:-ms-input-placeholder {
 	}
 	.navbar .container,
 	.container {
+		/*
 	    padding-right: 20px;
 	    padding-left: 20px;
+	    */
+	    padding-right: 0;
+	    padding-left: 0;
+		width: 90%;
 	}
 	.navbar-collapse {
 		padding-left: 0;

@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="fragment" content="!" />
-
+    
     <title><%= sails.config.settings.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
@@ -55,7 +54,6 @@
         __c.baseUrl = '<%= sails.getBaseurl() %>';
         __c.debug = <%= sails.config.settings.client_debug %>;
     </script>
-    
 </head>
 
 <body>
@@ -64,7 +62,7 @@
             <div class="yamm">
                 <div class="navbar-collapse collapse">
                     <div class="container">
-                        <a class="navbar-brand" href="/"><%= sails.config.settings.logo_text %></a>
+                        <a class="navbar-brand" href="#!/"><%= sails.config.settings.logo_text %></a>
                         
                         <span id="main-nav"></span>
                     </div>

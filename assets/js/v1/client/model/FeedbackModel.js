@@ -14,6 +14,6 @@ define(function(require) {
 		getByAlias: function(alias){
 			this.url = __c.api_prefix + '/feedbacks' + '/' + alias;
 			return this.fetch();
-		}
+		},
     });
 });
