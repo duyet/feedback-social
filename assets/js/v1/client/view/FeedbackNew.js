@@ -82,7 +82,8 @@ define(function(require) {
             var action = new FeedbackModel(data);
             action.save(null, {
                 success: function(model, response) {
-                    that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.data.alias +'">tại đây</a>');
+                    console.log(model, response);
+                    that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.alias +'">tại đây</a>');
                 },
                 error: function(model, error) {
                     that.showMessage('danger', "Lỗi, không thể gửi phản hồi.");
