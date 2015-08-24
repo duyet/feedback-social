@@ -10,7 +10,7 @@ define(function(require) {
 			this.clear();
 
 			// Check authentication
-			if (!__c.isAuth) return next('Please login');
+			if (!__c.isAuth) return this;
 
 			if (alias) {
 				this.url = this.rooturl + '/' + alias;
