@@ -18,11 +18,19 @@ module.exports = function(grunt) {
 		dev: {
 
 			// To use other sorts of templates, specify a regexp like the example below:
-			// options: {
-			//   templateSettings: {
-			//     interpolate: /\{\{(.+?)\}\}/g
-			//   }
-			// },
+			options: {
+			  //templateSettings: {
+			  //  interpolate: /\{\{(.+?)\}\}/g
+			  //},
+
+				prettify: true,
+				amd: false,
+
+				// strips whitespace characters from the beginning and the end of each line.
+				processContent: function(src) {
+					return src.replace(/(^\s+|\s+$)/gm, '');
+				}
+			},
 
 			// Note that the interpolate setting above is simply an example of overwriting lodash's
 			// default interpolation. If you want to parse templates with the default _.template behavior
