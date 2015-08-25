@@ -57,6 +57,10 @@ define(function(require) {
                     var user_link = '#!';
 
                     if (this.model.hideMe === false) {
+			// Breaking here, not hide but missing user data
+			// TODO: Fix me
+			if (!this.model.user) return this;
+
                         name = this.model.user.username;
                         user_link += '/user/' + this.model.user.username;
                     } else {
