@@ -19,10 +19,6 @@ module.exports = function(grunt) {
 
 			// To use other sorts of templates, specify a regexp like the example below:
 			options: {
-			  //templateSettings: {
-			  //  interpolate: /\{\{(.+?)\}\}/g
-			  //},
-
 				prettify: true,
 				amd: false,
 
@@ -31,11 +27,6 @@ module.exports = function(grunt) {
 					return src.replace(/(^\s+|\s+$)/gm, '');
 				}
 			},
-
-			// Note that the interpolate setting above is simply an example of overwriting lodash's
-			// default interpolation. If you want to parse templates with the default _.template behavior
-			// (i.e. using <div></div>), there's no need to overwrite `templateSettings.interpolate`.
-
 
 			files: {
 				// e.g.
