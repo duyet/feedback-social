@@ -15,8 +15,8 @@ define(function(require) {
                 displayName = 'Guest';
                 if (window.__c.user.user.username.length)
                     displayName = window.__c.user.user.username;
-                if (window.__c.user.user.firstName.length && window.__c.user.user.lastName.length)
-                    displayName = window.__c.user.user.firstName + window.__c.user.user.firstName;
+                if (window.__c.user.user.displayName.length)
+                    displayName = window.__c.user.user.displayName;
                 username = window.__c.user.user.username || '';
             }
             
