@@ -11,7 +11,8 @@ module.exports = {
   	content: { type: 'string' },
   	user: { model: 'user', via: 'feedback_comment_by' },
   	feedback_post: { model: 'Feedbacks' },
-  	hideMe: { type: 'boolean', defaultsTo: false }
+  	hideMe: { type: 'boolean', defaultsTo: false },
+  	deleted: { type: 'boolean', defaultsTo: false },
   }
 };
 

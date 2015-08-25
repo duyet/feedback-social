@@ -35,6 +35,11 @@ define(function(require) {
             this.CommentRowItem = this.CommentRowItem || Backbone.View.extend({
                 tagName: 'li',
                 className: 'comment',
+                attributes: function() {
+                    return {
+                        'data-commentId': this.model.id
+                    };
+                },
 
                 initialize: function(options) {
                     if (options && options.isNewComment) {
@@ -67,12 +72,15 @@ define(function(require) {
                     moment.locale('vi');
                     var html = JST["assets/templates/comment-item.html"]({
                         data: {
+                            id: this.model.id,
                             avatar: avatar, 
                             name: name,
                             user_link: user_link,
                             date: moment(this.model.createdAt).fromNow() || '',
                             message: this.model.content
-                        }
+                        },
+                        user: this.model.user,
+                        __c: window.__c
                     });
 
                     this.$el.html(html);
@@ -87,6 +95,8 @@ define(function(require) {
             'click #voteDown' : 'onClickVoteDown',
             'click #click-hidden-me': 'toggleHiddenMe',
             'submit #comment-form' : 'doSubmitComment',
+            'click .makeDeleteComment' : 'makeSureDelete',
+            'click .actionDeleteComment': 'actionDeleteComment',
         },
         
         render: function() {
@@ -167,9 +177,30 @@ define(function(require) {
             }
         },
 
+        makeSureDelete: function(e) {
+            // TODO: Alert user to make sure delete
+        },
+
+        actionDeleteComment: function(e) {
+
+            var commentId = ($(e.toElement).data('commentid')) || false;
+            if (!commentId || !window.__c.isAuth) return alert('Error!');
+
+            console.log($(e.toElement), commentId);
+
+            var action = new FeedbackComment();
+            action.set({ id: commentId});
+            action.set({ user: window.__c.user.user.id });
+            action.deleteComment(function(err, message) {
+                if (err) alert(err);
+                var deletedComment = $('.commentlist').find("li[data-commentid='" + commentId + "']");
+                if (deletedComment) deletedComment.html('<i>Đã xóa</i>');
+            });
+        },
+
         doSubmitComment : function(e) {
             var that = this;
-            that.hideMessage();
+            this.hideMessage();
 
             if (!window.__c.isAuth) {
                 return alert('Please login');
@@ -189,7 +220,7 @@ define(function(require) {
 
             action.save(null, {
                 error: function(message, response) {
-                    that.showMessage('danger', '');
+                    that.showMessage('danger', '.....');
                 },
                 success: function(message, response) {
                     //that.showMessage('success', 'Thành công');

@@ -18,16 +18,15 @@ module.exports = function(grunt) {
 		dev: {
 
 			// To use other sorts of templates, specify a regexp like the example below:
-			// options: {
-			//   templateSettings: {
-			//     interpolate: /\{\{(.+?)\}\}/g
-			//   }
-			// },
+			options: {
+				prettify: true,
+				amd: false,
 
-			// Note that the interpolate setting above is simply an example of overwriting lodash's
-			// default interpolation. If you want to parse templates with the default _.template behavior
-			// (i.e. using <div></div>), there's no need to overwrite `templateSettings.interpolate`.
-
+				// strips whitespace characters from the beginning and the end of each line.
+				processContent: function(src) {
+					return src.replace(/(^\s+|\s+$)/gm, '');
+				}
+			},
 
 			files: {
 				// e.g.
