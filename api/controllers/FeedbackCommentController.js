@@ -56,7 +56,19 @@ module.exports = {
 	},
 
 	delete: function(req, res) {
-		
+		if (!req.body || !req.body.user || !req.body.id) {
+			return res.badRequest('Request error');
+		}
+
+		FeedbackComment.findOne({ where : {id: req.body.id, deleted: false, user: req.body.user}})
+		.exec(function(err, model) {
+			if (err) return res.badRequest('Error');
+
+			model.deleted = true;
+			model.save();
+
+			return res.json(model);
+		});
 	}
 };
 

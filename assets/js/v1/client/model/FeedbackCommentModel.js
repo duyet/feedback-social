@@ -3,6 +3,7 @@ define(function(require) {
 	var __c = window.__c || {};
 	
     return Backbone.Model.extend({
+    	rootUrl: __c.api_prefix + '/feedbackcomment',
 		url: __c.api_prefix + '/feedbackcomment/create',
 
 		defaults: {
@@ -38,6 +39,19 @@ define(function(require) {
 			}
 
 			return true;
+		}, 
+
+		deleteComment: function(next) {
+			this.url = this.rootUrl + '/delete';
+			this.save(null, {
+				success: function() {
+					next(null, {message: 'Success'});
+				}, 
+				error: function() {
+					next('Something went wrong');
+				}
+			});
+			this.url = this.rootUrl + '/create';
 		}
     });
 });
