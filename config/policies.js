@@ -40,32 +40,32 @@ module.exports.policies = {
 
     FeedbacksController: {
         '*': true,
-        'create': 'hasToken',
-        'comment' : 'hasToken',
-        //'makeInExplore' : 'hasToken'
+        'create': 'isAuthenticated',
+        'comment' : 'isAuthenticated',
+        //'makeInExplore' : 'isAuthenticated'
     },
 
     FeedbackLinkController: {
-        '*': 'hasToken',
+        '*': 'isAuthenticated',
     },
 
     FeedbackImageController: {
-        '*': 'hasToken',
+        '*': 'isAuthenticated',
     },
 
     FeedbackVoteController: {
-        '*': 'hasToken',  
+        '*': 'isAuthenticated',  
         'counter': true,
         'info': true, 
     },
 
     FeedbackCommentController: {
-        '*': 'hasToken',
+        '*': 'isAuthenticated',
         'byFeedbackAlias': true
     },
 
     UserController: {
-        '*': 'hasToken',
+        '*': 'isAuthenticated',
     },
 
     /***************************************************************************

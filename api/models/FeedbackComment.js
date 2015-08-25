@@ -13,6 +13,7 @@ module.exports = {
   	feedback_post: { model: 'Feedbacks' },
   	hideMe: { type: 'boolean', defaultsTo: false },
   	deleted: { type: 'boolean', defaultsTo: false },
-  }
+  }, 
+
 };
 

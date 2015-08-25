@@ -29,7 +29,7 @@ module.exports = {
 		data.content = filterTag(data.content);
 
 		FeedbackComment.create(data).exec(function(err, model) {
-			if (err || !model) return res.json(404, {});
+			if (err || !model) return res.badRequest('Error');
 			
 			return res.json(model);
 		});
