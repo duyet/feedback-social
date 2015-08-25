@@ -16,6 +16,7 @@ module.exports.settings = {
 	api_prefix: '/api/v1',
 	
 	google_analytic: 'UA-18218315-48',
+	sumo_site_id: '6d04b5d8224b4c835c38784ff97ff39007f029ed4dc40b9a046779d123a78d44',
 	// active_responsive: true,
 	
 	// =======================
