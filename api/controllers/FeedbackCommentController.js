@@ -39,7 +39,7 @@ module.exports = {
 		var _alias = req.params.id || '';
 		if (!_alias) return res.badRequest('Error');
 
-		FeedbackComment.find({ where : {feedback_post: _alias}, sort: { createdAt: -1 } }).populate('user').exec(function(err, models) {
+		FeedbackComment.find({ where : {feedback_post: _alias, deleted: false}, sort: { createdAt: -1 } }).populate('user').exec(function(err, models) {
 			if (err) return res.badRequest('Error');
 
 			// Remove author info
@@ -54,5 +54,9 @@ module.exports = {
 			return res.json(models);
 		});
 	},
+
+	delete: function(req, res) {
+		
+	}
 };
 
