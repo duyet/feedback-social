@@ -136,5 +136,8 @@
     <noscript><p><img src="//analytics-lvduit.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
 
     <% } %>
+    <% if (sails.config.settings.sumo_site_id) { %>
+    <script src="//load.sumome.com/" data-sumo-site-id="<%= sails.config.settings.sumo_site_id %>" async="async"></script>
+    <% } %>
 </body>
 </html>
