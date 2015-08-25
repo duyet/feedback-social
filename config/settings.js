@@ -35,7 +35,9 @@ module.exports.settings = {
 	
 	// Allow html tag in comments
 	comment_allow_tags: [ 'br', 'hr', 'strike', 'em', 'i', 'strong', 'a', 'ul', 'ol', 'li', 'p', 'span', 'div', 'img', 'video', 'audio', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td' ], 
-	
+
+	sumo_site_id: '6d04b5d8224b4c835c38784ff97ff39007f029ed4dc40b9a046779d123a78d44',
+
 	// =======================
 	get: function(key) {
 		if (!this.key) return false;
