@@ -10,7 +10,7 @@ define(function(require) {
         ForgotFormView = require('view/ForgotForm'),
         PostView = require('view/PostView'),
         FeedbackView = require('view/FeedbackView'),
-        NewFormView = require('view/NewForm'),
+        FeedbackNewView = require('view/FeedbackNew'),
         StaticPageView = require('view/StaticPageView'),
         UserPageView = require('view/UserPage');
 
@@ -62,7 +62,7 @@ define(function(require) {
         
         newFeedback: function() {
             var AppInstance = require('AppInstance');
-            AppInstance.regionMain.show(new NewFormView());
+            AppInstance.regionMain.show(new FeedbackNewView());
             AppInstance.regionFooter.reset();
         },
 
@@ -88,7 +88,8 @@ define(function(require) {
             feedback.getByAlias(alias);
             
             AppInstance.regionMain.show(new FeedbackView({
-                model: feedback
+                model: feedback,
+                alias: alias
             }));
             AppInstance.regionFooter.reset();
         },

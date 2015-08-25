@@ -47,10 +47,11 @@ iframe {
     color: #FFF;
 }
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
     /*background-color: #283645;*/
     color: #73879C;
-    font-size: 18px;
+    font-size: 17px;
 	line-height: 150%;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -58,6 +59,7 @@ body {
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden !important;
 	height: auto !important;
+	font-weight: 400;
 }
 .csstransitions main [class*="col-"] {
 	/*opacity: 0;*/
@@ -91,16 +93,20 @@ a:focus {
     color: #1ABB9C;
     text-decoration: none;
 }
+
+header {
+	font-family: 'Lato', sans-serif;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-	letter-spacing: 0.025em;
-    color: #384D62; /*#506A85;*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #33ac71; /*#384D62;*/ /*#506A85;*/
     margin-top: 0;
 	/*word-wrap: break-word;*/
 }
@@ -1050,10 +1056,8 @@ footer p {
 }
 .bordered {
     border: 1px solid #E6E9ED;
-	border-bottom-width: 2px;
 	border-radius: 3px;
     padding: 25px;
-    background: #F5F7FA;
 }
 .light-bg .bordered {
 	background: #FFF;
@@ -1308,6 +1312,7 @@ aside .thumb figure {
 /*===================================================================================*/
 
 .navbar .container {
+	font-family: 'Source Sans Pro';
 	display: table;
     padding: 0;
 }
@@ -4111,7 +4116,7 @@ input:focus:-ms-input-placeholder {
 	display: block;
     position: relative;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 300;
 	line-height: 20px;
     text-transform: uppercase;
     color: #506A85;
@@ -4265,6 +4270,10 @@ input:focus:-ms-input-placeholder {
 	padding-left: 22px;
     overflow: hidden;
 }
+#comments .commentbody .message {
+	word-break: break-word;
+}
+
 #comments .author {
     margin-bottom: 4px;
 }
@@ -4272,6 +4281,7 @@ input:focus:-ms-input-placeholder {
 	display: inline-block;
 	margin-bottom: 0;
 	margin-right: 15px;
+	font-size: 17px;
 }
 #comments .author .meta {
     display: inline-block;
@@ -4285,6 +4295,7 @@ input:focus:-ms-input-placeholder {
 	color: #BCC7D1;
 	padding-left: 0;
 }
+
 #comments .message .meta li {
 	padding-top: 0;
 	border-top: none;
@@ -4393,6 +4404,7 @@ input:focus:-ms-input-placeholder {
 	.container {
 	    padding-right: 0;
 	    padding-left: 0;
+	    width: 90%;
 	}
 	.owl-buttons {
 		display: block;
@@ -5037,8 +5049,9 @@ input:focus:-ms-input-placeholder {
 	
 	.navbar .container,
 	.container {
-	    padding-right: 15px;
-	    padding-left: 15px;
+	    padding-right: 0;
+	    padding-left: 0;
+	    width: 90%;
 	}
 	.tabs-side .etabs {
 	    width: 240px;
@@ -5492,7 +5505,7 @@ input:focus:-ms-input-placeholder {
 	}
 	
 	.post-author, #comments {
-		padding: 30px;
+		padding: 15px;
 	}
 	
 	.post-author .author-image {
@@ -5507,7 +5520,8 @@ input:focus:-ms-input-placeholder {
 	
 	#comments .avatar {
 		float: none;
-		display: inline-block;
+		/* display: inline-block; */
+		display: none;
 		margin-bottom: 15px;
 	}
 	
@@ -5656,8 +5670,13 @@ input:focus:-ms-input-placeholder {
 	}
 	.navbar .container,
 	.container {
+		/*
 	    padding-right: 20px;
 	    padding-left: 20px;
+	    */
+	    padding-right: 0;
+	    padding-left: 0;
+		width: 90%;
 	}
 	.navbar-collapse {
 		padding-left: 0;

@@ -40,6 +40,10 @@ define(function(require) {
                 this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
                 return false;
             }
+            if (email.length < 4 || password.length < 4) {
+                this.showMessage("warning", "Username/Email và password phải trên 4 ký tự!");
+                return false;
+            }
             if (email.indexOf('@') > 0 && !this.isEmail(email)) {
                 this.showMessage("danger", "Email không chính xác!");
                 return false; 

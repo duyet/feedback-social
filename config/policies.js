@@ -38,13 +38,30 @@ module.exports.policies = {
         '*': true
     },
 
-    Feedbacks: {
+    FeedbacksController: {
         '*': true,
         'create': 'hasToken',
+        'comment' : 'hasToken',
+        //'makeInExplore' : 'hasToken'
     },
 
-    Feedbacklinks: {
+    FeedbackLinkController: {
         '*': 'hasToken',
+    },
+
+    FeedbackImageController: {
+        '*': 'hasToken',
+    },
+
+    FeedbackVoteController: {
+        '*': 'hasToken',  
+        'counter': true,
+        'info': true, 
+    },
+
+    FeedbackCommentController: {
+        '*': 'hasToken',
+        'byFeedbackAlias': true
     },
 
     UserController: {

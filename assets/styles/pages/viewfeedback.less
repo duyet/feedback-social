@@ -1,9 +1,44 @@
+@voteUpBackground: #1e7145;
+@voteDownBackground: #DD4B39;
+@colorWhite: #fff;
+
 .feedback-content > * {
   font-size: 1em;
 }
 
 .vote-panel {
 	border: 1px solid #E6E9ED;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.vote-panel-clocked {
+	pointer-events: none;
+	cursor: default;
+	
+	#voteUp * {
+		color: @voteUpBackground;
+	}
+	
+	#voteDown * {
+		color: @voteDownBackground;
+	}
+	
+	#voteUp.selectedMe {
+		pointer-events: all;
+	}
+	#voteUp.selectedMe * {
+		background-color: @voteUpBackground;
+		color: @colorWhite;
+	}
+	
+	#voteDown.selectedMe {
+		pointer-events: all;
+	}
+	#voteDown.selectedMe * {
+		background-color: @voteDownBackground;
+		color: @colorWhite;
+	}
 }
 
 .btn-vote-lg,
@@ -73,14 +108,13 @@
 .btn-vote-md:hover .icon-thumbs-up-1:after,
 .btn-vote-sm:hover .icon-thumbs-up-1:after,
 .btn-vote-xs:hover .icon-thumbs-up-1:after {
-    background: #1e7145;
-    background: #1e7145;
+    background: @voteUpBackground;
 }
 .btn-vote-lg:hover .icon-thumbs-down-1:after,
 .btn-vote-md:hover .icon-thumbs-down-1:after,
 .btn-vote-sm:hover .icon-thumbs-down-1:after,
 .btn-vote-xs:hover .icon-thumbs-down-1:after {
-    background: #DD4B39;
+    background: @voteDownBackground;
     background: #DE5745;
 }
 .btn-vote-lg p,
@@ -93,7 +127,7 @@
 	line-height: 100%;
 	color: #FFF;
 	margin: auto;
-	opacity: 0;
+	opacity: 1;
 }
 .btn-vote-lg p,
 .btn-vote-md p {
@@ -108,7 +142,7 @@
 	font-size: 16px;
 }
 .btn-vote-xs p {
-	font-size: 15px;
+	font-size: 55px;
 }
 .btn-vote-lg:hover p,
 .btn-vote-md:hover p,
@@ -122,15 +156,40 @@
 .btn-vote-xs .name {
 	left: 25px;
 }
-.btn-vote-lg .counter,
-.btn-vote-md .counter,
-.btn-vote-sm .counter,
-.btn-vote-xs .counter {
-	right: 25px;
+
+#voteDown {
+	.btn-vote-lg .counter,
+	.btn-vote-md .counter,
+	.btn-vote-sm .counter,
+	.btn-vote-xs .counter {
+		right: 25px;
+	}	
 }
+
+#voteUp {
+	.btn-vote-lg,
+	.btn-vote-md,
+	.btn-vote-sm,
+	.btn-vote-xs {
+		.counter {
+			left: 25px;	
+		}
+	}
+}
+
 .btn-vote-lg:hover,
 .btn-vote-md:hover,
 .btn-vote-sm:hover,
 .btn-vote-xs:hover {
 	color: #FFF;
+}
+
+.commentlist {
+	.comment {
+
+	}
+
+	.isNewComment {
+		background-color: #F5F4F4;
+	}
 }

@@ -27,10 +27,18 @@ define(function(require) {
         	var email = $('input[name="email"]').val();
         	var password = $('input[name="password"]').val();
             var _csrf = __c._csrf || '';
-            
+           
+            username = username.trim();
+            email = email.trim();
+            password = password.trim();
+
             // Validate input
-            if (!username || !email || !password || username.length < 4 || email.length < 4 || password.length < 4) {
+            if (!username || !email || !password) {
                 this.showMessage("warning", "Vui lòng điền chính xác username/email và password!");
+                return false;
+            }
+            if (username.length < 4 || email.length < 4 || password.length < 4) {
+                this.showMessage("warning", "Username và password phải trên 4 ký tự!");
                 return false;
             }
             if (!this.isEmail(email)) {

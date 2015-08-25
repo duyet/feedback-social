@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="fragment" content="!" />
-
+    
     <title><%= sails.config.settings.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
@@ -31,10 +30,24 @@
 
     <link rel="stylesheet" type="text/css" href="/lib/fontawesome/css/font-awesome.min.css" />
 
-
     <!-- Fonts -->
-    <link href="//fonts.googleapis.com/css?family=Lato:400,900,300,700&subset=latin,vietnamese" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,vietnamese" rel="stylesheet">
+    <script>
+        WebFontConfig = {
+            google: {
+                families: [
+                    'Roboto:400,900,300,700:latin,vietnamese', 
+                    'Lato:400,900,300,700:latin,vietnamese',
+                    'Source Sans Pro:400,700,400italic,700italic:latin,vietnamese'
+                ]
+            }
+        };
+        (function(d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
 
     <!--[if lt IE 9]>
         <script src="/lib/html5shiv/dist/html5shiv.min.js"></script>
@@ -51,9 +64,9 @@
         __c.is_client = true;
         __c.system_build = '<%= sails.config.settings.system_build  %>';
         __c.user = {};
+        __c.baseUrl = '<%= sails.getBaseurl() %>';
         __c.debug = <%= sails.config.settings.client_debug %>;
     </script>
-    
 </head>
 
 <body>
@@ -62,7 +75,7 @@
             <div class="yamm">
                 <div class="navbar-collapse collapse">
                     <div class="container">
-                        <a class="navbar-brand" href="/"><%= sails.config.settings.logo_text %></a>
+                        <a class="navbar-brand" href="#!/"><%= sails.config.settings.logo_text %></a>
                         
                         <span id="main-nav"></span>
                     </div>
@@ -77,6 +90,11 @@
 
     <div id="feedback-flash-error" class="feedback-flash-error alert alert-danger" style="display:none"></div>
 
+    <noscript>
+    <style type="text/css">html,body{min-height:100%}body{position:relative;overflow:hidden}header,main{display:none}.noscript{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999999;background-color:#FFF;overflow:hidden}.noscript > div{font-size:2em;text-align:center;margin:50px auto;height:100%;line-height:1em;}</style>
+    <div class="noscript" id="noscript"><div>Vui lòng bật javascript, hoặc nâng <a href="http://browsehappy.com/" target="_blank">cấp trình duyệt web</a>.</div></div>
+    </noscript>
+
     <main id="main-view">
         <span class="loading"><i class="fa fa-circle-o-notch fa-spin"></i> Loading ...</span>
     </main>
@@ -89,8 +107,6 @@
     <!--TEMPLATES END-->
 
     <script type="text/javascript" data-main="/js/v1/client/shim" src="/lib/requirejs/require.js"></script>
-    <!--script src="/js/dependencies/sails.io.js"></script-->
-
     <!--//SCRIPTS--><!--//SCRIPTS END-->
     
     <% if (sails.config.settings.google_analytic) { %>
@@ -104,6 +120,24 @@
       ga('send', 'pageview');
 
     </script>
+    
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//analytics-lvduit.rhcloud.com/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 1]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//analytics-lvduit.rhcloud.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
+    <% } %>
+    <% if (sails.config.settings.sumo_site_id) { %>
+    <script src="//load.sumome.com/" data-sumo-site-id="<%= sails.config.settings.sumo_site_id %>" async="async"></script>
     <% } %>
 </body>
 </html>

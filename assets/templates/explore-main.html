@@ -1,1 +1,42 @@
-<div class="comming-soon">Explore</div>
+<div class="container inner-xs">
+    <div class="row">
+        <div class="col-md-8 col-sm-9 center-block text-center animated" style="opacity: 1;">
+            <header>
+                <h1>Explore</h1>
+            </header>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<section>
+    <div class="container inner-bottom">
+        <ul class="items col-3 gap isotope animated">
+            <% for (var i in data) { %>
+                <li class="item thumb interactive isotope-item">
+                    <figure>
+                        <div class="icon-overlay icn-link">
+                            <a href="#!/f/<%= data[i].alias %>/">
+                                <span class="icn-more"></span>
+                                <img src="<%= data[i].image ? data[i].image : 'https://placeimg.com/480/280/tech' %>" class="img-responsive" alt="">
+                            </a>
+                        </div>
+                        <!-- /.icon-overlay -->
+                        <figcaption class="bordered">
+                            <div class="info">
+                                <h4>
+					                	<a href="#!/f/<%= data[i].alias %>">
+					                		<%= data[i].title %>
+					                	</a>
+					                </h4>
+                                <p></p>
+                            </div>
+                            <!-- /.info -->
+                        </figcaption>
+                    </figure>
+                </li>
+                <!-- /.item -->
+                <% } %>
+        </ul>
+    </div>
+</section>

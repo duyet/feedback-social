@@ -5,7 +5,7 @@ require.config({
         backbone: '../../../lib/backbone/backbone-min',
         marionette: '../../../lib/backbone.marionette/lib/backbone.marionette.min',
         bootstrap: '../../../lib/bootstrap/js',
-        marked: '../../../lib/marked/marked.min'
+        marked: '../../../lib/marked/marked.min',
     },
 
     shim: {

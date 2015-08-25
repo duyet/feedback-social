@@ -44,7 +44,7 @@ define(function(require) {
                 return this;
             }
 
-            this.$el.html(JST["assets/templates/new-form.html"]());
+            this.$el.html(JST["assets/templates/new-feedback.html"]());
             return this;
         },
 
@@ -71,7 +71,7 @@ define(function(require) {
                 htmlContent: this.getPostHtmlContent(),
                 links: new FeedbackLinkCollection(this.formData.get('links')),
                 images: new FeedbackImageCollection(this.formData.get('images')),
-                image: '',
+                image: this.getFeedbackImage(),
                 tags: this.getPostTags(),
                 state: 'publish',
                 author: window.__c.user.user || {},
@@ -81,8 +81,9 @@ define(function(require) {
 
             var action = new FeedbackModel(data);
             action.save(null, {
-                success:function(model, response) {
-                    that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.data.alias +'">tại đây</a>');
+                success: function(model, response) {
+                    console.log(model, response);
+                    that.showMessage('success', 'Thành công, xem lại <a href="#!/f/'+ response.alias +'">tại đây</a>');
                 },
                 error: function(model, error) {
                     that.showMessage('danger', "Lỗi, không thể gửi phản hồi.");
@@ -136,6 +137,10 @@ define(function(require) {
                 $('#postContent').show();
                 $('#postPreviewContent').hide();
             }
+        },
+
+        getFeedbackImage : function() {
+            return $('#postImage').val() || '';
         },
 
         getPostMarkdownContent : function( ) {

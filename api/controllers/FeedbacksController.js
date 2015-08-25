@@ -10,7 +10,7 @@ module.exports = {
 		var links = req.body.links || [];
 		var images = req.body.images || [];
 
-		Feedbacks.create(req.body).exec(function(err, model) {
+		Feedbacks.create(req.body || {}).exec(function(err, model) {
 			if (err) {
 				console.log(err.message);
 				if (err || !model) return res.badRequest('Save feedback error');
@@ -44,16 +44,13 @@ module.exports = {
 				if (err || !model) return res.json(404, {});
 			}
 
+			// Remove author info
 			if (Array.isArray(model)) {
 				model.map(function(row) {
 					if (row.hiddenInfo) row.author = {};
 
 					return row;
 				})
-			}
-
-			if (model && model.hiddenInfo == true) {
-				model.author = {};
 			}
 
 			return res.json(model);
@@ -68,6 +65,7 @@ module.exports = {
 				if (err || !model) return res.json(404, {});
 			}
 
+			// Remove author info
 			if (model && model.hiddenInfo) {
 				model.author = {};
 			}
@@ -75,11 +73,7 @@ module.exports = {
 			return res.json(model);
 		});
 	},
-
-	comment: function(req, res) {
-
-	},
-
+	
 	findFromAlias: function(req, res) {
 		console.log(this);
 		var _alias = req.params.id || '';
@@ -95,6 +89,41 @@ module.exports = {
 			if (err || !models) return res.json(401, []);
 			
 			return res.json(models);
+		});
+	},
+
+	explore: function(req, res) {
+		Feedbacks.find({
+			where: {inExplore: true, state: 'publish'}, 
+			sort: 'createdAt', 
+			select: ['author', 'title', 'alias', 'image', 'tags', 'hiddenInfo', 'createdAt', 'inExplore', 'id']
+		})
+		.exec(function(err, models) {
+			if (err || !models) return res.json(401, []);
+
+			// Remove author info
+			if (Array.isArray(models)) {
+				models.map(function(row) {
+					if (row.hiddenInfo) row.author = {};
+
+					return row;
+				})
+			}
+			
+			return res.json(models);
+		});
+	},
+
+	makeInExplore: function(req, res) {
+		var _alias = req.params.id || '';
+		var _value = req.body.inExplore || false;
+		Feedbacks.findOne({alias: _alias}, function(err, model) {
+			if (err || !model) return res.forbidden({message: 'Some thing went wrong'});
+
+			model.inExplore = _value;
+			model.save();
+			
+			return res.json(model);
 		});
 	},
 };
