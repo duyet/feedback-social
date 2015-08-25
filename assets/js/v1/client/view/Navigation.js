@@ -13,9 +13,9 @@ define(function(require) {
             if (window.__c.isAuth) {
                 
                 displayName = 'Guest';
-                if (window.__c.user.user.username.length)
+                if (window.__c.user.user.username)
                     displayName = window.__c.user.user.username;
-                if (window.__c.user.user.displayName.length)
+                if (window.__c.user.user.displayName)
                     displayName = window.__c.user.user.displayName;
                 username = window.__c.user.user.username || '';
             }
