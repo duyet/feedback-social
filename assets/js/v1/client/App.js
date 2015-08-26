@@ -31,6 +31,8 @@ define(function(require) {
 		 * @param   {Object}	options
 		 */
 		start: function(options) {
+			console.info("Starting App...");
+
 			// If debug is active, I disable console log
 			if (!window.__c.debug || window.__c.debug == false) console.log = function() {};
 			
@@ -42,6 +44,7 @@ define(function(require) {
 			window.__c.isAuth = false;
 			if (!window.__c.user.length) {
 				window.__c.user = $.cookie(window.__c.feedbackAuthenCookieKey) || false;
+				console.info("Check authentication ...", $.cookie(window.__c.feedbackAuthenCookieKey));
 				if (!window.__c.user) window.__c.user = false;
 				if (window.__c.user) {
 					window.__c.isAuth = true;
@@ -77,7 +80,7 @@ define(function(require) {
 
 			// I'm going to use
 			// hashes for internal navigation.
-			Backbone.history.start({ pushState: false });
+			Backbone.History.started || Backbone.history.start({ pushState: false });
 			//Backbone.history.start();
 		}
 	});

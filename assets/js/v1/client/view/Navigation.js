@@ -7,6 +7,8 @@ define(function(require) {
         className: "nav navbar-nav navbar-right",
         
         render: function() {
+            console.info("Render Navigation ...");
+            
             var displayName = '';
             var username = '';
             window.__c.user = window.__c.user || {};

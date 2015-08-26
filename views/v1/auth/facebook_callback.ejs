@@ -3,9 +3,13 @@
 
 <script type="text/javascript">
 	$.cookie.json = true;
-	window.__c.user = res;
-    window.__c.isAuth = true;
-    $.cookie(window.__c.feedbackAuthenCookieKey, '<%- JSON.stringify(data) %>');
+	$.cookie.defaults = { path: '/', expires: 1 };
+    $.cookie(window.__c.cookieAuthKey, JSON.parse('<%- JSON.stringify(data) %>'));
+
+    // Hacking code to close
+	var daddy = window.self;
+	daddy.opener = window.self;
+	daddy.close();
 </script>
 
 <div class="container-fluid">Đang chuyển hướng...</div>

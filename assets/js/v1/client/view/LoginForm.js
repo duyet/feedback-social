@@ -4,6 +4,7 @@ define(function(require) {
     var NavigationView = require('view/Navigation');
     var cookie = require('cookie');
     
+    var __c = window.__c || {};
     $.cookie.json = true;
 
     return Backbone.View.extend({
@@ -22,7 +23,8 @@ define(function(require) {
         }, 
 
         events: {
-        	"submit": "doLogin",
+        	'submit': 'doLogin',
+            'click .facebookLoginButton' : 'openFacebookLoginPanel'
         },
 
         doLogin: function(e) {
@@ -67,9 +69,7 @@ define(function(require) {
                     $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
                     
-                    // Redirect to userpage 
-                    // TODO: Redirect to last page
-                    Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                    this.afterLogin();
                     
                     // Restart App 
                     window.__App.start();
@@ -81,6 +81,36 @@ define(function(require) {
             });
 
         	return false;
+        },
+
+        openFacebookLoginPanel: function() {
+            var popUpUrl = __c.baseUrl + __c.api_prefix + '/auth/facebook';
+            window.facebookWindow = this.createPopupWindow(popUpUrl, 'Login', 780, 410);
+            
+            window.checkLoginStatus = function() {
+                console.log("On checklogin status", window.facebookWindow);
+                if (window.facebookWindow.closed) {
+                    // Restart App
+                    window.__App.start();
+                    // Redirect to userpage 
+                    // TODO: Redirect to last page
+                    Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+                    this.afterLogin();
+                }
+                else setTimeout(window.checkLoginStatus, 1000);
+            };
+
+            setTimeout(window.checkLoginStatus, 1000);
+            
+            window.facebookWindow.focus();
+
+            return false;
+        },
+
+        createPopupWindow: function(url, title, w, h) {
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
         },
         
         showMessage: function(messageType, messageContent, next) {
@@ -103,5 +133,11 @@ define(function(require) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);
         },
+
+        afterLogin: function() {
+            // Redirect to userpage 
+            // TODO: Redirect to last page
+            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+        }
     });
 });
