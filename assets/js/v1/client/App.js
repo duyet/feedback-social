@@ -82,6 +82,13 @@ define(function(require) {
 			// hashes for internal navigation.
 			Backbone.History.started || Backbone.history.start({ pushState: false });
 			//Backbone.history.start();
+		},
+
+		restart: function() {
+			console.warn("Shutdown system ...");
+			console.info("Restart ...");
+
+			return window.getFeedbackAppInstance(true).start();
 		}
 	});
 });
