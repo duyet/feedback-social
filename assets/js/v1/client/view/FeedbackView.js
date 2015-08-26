@@ -287,7 +287,7 @@ define(function(require) {
             $('#voteMessage').hide();
 
             if (!window.__c.isAuth) {
-                $('#voteMessage').html('Vui lòng <a href="#!/login">đăng nhập</a> hoặc <a href="#!/register">đăng kí</a> để xác nhận phản hồi.').addClass('text-danger inner-xs text-center').fadeIn();
+                $('#voteMessage').html('Vui lòng <a href="#!/login">đăng nhập</a> hoặc <a href="#!/register">đăng kí</a> để xác nhận phản hồi.').addClass('text-danger inner-top-xs text-center').fadeIn();
                 return false;
             }
 
@@ -367,7 +367,7 @@ define(function(require) {
                 that.renderVoteInfo();
 
                 // Vote message
-                $('#voteMessage').html('Bạn đã vote <i class="icon-thumbs-' + vote_type + '-1"></i>').addClass('text-success inner-xs text-center').fadeIn();
+                $('#voteMessage').html('Bạn đã vote <i class="icon-thumbs-' + vote_type + '-1"></i>').addClass('text-success inner-top-xs text-center').fadeIn();
 
                 // Callback
                 next(null, data);
