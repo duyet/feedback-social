@@ -69,7 +69,7 @@
         __c.cookieAuthKey = '<%= sails.config.settings.client.cookieAuth %>';
         __c.system_build = '<%= sails.config.settings.system_build  %>';
         __c.user = {};
-        __c.baseUrl = '<%= sails.getBaseurl() %>';
+        __c.baseUrl = '<%= sails.config.settings.baseUrl %>';
         __c.debug = <%= sails.config.settings.client.debug %>;
     </script>
 </head>
