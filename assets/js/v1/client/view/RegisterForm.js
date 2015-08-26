@@ -9,6 +9,8 @@ define(function(require) {
 
     return Backbone.View.extend({
         render: function() {
+            console.i("Render RegisterView");
+
             this.$el.html(JST["assets/templates/register-form.html"]());
             return this;
         },

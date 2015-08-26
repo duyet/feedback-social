@@ -7,7 +7,7 @@ define(function(require) {
         className: "nav navbar-nav navbar-right",
         
         render: function() {
-            console.info("Render Navigation ...");
+            console.i("Render Navigation");
             
             var displayName = '';
             var username = '';
@@ -22,9 +22,42 @@ define(function(require) {
                 username = window.__c.user.user.username || '';
             }
             
-            this.$el.html(JST['assets/templates/main-menu.html']({
+            this.$el.html(JST['assets/templates/navigation.html']({
                 displayName: displayName, username: username
             }));
+        },
+
+        events: {
+            'click .facebookLoginButton' : 'openFacebookLoginPanel'
+        },
+
+        openFacebookLoginPanel: function() {
+            var popUpUrl = __c.baseUrl + __c.api_prefix + '/auth/facebook';
+            window.facebookWindow = this.createPopupWindow(popUpUrl, 'Login', 780, 540);
+            
+            window.checkLoginStatus = function() {
+                console.log("On checklogin status", window.facebookWindow);
+                if (window.facebookWindow.closed) {
+                    window.getFeedbackAppInstance(true).start();
+                }
+                else setTimeout(window.checkLoginStatus, 1000);
+            };
+
+            setTimeout(window.checkLoginStatus, 1000);
+            
+            window.facebookWindow.focus();
+
+            return false;
+        },
+
+        createPopupWindow: function(url, title, w, h) {
+            var left = (screen.width/2)-(w/2);
+            var top = (screen.height/2)-(h/2);
+            return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+        },
+
+        afterLogin: function() {
+                   
         },
     });
 });

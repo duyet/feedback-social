@@ -39,6 +39,8 @@ define(function(require) {
         }, 
 
         render: function() {
+            console.i("Render FeedbackNew");
+
             if (!window.__c.isAuth || window.__c.isAuth == false) {
                 this.$el.html(JST["assets/templates/please-login.html"]());    
                 return this;

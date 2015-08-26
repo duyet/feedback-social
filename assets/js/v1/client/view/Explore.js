@@ -12,7 +12,8 @@ define(function(require) {
         },
         
         render: function() {
-            console.log(this.model);
+            console.i("Render ExploreView");
+            
             this.$el.html(JST["assets/templates/explore-main.html"]({
                 data: this.model.attributes
             }));

@@ -1,5 +1,5 @@
 module.exports.settings = {
-	baseUrl: 'https://phanhoi.xyz',
+	baseUrl: 'http://phanhoi.xyz:1337',
 
 	// CDN Config 
 	cdn: {

@@ -44,7 +44,7 @@ define(function(require) {
         },
         
         render: function() {
-            console.log(this.model);
+            console.i("Render UserPage");
             
             if (!this.model.get('token')) {
                 this.$el.html(JST["assets/templates/notfound.html"]());

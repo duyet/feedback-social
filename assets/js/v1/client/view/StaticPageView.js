@@ -6,6 +6,8 @@ define(function(require) {
         },
         
         render: function() {
+            console.i("Render StaticPageView");
+
             if (!JST["assets/templates/pages/"+ this.page +".html"]) {
                 this.$el.html(JST["assets/templates/notfound.html"]());
                 return this;

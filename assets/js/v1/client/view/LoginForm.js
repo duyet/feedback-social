@@ -14,6 +14,9 @@ define(function(require) {
         },
 
         render: function() {
+            console.i("Render LoginForm");
+            this.$el.html('');
+
             if (window.__c.isAuth) {
                 return this;
             }
@@ -85,16 +88,11 @@ define(function(require) {
 
         openFacebookLoginPanel: function() {
             var popUpUrl = __c.baseUrl + __c.api_prefix + '/auth/facebook';
-            window.facebookWindow = this.createPopupWindow(popUpUrl, 'Login', 780, 410);
+            window.facebookWindow = this.createPopupWindow(popUpUrl, 'Login', 780, 540);
             
             window.checkLoginStatus = function() {
                 console.log("On checklogin status", window.facebookWindow);
                 if (window.facebookWindow.closed) {
-                    // Restart App
-                    window.__App.start();
-                    // Redirect to userpage 
-                    // TODO: Redirect to last page
-                    Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
                     this.afterLogin();
                 }
                 else setTimeout(window.checkLoginStatus, 1000);
@@ -113,6 +111,17 @@ define(function(require) {
             return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
         },
         
+
+        afterLogin: function() {
+            // Redirect to userpage 
+            // TODO: Redirect to last page
+            // Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+            // Restart App
+            window.__App.restart();
+            // Redirect to userpage 
+            // TODO: Redirect to last page
+        },
+
         showMessage: function(messageType, messageContent, next) {
               var messageBox = $("#messageBox");
               
@@ -133,11 +142,5 @@ define(function(require) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);
         },
-
-        afterLogin: function() {
-            // Redirect to userpage 
-            // TODO: Redirect to last page
-            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
-        }
     });
 });

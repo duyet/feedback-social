@@ -104,6 +104,8 @@ define(function(require) {
         },
         
         render: function() {
+            console.i("Render FeedbackView");
+            
             if (!this.model.id) {
                 this.$el.html(JST["assets/templates/blank.html"]());
                 return this;

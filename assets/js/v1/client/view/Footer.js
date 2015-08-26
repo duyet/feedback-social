@@ -7,6 +7,8 @@ define(function(require) {
 
     return Backbone.View.extend({
         render: function() {
+            console.i("Render Footer");
+
             this.$el.html(JST["assets/templates/footer.html"]());
             return this;
         }
