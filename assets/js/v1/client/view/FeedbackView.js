@@ -364,6 +364,10 @@ define(function(require) {
                     down: (vote_type == 'down' ? that.voteCounter.get('down') + 1 : that.voteCounter.get('down'))
                 });
 
+                // Add vote class, fix multi click 
+                var voteBtn = (vote_type == 'up' ? '#voteUp' : '#voteDown');
+                $(voteBtn).addClass('selectedMe');
+
                 // Fetch vote status
                 that.voteInfo.fetchInfo(that.model.get('alias'));
 
