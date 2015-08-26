@@ -113,6 +113,7 @@ passport.use(new FacebookStrategy({
 	clientID: FACEBOOK_CLIENT_KEY,
 	clientSecret: FACEBOOK_SECRET_KEY,
 	callbackURL: FACEBOOK_CALLBACK_URL,
+	profileFields: ["about","email","displayName", "gender", "profileUrl"]
 	// enableProof: true
 }, function(accessToken, refreshToken, profile, done) {
 	console.log(accessToken, refreshToken, profile, done);
@@ -120,21 +121,23 @@ passport.use(new FacebookStrategy({
 
 		// Create a new User if it doesn't exist yet
 		if (!user) {
-			var newProfile = {
-				username: profile.username || '',
-				email: profile.email || '',
-				displayName: profile.displayName || '',
-				socialProfiles: {
-					facebook: {
-						profile_id: profile.id,
-						accessToken: accessToken || '',
-						refreshToken: refreshToken || '',
-					}
-				}
-			};
-			console.log("========================<> ", profile);
-			console.log("========================<> ", newProfile);
+			var newProfile = {};
+			
+			newProfile.username = profile.username || profile.id || '';
+			newProfile.displayName = profile.displayName || '';
+			newProfile.email = profile.emails ? profile.emails[0].value : '';
+			newProfile.photo = "https://graph.facebook.com/"+ profile.id +"/picture?width=5000&access_token=" + accessToken;
+			newProfile.gender = profile.gender || '';
+			newProfile.socialProfiles = {
+				facebook: profile._json
+			}
 
+			newProfile.socialProfiles.facebook.accessToken = accessToken;
+			newProfile.socialProfiles.facebook.refreshToken = refreshToken;
+
+			console.log(":::::::::::::::::::::::::::", (newProfile));
+
+			
 			User.create(
 				newProfile
 			).exec(function(err, user) {
