@@ -69,7 +69,7 @@ module.exports = {
 	facebook: function(req, res, next) {
 		console.log("------------ FACEBOOK --------------");
 		passport.authenticate('facebook', {
-			scope: ['email', /*'user_about_me'*/]
+			scope: ['email', 'public_profile']
 		},
 		function(err, user) {
 			req.logIn(user, function(err) {

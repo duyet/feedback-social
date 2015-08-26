@@ -113,7 +113,7 @@ passport.use(new FacebookStrategy({
 	clientID: FACEBOOK_CLIENT_KEY,
 	clientSecret: FACEBOOK_SECRET_KEY,
 	callbackURL: FACEBOOK_CALLBACK_URL,
-	enableProof: true
+	// enableProof: true
 }, function(accessToken, refreshToken, profile, done) {
 	console.log(accessToken, refreshToken, profile, done);
 	findByFacebookId(profile.id, function(err, user) {
