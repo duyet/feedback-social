@@ -35,7 +35,7 @@ define(function(require) {
 			if (!window.__c.debug || window.__c.debug == false) console.log = function() {};
 			
 			// System config 
-			window.__c.feedbackAuthenCookieKey = '__feedbackAuth';
+			window.__c.feedbackAuthenCookieKey = window.__c.cookieAuthKey || '__feedbackAuth';
 			
 			// Load user login info 
 			window.__c.user = window.__c.user || {};

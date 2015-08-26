@@ -13,11 +13,30 @@ var passport = require('passport');
  * @private
  */
 function _onPassportAuth(req, res, error, user, info) {
-	console.log("=========> ", error, user, info);
 	if (error) return res.serverError(error);
 	if (!user) return res.unauthorized(null, info && info.code, info && info.message);
 
 	return res.ok({
+		// TODO: replace with new type of cipher service
+		token: CipherService.createToken(user),
+		user: user
+	});
+}
+
+/**
+ * Triggers when user authenticates via passport facebook
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @param {Object} error Error object
+ * @param {Object} user User profile
+ * @param {Object} info Info if some error occurs
+ * @private
+ */
+function _onPassportFacebookAuth(req, res, error, user, info) {
+	if (error) return res.serverError(error);
+	if (!user) return res.unauthorized(null, info && info.code, info && info.message);
+
+	return res.facebookResponseOk({
 		// TODO: replace with new type of cipher service
 		token: CipherService.createToken(user),
 		user: user
@@ -67,7 +86,6 @@ module.exports = {
 	},
 
 	facebook: function(req, res, next) {
-		console.log("------------ FACEBOOK --------------");
 		passport.authenticate('facebook', {
 			scope: ['email', 'public_profile'],
 		},
@@ -88,7 +106,6 @@ module.exports = {
 	},
 
 	facebook_callback: function(req, res, next) {
-		console.log("------------ CALLBACK --------------");
-		passport.authenticate('facebook', _onPassportAuth.bind(this, req, res))(req, res, next);
+		passport.authenticate('facebook', _onPassportFacebookAuth.bind(this, req, res))(req, res, next);
 	},
 };

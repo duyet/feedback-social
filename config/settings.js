@@ -32,6 +32,9 @@ module.exports.settings = {
 	
 	// Active responsive layout
 	active_responsive: true,
+
+	// Cookie auth key 
+	cookieAuth: '__feedbackAuth',
 	
 	// Allow html tag in comments
 	comment_allow_tags: [ 'br', 'hr', 'strike', 'em', 'i', 'strong', 'a', 'ul', 'ol', 'li', 'p', 'span', 'div', 'img', 'video', 'audio', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td' ], 

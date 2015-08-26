@@ -90,12 +90,11 @@ function findById(id, next) {
  */
 function findByFacebookId(id, next) {
 	User.findOne({
-		socialProfiles: {
-			facebook: {
-				profile_id: id
-			}
+		where: {
+			"facebook_id": id
 		}
 	}).exec(function(err, user) {
+		console.log("FIND BY FACEBOOK ID: ", err, user);
 		if (err) {
 			return next(null, null);
 		} else {
@@ -116,28 +115,25 @@ passport.use(new FacebookStrategy({
 	profileFields: ["about","email","displayName", "gender", "profileUrl"]
 	// enableProof: true
 }, function(accessToken, refreshToken, profile, done) {
-	console.log(accessToken, refreshToken, profile, done);
 	findByFacebookId(profile.id, function(err, user) {
 
 		// Create a new User if it doesn't exist yet
-		if (!user) {
+		if (err || !user) {
 			var newProfile = {};
 			
 			newProfile.username = profile.username || profile.id || '';
 			newProfile.displayName = profile.displayName || '';
 			newProfile.email = profile.emails ? profile.emails[0].value : '';
-			newProfile.photo = "https://graph.facebook.com/"+ profile.id +"/picture?width=5000&access_token=" + accessToken;
+			newProfile.photo = "https://graph.facebook.com/"+ profile.id +"/picture?width=5000";
 			newProfile.gender = profile.gender || '';
 			newProfile.socialProfiles = {
 				facebook: profile._json
 			}
+			newProfile.facebook_id = profile.id;
 
 			newProfile.socialProfiles.facebook.accessToken = accessToken;
 			newProfile.socialProfiles.facebook.refreshToken = refreshToken;
 
-			console.log(":::::::::::::::::::::::::::", (newProfile));
-
-			
 			User.create(
 				newProfile
 			).exec(function(err, user) {

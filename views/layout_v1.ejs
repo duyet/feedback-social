@@ -63,6 +63,7 @@
         __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
         __c.is_client = true;
         __c.system_build = '<%= sails.config.settings.system_build  %>';
+        __c.cookieAuthKey = '<%= sails.config.settings.cookieAuth %>';
         __c.user = {};
         __c.baseUrl = '<%= sails.getBaseurl() %>';
         __c.debug = <%= sails.config.settings.client_debug %>;
