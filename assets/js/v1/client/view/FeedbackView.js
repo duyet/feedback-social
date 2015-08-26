@@ -16,7 +16,7 @@ define(function(require) {
                 if (this.isHiddenMe) {
                     $("#check-hidden-me").html("x");
                     $('#sendAs').html('Guest');
-                } else { 
+                } else {
                     $("#check-hidden-me").html("&nbsp;&nbsp;");
                     $('#sendAs').html(window.__c.user.user.username);
                 }
@@ -57,11 +57,11 @@ define(function(require) {
                     var user_link = '#!';
 
                     if (this.model.hideMe === false) {
-			// Breaking here, not hide but missing user data
-			// TODO: Fix me
-			if (!this.model.user) return this;
+                        // Breaking here, not hide but missing user data
+                        // TODO: Fix me
+                        if (!this.model.user) return this;
 
-                        name = this.model.user.username;
+                        name = this.model.user.displayName || this.model.user.username;
                         user_link += '/user/' + this.model.user.username;
                     } else {
                         user_link += '/p/hidden-user';
@@ -69,7 +69,7 @@ define(function(require) {
 
                     var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
                     var avatar = (new AvatarPlaceHolder()).generate(name);
-                    if (this.model.hideMe && this.model.hideMe === false) 
+                    if (this.model.hideMe && this.model.hideMe === false)
                         if (this.model.user.photo)
                             avatar = this.model.user.photo || avatar;
 
@@ -77,7 +77,7 @@ define(function(require) {
                     var html = JST["assets/templates/comment-item.html"]({
                         data: {
                             id: this.model.id,
-                            avatar: avatar, 
+                            avatar: avatar,
                             name: name,
                             user_link: user_link,
                             date: moment(this.model.createdAt).fromNow() || '',
@@ -95,17 +95,17 @@ define(function(require) {
         },
 
         events: {
-            'click #voteUp'   : 'onClickVoteUp',
-            'click #voteDown' : 'onClickVoteDown',
+            'click #voteUp': 'onClickVoteUp',
+            'click #voteDown': 'onClickVoteDown',
             'click #click-hidden-me': 'toggleHiddenMe',
-            'submit #comment-form' : 'doSubmitComment',
-            'click .makeDeleteComment' : 'makeSureDelete',
+            'submit #comment-form': 'doSubmitComment',
+            'click .makeDeleteComment': 'makeSureDelete',
             'click .actionDeleteComment': 'actionDeleteComment',
         },
-        
+
         render: function() {
             console.i("Render FeedbackView");
-            
+
             if (!this.model.id) {
                 this.$el.html(JST["assets/templates/blank.html"]());
                 return this;
@@ -114,32 +114,32 @@ define(function(require) {
             if (this.model.get('alias')) {
                 // Fetch counter 
                 this.voteCounter.fetchCounter(this.model.get('alias'));
-                
+
                 // Fetch vote status
                 this.voteInfo.fetchInfo(this.model.get('alias'));
 
                 // Render comments
                 this.renderComment();
             }
-            
-        	this.$el.html(JST["assets/templates/view-feedback.html"]({
-            	model: this.model,
+
+            this.$el.html(JST["assets/templates/view-feedback.html"]({
+                model: this.model,
                 __c: window.__c,
             }));
 
             return this;
         },
-        
+
         renderVoteCounter: function() {
             $('#voteUp .counter').html(this.voteCounter.get('up') || 0);
             $('#voteDown .counter').html(this.voteCounter.get('down') || 0);
         },
-        
+
         updateVoteCounter: function(vote_type) {
-            if (vote_type == 'up') $('#voteUp .counter').html( parseInt($('#voteUp .counter').text()) + 1 );
-            else $('#voteDown .counter').html( parseInt($('#voteDown .counter').text()) + 1 );
+            if (vote_type == 'up') $('#voteUp .counter').html(parseInt($('#voteUp .counter').text()) + 1);
+            else $('#voteDown .counter').html(parseInt($('#voteDown .counter').text()) + 1);
         },
-        
+
         renderVoteInfo: function() {
             // Remove panel lock 
             $('.vote-panel').removeClass('vote-panel-clocked');
@@ -153,11 +153,11 @@ define(function(require) {
                 if (this.lockVotePanel(this.voteInfo.get('vote_type')));
             }
         },
-        
+
         lockVotePanel: function(vote_type) {
             if (!vote_type || (vote_type != 'up' && vote_type != 'down')) return false;
             $('.vote-panel').addClass('vote-panel-clocked');
-            
+
             if (vote_type == 'up') $('.vote-panel #voteUp').addClass('selectedMe');
             if (vote_type == 'down') $('.vote-panel #voteDown').addClass('selectedMe');
         },
@@ -165,10 +165,12 @@ define(function(require) {
         renderComment: function() {
             var that = this;
             // Fetch commment 
-            this.comments = new FeedbackCommentCollection({ alias: this.model.get('alias') });
+            this.comments = new FeedbackCommentCollection({
+                alias: this.model.get('alias')
+            });
             if (!this.comments.fetched) {
                 this.comments.fetch({
-                    success: function (collection, response, options) {
+                    success: function(collection, response, options) {
                         this.fetched = true;
 
                         var commentList = $('.commentlist');
@@ -195,8 +197,12 @@ define(function(require) {
             console.log($(e.toElement), commentId);
 
             var action = new FeedbackComment();
-            action.set({ id: commentId});
-            action.set({ user: window.__c.user.user.id });
+            action.set({
+                id: commentId
+            });
+            action.set({
+                user: window.__c.user.user.id
+            });
             action.deleteComment(function(err, message) {
                 if (err) alert(err);
                 var deletedComment = $('.commentlist').find("li[data-commentid='" + commentId + "']");
@@ -204,7 +210,7 @@ define(function(require) {
             });
         },
 
-        doSubmitComment : function(e) {
+        doSubmitComment: function(e) {
             var that = this;
             this.hideMessage();
 
@@ -213,10 +219,18 @@ define(function(require) {
             }
 
             var action = new FeedbackComment();
-            action.set({ feedback_post: this.model.get('alias') });
-            action.set({ user: window.__c.user.user.id });
-            action.set({ hideMe: this.isHiddenMe });
-            action.set({ content: this.getCommentContent() });
+            action.set({
+                feedback_post: this.model.get('alias')
+            });
+            action.set({
+                user: window.__c.user.user.id
+            });
+            action.set({
+                hideMe: this.isHiddenMe
+            });
+            action.set({
+                content: this.getCommentContent()
+            });
 
             // Validate 
             if (!action.isValidate()) {
@@ -232,10 +246,12 @@ define(function(require) {
                     //that.showMessage('success', 'Thành công');
                     that.clearCommentContent();
                     //$('#comment-form').fadeOut();
-                    
+
                     console.log(message);
-                    message.set({ user: __c.user.user });
-                    
+                    message.set({
+                        user: __c.user.user
+                    });
+
                     var itemView = new that.CommentRowItem({
                         model: message.attributes,
                         isNewComment: true
@@ -248,13 +264,13 @@ define(function(require) {
             return false;
         },
 
-        getCommentContent : function() {
+        getCommentContent: function() {
             // TODO: Replace all ban html tag
             return $('#commentMessage').html() || '';
         },
 
-        clearCommentContent : function() {
-            return $('#commentMessage').html(''); 
+        clearCommentContent: function() {
+            return $('#commentMessage').html('');
         },
 
         toggleHiddenMe: function(e) {
@@ -264,12 +280,12 @@ define(function(require) {
 
         canVote: function() {
             $('#voteMessage').hide();
-            
-            if (! window.__c.isAuth) {
+
+            if (!window.__c.isAuth) {
                 $('#voteMessage').html('Vui lòng <a href="#!/login">đăng nhập</a> hoặc <a href="#!/register">đăng kí</a> để xác nhận phản hồi.').addClass('text-danger inner-xs text-center').fadeIn();
                 return false;
             }
-            
+
             return true;
         },
 
@@ -317,7 +333,7 @@ define(function(require) {
                     up: (vote_type == 'up' ? that.voteCounter.get('up') - 1 : that.voteCounter.get('up')),
                     down: (vote_type == 'down' ? that.voteCounter.get('down') - 1 : that.voteCounter.get('down'))
                 });
-                
+
                 // Fetch vote status
                 that.voteInfo.clear();
 
@@ -329,7 +345,7 @@ define(function(require) {
         actionVote: function(vote_type, next) {
             var that = this;
             var action = new VoteModel();
-            
+
             action.vote(this.model.get('alias'), vote_type, function(err, data) {
                 if (err) return next(err);
 
@@ -346,7 +362,7 @@ define(function(require) {
                 that.renderVoteInfo();
 
                 // Vote message
-                $('#voteMessage').html('Bạn đã vote <i class="icon-thumbs-'+ vote_type +'-1"></i>').addClass('text-success inner-xs text-center').fadeIn();
+                $('#voteMessage').html('Bạn đã vote <i class="icon-thumbs-' + vote_type + '-1"></i>').addClass('text-success inner-xs text-center').fadeIn();
 
                 // Callback
                 next(null, data);
@@ -354,17 +370,17 @@ define(function(require) {
         },
 
         showMessage: function(messageType, messageContent, next) {
-              var messageBox = $("#messageBox");
-              
-              messageBox.removeClass();
-              messageBox.addClass("alert alert-" + messageType);
-              messageBox.html(messageContent);
-              messageBox.css('display', 'block');
-              
-              if (next) next();
-              return true;
+            var messageBox = $("#messageBox");
+
+            messageBox.removeClass();
+            messageBox.addClass("alert alert-" + messageType);
+            messageBox.html(messageContent);
+            messageBox.css('display', 'block');
+
+            if (next) next();
+            return true;
         },
-        
+
         hideMessage: function() {
             $("#messageBox").css('display', 'hidden');
         },
