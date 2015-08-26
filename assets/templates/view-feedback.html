@@ -7,26 +7,26 @@
 	            	<p><%= model.get('htmlContent') %></p>
 	            </div>
 
-					<div id="vote" class="row vote-panel">
-														
-						<div class="col-sm-6 reset-padding" id="voteUp" style="opacity: 1;">
-							<a href="javascript:;" class="btn-vote-xs">
-								<p class="name"></p>
-								<i class="icon-thumbs-up-1"></i>
-								<p class="counter"></p>
-							</a>
-						</div><!-- /.col -->
-						
-						<div class="col-sm-6 reset-padding" id="voteDown" style="opacity: 1;">
-							<a href="javascript:;" class="btn-vote-xs">
-								<p class="name"></p>
-								<i class="icon-thumbs-down-1"></i>
-								<p class="counter"></p>
-							</a>
-						</div><!-- /.col -->
-						
-					</div>
-					<div class="row" id="voteMessage" style="display:none"></div>
+				<div id="vote" class="row vote-panel">
+													
+					<div class="col-sm-6 reset-padding" id="voteUp" style="opacity: 1;">
+						<a href="javascript:;" class="btn-vote-xs">
+							<p class="name"></p>
+							<i class="icon-thumbs-up-1"></i>
+							<p class="counter"></p>
+						</a>
+					</div><!-- /.col -->
+					
+					<div class="col-sm-6 reset-padding" id="voteDown" style="opacity: 1;">
+						<a href="javascript:;" class="btn-vote-xs">
+							<p class="name"></p>
+							<i class="icon-thumbs-down-1"></i>
+							<p class="counter"></p>
+						</a>
+					</div><!-- /.col -->
+					
+				</div>
+				<div class="row" id="voteMessage" style="display:none"></div>
 
 	        </header>
 	    </div>
@@ -43,7 +43,7 @@
 	            	<% if (model.get('hiddenInfo')) { %>
 	            		Ẩn danh
 	            	<% } else { %>
-	            		<%= model.get('author').username %>
+	            		<%= model.get('author') ? (model.get('author').displayName || model.get('author').username || 'Ẩn danh') : 'Ẩn danh' %>
 	            	<% } %>
 	            </li>
 	            <li class="url">
@@ -91,10 +91,7 @@
 					<a href="https://twitter.com/share" class="twitter-share-button" data-via="duyetdev"></a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				</div>
-
 	        </div>
-
-
 	    </div>
 	    <!-- /.col -->
 	</div>
@@ -107,7 +104,6 @@
 		        <% if (__c.isAuth) { %>
 		        <div class="alert alert-danger" id="messageBox" style="display:none"></div>
 		        <form id="comment-form" class="forms" action="javascript:;" novalidate="novalidate">
-		            
 		            <div class="row">
 		                <div class="col-sm-10 animated" style="opacity: 1;">
 		                    Nội dung phản hồi
@@ -136,8 +132,6 @@
 		        <!-- /.commentlist -->
 		    </div>
 	    </div>
-
 	    <div class="col-md-4"></div>
 	</div>
-
 </section>

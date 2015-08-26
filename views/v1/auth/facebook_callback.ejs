@@ -1,0 +1,11 @@
+<script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/jquery.cookie/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+	$.cookie.json = true;
+	window.__c.user = res;
+    window.__c.isAuth = true;
+    $.cookie(window.__c.feedbackAuthenCookieKey, '<%- JSON.stringify(data) %>');
+</script>
+
+<div class="container-fluid">Đang chuyển hướng...</div>

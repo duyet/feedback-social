@@ -37,6 +37,9 @@ module.exports.settings = {
 		// Sumo 
 		sumo_site_id: '6d04b5d8224b4c835c38784ff97ff39007f029ed4dc40b9a046779d123a78d44',
 
+		// Cookie auth key 
+		cookieAuth: '__feedbackAuth',
+
 		// ReCaptcha API
 		reCaptcha: {
 			active: false,

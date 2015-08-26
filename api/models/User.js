@@ -9,7 +9,6 @@ module.exports = {
 			type: 'string',
 			required: true,
 			unique: true,
-			alphanumericdashed: true
 		},
 		password: {
 			type: 'string'
@@ -24,6 +23,10 @@ module.exports = {
 			type: 'string',
 			defaultsTo: ''
 		},
+		gender: {
+			type: 'string',
+			defaultsTo: ''
+		},
 		photo: {
 			type: 'string',
 			defaultsTo: '',
@@ -32,6 +35,15 @@ module.exports = {
 		socialProfiles: {
 			type: 'object',
 			defaultsTo: {}
+		},
+
+		// Facebook user id
+		// Indeed, I can't find better way to find in attribute in deep level,
+		// to fix that, I move to top level attribute
+		// TODO: Fix that!!
+		facebook_id: {
+			type: 'string',
+			defaultsTo: '',
 		},
  
 		toJSON: function () {
