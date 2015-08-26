@@ -1,73 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    
-    <title><%= sails.config.settings.title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
-    <meta name="keywords" content="phản hồi, ý kiến, thông tin nhanh, phản hồi nhanh, feedback, lên tiếng, ủng hộ, phàn nàn" />
-    <link rel="shortcut icon" href="" />
-
-    <meta property="og:title" content="Phản hồi xyz" />
-    <meta property="og:site_name" content="Phản hồi xyz"/>
-    <meta property="og:url" content="http://phanhoi.xyz" />
-    <meta property="og:description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="vi_VN" />
-
-    <meta name="twitter:url" content="http://phanhoi.xyz" />
-    <meta property="twitter:title" content="Phản hồi xyz" />
-    <meta property="twitter:description" content="Phản hồi nhanh, kênh phản hồi ý kiến, nơi lên tiếng cho cộng đồng" />
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/v1/animate.min.css">
-    <link rel="stylesheet" href="/styles/v1/fonts/fontello.css">
-    <link rel="stylesheet" href="/styles/v1/green.css">
-    <link rel="stylesheet" href="/styles/v1/main.css">
-    <!--STYLES END-->
-
-    <link rel="stylesheet" type="text/css" href="/lib/fontawesome/css/font-awesome.min.css" />
-
-    <!-- Fonts -->
-    <script>
-        WebFontConfig = {
-            google: {
-                families: [
-                    'Roboto:400,900,300,700:latin,vietnamese', 
-                    'Lato:400,900,300,700:latin,vietnamese',
-                    'Source Sans Pro:400,700,400italic,700italic:latin,vietnamese'
-                ]
-            }
-        };
-        (function(d) {
-            var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
-            wf.async = true;
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-    </script>
-
-    <!--[if lt IE 9]>
-        <script src="/lib/html5shiv/dist/html5shiv.min.js"></script>
-        <script src="/lib/respond/dest/respond.min.js"></script>
-    <![endif]-->
-    
-    <% if (sails.config.settings.reCaptcha.active) { %><script src='https://www.google.com/recaptcha/api.js'></script><% } %>
-    <script>
-        window.__c = window.__c || {}; window.__d = window.__d || {}; 
-        __c._csrf = '<%= _csrf %>';
-        __c.require = ['lodash', 'requirejs', 'duyetdev_pingback', 'antiR','duyetdev_heatmap', 'ssl_validate', 'public_key'];
-        __c.api_prefix = '<%= sails.config.settings.api_prefix %>';
-        __c.active_responsive = <%= sails.config.settings.get('active_responsive') %>;
-        __c.is_client = true;
-        __c.system_build = '<%= sails.config.settings.system_build  %>';
-        __c.user = {};
-        __c.baseUrl = '<%= sails.getBaseurl() %>';
-        __c.debug = <%= sails.config.settings.client_debug %>;
-    </script>
-</head>
 
 <body>
     <header>
@@ -101,6 +31,7 @@
 
 
     <footer></footer>
+
 
     <!--TEMPLATES-->
     <script type="text/javascript" src="/jst.js"></script>
@@ -140,4 +71,3 @@
     <script src="//load.sumome.com/" data-sumo-site-id="<%= sails.config.settings.sumo_site_id %>" async="async"></script>
     <% } %>
 </body>
-</html>
