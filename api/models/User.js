@@ -36,6 +36,15 @@ module.exports = {
 			type: 'object',
 			defaultsTo: {}
 		},
+
+		// Facebook user id
+		// Indeed, I can't find better way to find in attribute in deep level,
+		// to fix that, I move to top level attribute
+		// TODO: Fix that!!
+		facebook_id: {
+			type: 'string',
+			defaultsTo: '',
+		},
  
 		toJSON: function () {
 			var obj = this.toObject();
