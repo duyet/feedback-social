@@ -73,22 +73,34 @@ define(function(require) {
 				controller: new Controller()
 			});
 
-			// Add modules
-			//this.module('BlueThemeModule', {
-			//	moduleClass: BlueThemeModule
-			//});
-
-			// I'm going to use
+			// Force resart Backbone.history
+			if (Backbone.History.started) Backbone.history.stop();
+			
 			// hashes for internal navigation.
-			Backbone.History.started || Backbone.history.start({ pushState: false });
-			//Backbone.history.start();
+			Backbone.history.start({ pushState: false });
 		},
 
 		restart: function() {
 			console.warn("Shutdown system ...");
+			this.stop();
+			
 			console.info("Restart ...");
+			window.getFeedbackAppInstance(true).start();
 
-			return window.getFeedbackAppInstance(true).start();
+			// Reprocess last 
+			var lastRoute = this.getLastHistory();
+			if (lastRoute)
+				Backbone.history.navigate(lastRoute, {trigger: true});
+		},
+
+		systemHistory: [],
+
+		addLastHistory: function(data) {
+			this.systemHistory.push(data);
+		},
+
+		getLastHistory: function() {
+			return this.systemHistory.pop() || '';
 		}
 	});
 });

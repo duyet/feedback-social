@@ -44,9 +44,10 @@ define(function(require) {
 
         },
 
-        onRoute: function() {
-            
+        onRoute: function(name, path, arg) {
+            var AppInstance = require('AppInstance');
+            console.log("On router: ", name, path, arg);
+            AppInstance.addLastHistory(path);
         }
-
     });
 });
