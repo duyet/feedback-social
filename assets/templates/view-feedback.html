@@ -33,7 +33,7 @@
 	    <!-- /.col -->
 	    <div class="col-sm-4 col-sm-offset-1 outer-top-xs outer-bottom-xs inner-left-xs border-left animated" style="opacity: 1;">
 	        <ul class="item-details">
-	            <li class="date"><%= model.get('createdAt') %></li>
+	            <li class="date"><%= model.get('createdAtAgo') %></li>
 	            <li class="categories">
 	            	<% var tag = model.get('tags'); for (var i in tag) { %>
 	            		<span class="label label-success"><%= tag[i] %></span> 

@@ -127,6 +127,9 @@ define(function(require) {
                 this.renderComment();
             }
 
+            // Render datetime 
+            this.model.set({ createdAtAgo: moment(this.model.get('createdAt')).fromNow() });
+
             this.$el.html(JST["assets/templates/view-feedback.html"]({
                 model: this.model,
                 __c: window.__c,
