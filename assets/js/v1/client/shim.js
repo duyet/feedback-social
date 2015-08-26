@@ -83,8 +83,6 @@ require.config({
 });
 
 require.onError = function(e) {
-    console.error(e);
-    
     var errorFlash = document.getElementById("feedback-flash-error");
     errorFlash.innerHTML = ("Some things went wrong, please reload this page.");
     errorFlash.style.display = "block";

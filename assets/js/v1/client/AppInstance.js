@@ -16,7 +16,31 @@ define(function(require) {
     // Helper 
     window.console.i = function(message) {
     	console.info((new Date()).toString() + ' :: ' + message);
-    }
+    };
+
+    // Offline detect
+	window.addEventListener('load', function() {
+		var offlineFlash = document.getElementById("feedback-flash-error");
+		var onlineFlash = document.getElementById("feedback-flash-success");
+
+		function updateOnlineStatus(event) {
+			offlineFlash.style.display = "none";
+			onlineFlash.style.display = "none";
+
+			var condition = navigator.onLine ? "online" : "offline";
+			
+			if (condition == "offline") {
+				offlineFlash.innerHTML = "Đã ngắt kết nối. Đang thử lại ...";
+				offlineFlash.style.display = "block";
+			} else {
+				onlineFlash.innerHTML = "Đã kết nối. Click để ẩn thông báo";
+				onlineFlash.style.display = "block";
+			}
+		}
+
+		window.addEventListener('online',  updateOnlineStatus);
+		window.addEventListener('offline', updateOnlineStatus);
+	});
 
     return window.getFeedbackAppInstance();
 });
