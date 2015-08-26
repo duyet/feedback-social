@@ -7,7 +7,7 @@
         <h3><a href="<%= data.user_link %>"><%= data.name %></a></h3>
         <div class="meta">
             <span class="date"><%= data.date %></span>
-            <% if (__c.isAuth && user.username == __c.user.user.username) { %>
+            <% if (__c.isAuth && user.id == __c.user.user.id) { %>
                 <span class="edit"><a href="javascript:;" class="actionDeleteComment" data-commentId="<%= data.id %>">delete</a></span>
             <% } %>
         </div>

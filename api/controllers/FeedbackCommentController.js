@@ -45,7 +45,10 @@ module.exports = {
 			// Remove author info
 			if (Array.isArray(models)) {
 				models.map(function(row) {
-					if (row.hideMe) row.user = {};
+					if (row.hideMe) {
+						var _id = row.user.id;
+						row.user = { id: _id };
+					}
 
 					return row;
 				})
