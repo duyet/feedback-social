@@ -23,14 +23,19 @@
                                     <tbody>
                                         <tr>
                                             <td>Tài khoản</td>
-                                            <td>#<%= model.get('user').username %></td>
+                                            <td>
+                                                <% if (model.get('facebook_id')) { %>
+                                                    <i class="icon-s-facebook"></i>
+                                                <% } %>
+                                                #<%= model.get('user').username %>
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td>Họ tên</td>
                                             <td>
-                                                <%= model.get('user').firstName %> <%= model.get('user').lastName %> 
-                                                <% if (!model.get('user').firstName && !model.get('user').lastName) { %>
+                                                <%= model.get('user').displayName %>
+                                                <% if (!model.get('user').displayName) { %>
                                                     [<a href="javascript:;" id="updateName">Cập nhật</a>]
                                                 <% } %>
                                             </td>
