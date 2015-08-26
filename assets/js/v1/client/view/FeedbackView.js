@@ -182,6 +182,7 @@ define(function(require) {
                         this.fetched = true;
 
                         var commentList = $('.commentlist');
+                        commentList.html(''); // Empty
                         response.forEach(function(comment) {
                             var itemView = new that.CommentRowItem({
                                 model: comment
