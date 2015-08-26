@@ -9,7 +9,6 @@ module.exports = {
 			type: 'string',
 			required: true,
 			unique: true,
-			alphanumericdashed: true
 		},
 		password: {
 			type: 'string'
@@ -21,6 +20,10 @@ module.exports = {
 			unique: true
 		},
 		displayName: {
+			type: 'string',
+			defaultsTo: ''
+		},
+		gender: {
 			type: 'string',
 			defaultsTo: ''
 		},
