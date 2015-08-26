@@ -12,6 +12,10 @@ define(function(require) {
             return urls;
 		},
 
+        getHiddenAvatar: function(size) {
+            return 'images/hidden-avatar-'+ (size || 'xs') +'.jpg';
+        },
+
 		getFirstLetterFromName : function(username) {
               return this.titleToAlias(username)[0].toUpperCase() || "";
         },

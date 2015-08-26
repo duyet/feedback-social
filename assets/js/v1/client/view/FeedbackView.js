@@ -53,8 +53,11 @@ define(function(require) {
                 render: function() {
                     if (!this.model) return this;
 
+                    var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
+
                     var name = '-hidden-';
                     var user_link = '#!';
+                    var avatar;
 
                     if (this.model.hideMe === false) {
                         // Breaking here, not hide but missing user data
@@ -63,15 +66,17 @@ define(function(require) {
 
                         name = this.model.user.displayName || this.model.user.username;
                         user_link += '/user/' + this.model.user.username;
+                        avatar = this.model.user.photo || (new AvatarPlaceHolder()).generate(name);
                     } else {
                         user_link += '/p/hidden-user';
+                        avatar = (new AvatarPlaceHolder()).getHiddenAvatar();
                     }
 
-                    var AvatarPlaceHolder = require('model/AvatarPlaceHolderModel');
-                    var avatar = (new AvatarPlaceHolder()).generate(name);
-                    if (this.model.hideMe && this.model.hideMe === false)
+                    
+                    
+                    if (this.model.hideMe === false)
                         if (this.model.user.photo)
-                            avatar = this.model.user.photo || avatar;
+                            
 
                     moment.locale('vi');
                     var html = JST["assets/templates/comment-item.html"]({
