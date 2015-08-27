@@ -11,5 +11,7 @@ git stash apply
 echo "Restart Node PM2 ..."
 pm2 restart 0
 
+sleep 5
+
 echo ">> OK"
 
