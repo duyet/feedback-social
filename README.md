@@ -4,6 +4,33 @@ Feedback Social is platform, free for all to feedback, preview, complain,... abo
 
 Admin manager: <strong>[https://github.com/duyetdev/feedback-social-admin](https://github.com/duyetdev/feedback-social-admin)</strong>
 
+# Install and run
+
+1 - Clone the source
+````
+cd ~/project
+git clone https://github.com/duyetdev/feedback-social && cd feedback-social 
+````
+
+2 - Install sails.js & mongodb
+````
+npm install -g sails 
+sudo apt-get install mongodb 
+````
+
+3 - Install deps and library 
+````
+npm install && bower install 
+````
+
+4 - Run 
+````
+sails lift 
+````
+
+5. Go to your browser (http://localhost:1337)[http://localhost:1337]
+
+
 # Todo 
 
 * <del>Mardown editor</del> 
