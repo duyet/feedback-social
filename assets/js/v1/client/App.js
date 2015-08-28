@@ -82,7 +82,7 @@ define(function(require) {
 
 		restart: function() {
 			console.warn("Shutdown system ...");
-			this.stop();
+			// this.stop();
 			
 			console.info("Restart ...");
 			window.getFeedbackAppInstance(true).start();

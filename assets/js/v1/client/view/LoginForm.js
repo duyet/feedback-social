@@ -72,7 +72,7 @@ define(function(require) {
                     $.cookie(window.__c.feedbackAuthenCookieKey, res);
                     that.showMessage("success", "Đăng nhập thành công!");
                     
-                    this.afterLogin();
+                    that.afterLogin();
                     
                     // Restart App 
                     window.__App.start();
