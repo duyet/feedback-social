@@ -111,12 +111,11 @@ define(function(require) {
             var top = (screen.height/2)-(h/2);
             return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
         },
-        
 
         afterLogin: function() {
             // Redirect to userpage 
             // TODO: Redirect to last page
-            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+            // Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
             // Restart App
             window.__App.restart();
             // Redirect to userpage 
