@@ -18,6 +18,7 @@ define(function(require) {
             this.$el.html('');
 
             if (window.__c.isAuth) {
+                this.$el.html(JST["assets/templates/isauth.html"]());
                 return this;
             }
 
