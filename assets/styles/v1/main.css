@@ -1925,9 +1925,12 @@ p .btn {
 .social li a {
   display: table;
   position: relative;
-  border: 1px solid #3B5998;
-  color: #3B5998;
 }
+
+.social li a.facebookLoginButton {
+	background-color: #3B5998;
+}
+
 .social li a i {
 	color: #3B5998;
     text-align: center;
@@ -1942,6 +1945,11 @@ p .btn {
          -o-transition: all 200ms ease-out;
             transition: all 200ms ease-out;
 }
+
+.social li a.facebookLoginButton i {
+	color: #FFF !important;
+}
+
 .social li a i:after {
 	content: '';
 	z-index: -1;
