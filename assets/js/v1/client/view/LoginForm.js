@@ -87,6 +87,7 @@ define(function(require) {
         },
 
         openFacebookLoginPanel: function() {
+            var that = this;
             var popUpUrl = __c.baseUrl + __c.api_prefix + '/auth/facebook';
             window.facebookWindow = this.createPopupWindow(popUpUrl, 'Login', 780, 540);
             
