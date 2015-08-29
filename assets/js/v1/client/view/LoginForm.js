@@ -115,7 +115,7 @@ define(function(require) {
         afterLogin: function() {
             // Redirect to userpage 
             // TODO: Redirect to last page
-            // Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
+            Backbone.history.navigate('!/user/' + window.__c.user.user.username, {trigger: true});
             // Restart App
             window.__App.restart();
             // Redirect to userpage 

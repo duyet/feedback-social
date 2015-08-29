@@ -1923,10 +1923,13 @@ p .btn {
     margin: 0 2px;
 }
 .social li a {
-    display: table;
-	position: relative;
+  display: table;
+  position: relative;
+  border: 1px solid #3B5998;
+  color: #3B5998;
 }
 .social li a i {
+	color: #3B5998;
     text-align: center;
     display: table-cell;
     vertical-align: middle;
