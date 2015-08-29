@@ -93,7 +93,7 @@ define(function(require) {
             window.checkLoginStatus = function() {
                 console.log("On checklogin status", window.facebookWindow);
                 if (window.facebookWindow.closed) {
-                    this.afterLogin();
+                    that.afterLogin();
                 }
                 else setTimeout(window.checkLoginStatus, 1000);
             };
