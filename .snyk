@@ -1,0 +1,40 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - sails > connect > serve-static > send > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > finalhandler > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > morgan > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > serve-index > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > body-parser > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > compression > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > connect-timeout > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > connect > express-session > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > socket.io-client > engine.io-client > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > skipper > skipper-disk > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > engine.io > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > socket.io-parser > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > socket.io-client > socket.io-parser > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > socket.io-client > debug:
+        patched: '2017-10-02T08:12:20.374Z'
+    - sails > sails-hook-sockets > socket.io > socket.io-adapter > debug:
+        patched: '2017-10-02T08:12:20.374Z'
