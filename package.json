@@ -7,7 +7,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.2.1",
-    "connect-mongo": "^0.8.2",
+    "connect-mongo": "^3.0.0",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
